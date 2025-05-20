@@ -1,19 +1,17 @@
-import scapy as scapy
-import subprocess as sp
+import yaml
 import os
 import sys
 import json
-import multiprocessing as mp 
-from functools import partial
 import asyncio
+import multiprocessing as mp
+import subprocess as sp
+import scapy as scapy
+
+from functools import partial
 from datetime import datetime
-
-from scapy.layers.inet import IP, TCP
+from waf_signatures import get_signature
+from scapy.layers.inet import IP, TCP, raw
 from scapy.modules.nmap import nmap_match_one_sig
-
-sp.run('')
-
-RECON_DIR = os.path.abspath(os.path.dirname(__file__)) # Directory where the recon data will be stored, the same as the script directory
 
 
 class AsyncScanner:
@@ -24,6 +22,7 @@ class AsyncScanner:
         self.results = []
         self.blocked = False
         self.active_scans = {}
+        self.target_ip = None
         
     # check if domain is a wildcard (*.example.com) or standard (example.com)
     async def check_domain_type(self):
@@ -169,6 +168,9 @@ class AsyncScanner:
 
             # Parse IP addresses
             ip_addresses = [ip.strip() for ip in output.split('\n') if ip.strip()]
+
+            # set target_ip attribute
+            self.target_ip = ip_addresses[0]
 
             # Get nameservers
             ns_cmd = ['dig', 'NS', self.target, '+short']
@@ -342,7 +344,7 @@ class AsyncScanner:
 
     async def test_waf(self):
         task_id = self._register_tool("vegeta")
-        
+
 
         pass
     def scan_ports(self):
@@ -392,21 +394,15 @@ class AsyncScanner:
 
     def _monitor_traffic(self):
         """Monitor traffic for WAF blocks using Scapy"""
+        pcap_file = os.path.join(self.output_dir, f"{self.target}_traffic.pcap")
+        blocks_pcap_file = os.path.join(self.output_dir, f"{self.target}_traffic_blocks.pcap")
+
+
         # Define WAF block signatures
-        waf_signatures = [
-            # CloudFlare WAF block indicators
-            {"layer": TCP, "field": "dport", "value": 403},
-            {"text": b"CloudFlare Ray ID"},
-            {"text": b"Access denied"},
+        waf_signatures = get_signatures()
 
-            # AWS WAF indicators
-            {"text": b"AWS WAF"},
-
-            # Generic WAF indicators
-            {"text": b"Request blocked"},
-            {"text": b"IP address has been blocked"},
-            # Add more signatures as needed
-        ]
+        if not waf_signatures:
+            print("Warning: No WAF signatures loaded. Monitoring will be limited.")
 
         # Start capturing packets
         def packet_callback(packet):
@@ -416,16 +412,34 @@ class AsyncScanner:
             # Check if the packet is related to our target
             if IP in packet and TCP in packet:
                 # Only look at packets to/from our target
-                target_ip = self._resolve_target_to_ip()
-                if packet[IP].src == target_ip or packet[IP].dst == target_ip:
+
+                if packet[IP].src == self.target_ip or packet[IP].dst == self.target_ip:
+
+                    # save all packets to pcap_file and count packets
+                    wrpcap(pcap_file, [packet], append=True)
+                    self.packet_count += 1
+
                     # Check packet against WAF signatures
                     if self._check_waf_block(packet, waf_signatures):
                         print(f"WAF BLOCK DETECTED for {self.target}")
                         self.blocked = True
 
-                        # Log the packet that triggered detection
-                        with open(os.path.join(self.output_dir, "waf_block_packet.txt"), "w") as f:
+                        # save the block indicating packets separately
+                        wrpcap(blocks_pcap_file, [packet], append=True)
+                        self.waf_block_count += 1
+
+                        # Log which signature matched
+                        with open(os.path.join(self.output_dir, "waf_block_detail.txt"), "w") as f:
+                            f.write(f"WAF block detected at {datetime.now().isoformat()}\n")
+                            f.write(f"Target: {self.target}\n")
+                            f.write(f"IP: {packet[IP].src}\n")
+                            f.write(f"IP: {packet[IP].dst}\n")
+                            f.write(f"TCP: {packet[TCP].sport}\n")
+                            f.write(f"TCP: {packet[TCP].dport}\n")
                             f.write(str(packet.show(dump=True)))
+
+                            if hasattr(self, 'matched_signature'):
+                                f.write(f"Matched signature: {self.matched_signature}\n")
 
                         # Notify for VPN rotation if needed
                         # This would typically trigger an event or callback
@@ -435,8 +449,7 @@ class AsyncScanner:
         # Start the capture on the specific interface
         try:
             # Filter for TCP traffic to/from our target IP
-            target_ip = self._resolve_target_to_ip()
-            bpf_filter = f"host {target_ip} and tcp"
+            bpf_filter = f"host {self.target_ip} and tcp"
 
             # Use Scapy's sniff function
             scapy.sniff(
@@ -451,25 +464,185 @@ class AsyncScanner:
 
     def _check_waf_block(self, packet, signatures):
         """Check if a packet matches any WAF block signatures"""
-        # Check layer field values
+        # Layer 3 check
+        if IP in packet:
+            original_dst = packet[IP].dst
+            response_src = packet[IP].src
+            if self.target_ip and response_src != self.target_ip and original_dst == self.target_ip:
+                # Response from different IP than requested
+                self.matched_signature = f"IP source mismatch: {response_src} != {self.target_ip}"
+                return True
+
+        # Layer 4 check
+        if TCP in packet:
+            if packet[TCP].flags & 0x04:  # RST flag
+                self.matched_signature = "TCP RST flag"
+                return True
+
+        # Initialize HTTP data extraction (will be done only if needed)
+        http_data = None
+
         for sig in signatures:
-            if "layer" in sig and "field" in sig:
-                layer = sig["layer"]
-                field = sig["field"]
-                value = sig["value"]
+            sig_type = sig.get('type', '')
+            match = False
 
-                if layer in packet and hasattr(packet[layer], field):
+            # Layer-specific signatures (TCP)
+            if sig_type == 'layer_field':
+                layer_name = sig.get('layer')
+                field = sig.get('field')
+                value = sig.get('value')
+
+                # Handle different layer types
+                layer = None
+                if layer_name == 'TCP' or layer_name is TCP:
+                    layer = TCP
+                elif layer_name == 'IP' or layer_name is IP:
+                    layer = IP
+
+                if layer and layer in packet and hasattr(packet[layer], field):
                     if getattr(packet[layer], field) == value:
-                        return True
+                        match = True
+                        self.matched_signature = f"TCP field {field}={value}"
 
-        # Check for text patterns in raw packet
-        if Raw in packet:
-            payload = bytes(packet[Raw])
-            for sig in signatures:
-                if "text" in sig and sig["text"] in payload:
-                    return True
+            # HTTP-based signatures (require extracting HTTP data)
+            elif sig_type in ['header', 'header_regex', 'content', 'content_regex', 'status_code']:
+                # Extract HTTP data if not already done
+                if http_data is None:
+                    http_data = self._extract_http_data(packet)
+
+                if not http_data:
+                    continue  # Skip HTTP checks if not HTTP data
+
+                # Check header signatures
+                if sig_type == 'header' and 'name' in sig:
+                    header_name = sig['name'].lower()
+                    if any(h.lower() == header_name for h in http_data.get('headers', {})):
+                        match = True
+                        self.matched_signature = f"Header: {sig['name']}"
+
+                # Check header regex patterns
+                elif sig_type == 'header_regex' and 'pattern' in sig:
+                    pattern = sig['pattern']
+                    for header in http_data.get('headers', {}):
+                        if re.search(pattern, header, re.IGNORECASE):
+                            match = True
+                            self.matched_signature = f"Header pattern: {pattern}"
+                            break
+
+                # Check content signatures
+                elif sig_type == 'content' and 'text' in sig:
+                    text = sig['text']
+                    if text in http_data.get('body', b''):
+                        match = True
+                        self.matched_signature = f"Content: {text[:30]}..."
+
+                # Check content regex patterns
+                elif sig_type == 'content_regex' and 'pattern' in sig:
+                    pattern = sig.get('compiled_pattern', re.compile(sig['pattern'].encode('utf-8')))
+                    if pattern.search(http_data.get('body', b'')):
+                        match = True
+                        self.matched_signature = f"Content pattern: {sig['pattern'][:30]}..."
+
+                # Check status codes
+                elif sig_type == 'status_code' and 'value' in sig:
+                    if http_data.get('status_code') == sig['value']:
+                        match = True
+                        self.matched_signature = f"Status code: {sig['value']}"
+
+            # If any signature matched, return True
+            if match:
+                return True
 
         return False
+
+    def _extract_http_data(self, packet):
+        """Extract HTTP data from a packet"""
+        if Raw not in packet:
+            return None
+
+        try:
+            # Get raw payload
+            payload = bytes(packet[Raw])
+
+            # Check if this looks like HTTP data
+            if not (payload.startswith(b'HTTP/') or  # Response
+                    any(verb in payload[:20] for verb in  # Request
+                        [b'GET ', b'POST ', b'PUT ', b'DELETE ', b'HEAD ', b'OPTIONS '])):
+                return None
+
+            # Try to decode as text
+            try:
+                text = payload.decode('utf-8', errors='replace')
+            except:
+                text = None
+
+            # Parse HTTP response
+            if payload.startswith(b'HTTP/'):
+                # This is a response
+
+                # Extract status code
+                status_code = None
+                status_line = payload.split(b'\r\n', 1)[0].decode('utf-8', errors='replace')
+                if ' ' in status_line:
+                    try:
+                        status_code = int(status_line.split(' ')[1])
+                    except (ValueError, IndexError):
+                        pass
+
+                # Split headers and body
+                if b'\r\n\r\n' in payload:
+                    headers_part, body = payload.split(b'\r\n\r\n', 1)
+                else:
+                    headers_part, body = payload, b''
+
+                # Parse headers
+                headers = {}
+                header_lines = headers_part.split(b'\r\n')[1:]  # Skip status line
+                for line in header_lines:
+                    if b':' in line:
+                        name, value = line.split(b':', 1)
+                        headers[name.decode('utf-8', errors='replace').strip()] = \
+                            value.decode('utf-8', errors='replace').strip()
+
+                return {
+                    'type': 'response',
+                    'status_code': status_code,
+                    'headers': headers,
+                    'body': body,
+                    'raw': payload
+                }
+
+            else:
+                # This is a request
+
+                # Split into request line, headers, body
+                parts = payload.split(b'\r\n\r\n', 1)
+                header_part = parts[0]
+                body = parts[1] if len(parts) > 1 else b''
+
+                # Get request line
+                lines = header_part.split(b'\r\n')
+                request_line = lines[0].decode('utf-8', errors='replace')
+
+                # Parse headers
+                headers = {}
+                for line in lines[1:]:
+                    if b':' in line:
+                        name, value = line.split(b':', 1)
+                        headers[name.decode('utf-8', errors='replace').strip()] = \
+                            value.decode('utf-8', errors='replace').strip()
+
+                return {
+                    'type': 'request',
+                    'request_line': request_line,
+                    'headers': headers,
+                    'body': body,
+                    'raw': payload
+                }
+
+        except Exception as e:
+            print(f"Error extracting HTTP data: {e}")
+            return None
 
     def _resolve_target_to_ip(self):
         """Resolve target domain to IP address"""
@@ -486,3 +659,127 @@ class AsyncScanner:
             # If resolution fails, return a placeholder
             # This would need better handling in a real implementation
             return "0.0.0.0"
+
+    # WAF detection methods
+    def check_waf_block(packet):
+        # Layer 3 check
+        if IP in packet:
+            original_dst = packet[IP].dst
+            response_src = packet[IP].src
+            if response_src != original_dst:
+                # Response from different IP than requested
+                return True
+
+        # Layer 4 check
+        if TCP in packet:
+            if packet[TCP].flags & 0x04:  # RST flag
+                return True
+
+        # Layer 7 check
+        if Raw in packet:
+            http_data = extract_http_data(packet)
+            if http_data:
+                # Check status code
+                if http_data['status_code'] in [403, 429]:
+                    return True
+
+                # Check WAF headers
+                for header in http_data['headers']:
+                    if header.lower().startswith('x-') and (
+                            'waf' in header.lower() or 'security' in header.lower()):
+                        return True
+
+                # Check body content
+                if 'blocked' in http_data['body'].lower() or 'firewall' in http_data['body'].lower():
+                    return True
+
+        return False
+
+    def check_cloudflare_dns(domain):
+        """Check if domain resolves to Cloudflare IPs"""
+        import socket
+        try:
+            ip = socket.gethostbyname(domain)
+            # Check if IP is in Cloudflare ranges
+            cloudflare_ranges = [
+                '103.21.244.0/22', '103.22.200.0/22', '103.31.4.0/22',
+                '104.16.0.0/12', '108.162.192.0/18', '131.0.72.0/22',
+                '141.101.64.0/18', '162.158.0.0/15', '172.64.0.0/13',
+                '173.245.48.0/20', '188.114.96.0/20', '190.93.240.0/20',
+                '197.234.240.0/22', '198.41.128.0/17'
+            ]
+
+            for cidr in cloudflare_ranges:
+                if is_ip_in_cidr(ip, cidr):
+                    return True
+            return False
+        except:
+            return False
+
+    async def test_cloudflare_protection(domain):
+        """Compare responses from domain vs. direct IP"""
+        # Get IP through DNS
+        try:
+            ip = await asyncio.get_event_loop().getaddrinfo(domain, 80)
+            ip = ip[0][4][0]  # Extract IP from addrinfo
+        except:
+            return "DNS resolution failed"
+
+        # Test domain (through Cloudflare)
+        domain_response = await make_http_request(f"http://{domain}")
+
+        # Test IP directly (potential bypass)
+        ip_response = await make_http_request(f"http://{ip}")
+
+        # Compare responses
+        if "CF-RAY" in domain_response.headers and "CF-RAY" not in ip_response.headers:
+            return "Cloudflare detected, direct IP accessible (bypass possible)"
+        elif "CF-RAY" in domain_response.headers:
+            return "Cloudflare detected, direct IP also protected"
+        else:
+            return "No Cloudflare detected"
+
+    def extract_http_response(packet):
+        """Extract HTTP response components from a packet"""
+        if Raw not in packet:
+            return None
+
+        try:
+            # Get raw payload and try to decode
+            payload = bytes(packet[Raw])
+            text = payload.decode('utf-8', errors='replace')
+
+            # Split into headers and body
+            if '\r\n\r\n' in text:
+                headers_text, body = text.split('\r\n\r\n', 1)
+            else:
+                headers_text, body = text.split('\n\n', 1)
+
+            # Parse status line
+            lines = headers_text.splitlines()
+            status_line = lines[0]
+            status_code = None
+
+            if status_line.startswith('HTTP/'):
+                parts = status_line.split(' ')
+                if len(parts) >= 2:
+                    try:
+                        status_code = int(parts[1])
+                    except ValueError:
+                        pass
+
+            # Parse headers
+            headers = {}
+            for line in lines[1:]:
+                if ':' in line:
+                    name, value = line.split(':', 1)
+                    headers[name.strip()] = value.strip()
+
+            return {
+                'status_code': status_code,
+                'headers': headers,
+                'body': body
+            }
+        except Exception as e:
+            print(f"Error parsing HTTP response: {e}")
+            return None

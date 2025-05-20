@@ -1,0 +1,416 @@
+# WAF detection signatures
+waf_signatures:
+  # Layer-specific signatures
+  - type: layer_field
+    layer: TCP
+    field: dport
+    value: 403
+
+  - type: layer_field
+    layer: TCP
+    field: flags
+    value: 0x04  # RST flag
+
+  - type: layer_field
+    layer: TCP
+    field: flags
+    value: 0x29  # PSH + FIN + ECE flags - unusual combination
+
+  - type: layer_field
+    layer: TCP
+    field: window
+    value: 0
+
+  - type: layer_field
+    layer: TCP
+    field: dport
+    value: 9001  # Example WAF server port
+
+  # DNS-based detection signatures
+  - type: dns_cloudflare
+    description: "Domain resolves to Cloudflare IP range"
+
+  - type: dns_mismatch
+    description: "Response IP different from DNS resolved IP"
+
+  # IP-based signatures
+  - type: ip_ttl
+    min: 1
+    max: 20
+    description: "Unusually low TTL value suggesting proxying"
+
+  - type: ip_geolocation
+    expected_country: null  # Will be compared with target's expected location
+    description: "Response from unexpected geographic region"
+
+  # SSL/TLS signatures
+  - type: ssl_fingerprint
+    description: "SSL certificate issued to WAF provider"
+    providers:
+      - "Cloudflare, Inc."
+      - "Amazon"
+      - "Akamai"
+      - "Imperva"
+
+  - type: ssl_cipher_suite
+    description: "Unusual cipher suite suggesting WAF presence"
+
+  # Timing-based signatures
+  - type: response_timing
+    description: "Consistent delay suggesting processing overhead"
+    threshold_ms: 200  # Minimum delay considered suspicious
+
+  - type: variance_pattern
+    description: "Low variance in response times suggesting proxy caching"
+
+  # WAF Response Headers
+  - type: header
+    name: "X-Firewall-Block"
+
+  - type: header
+    name: "X-AWS-WAF"
+
+  - type: header
+    name: "X-Security-Proxy"
+
+  - type: header
+    name: "X-WAF-Block"
+
+  - type: header
+    name: "X-WAF-ID"
+
+  - type: header
+    name: "X-WAF-Rate"
+
+  - type: header
+    name: "X-WAF-Protection"
+
+  - type: header
+    name: "X-Sucuri-Block"
+
+  - type: header
+    name: "X-CDN-Geo"
+
+  - type: header
+    name: "X-F5-TrafficShield"
+
+  - type: header
+    name: "X-F5-WAF"
+
+  - type: header
+    name: "X-Imperva"
+
+  - type: header
+    name: "X-Akamai-WAF"
+
+  - type: header
+    name: "X-CF-WAF"
+
+  - type: header
+    name: "ASINFO"
+
+  - type: header
+    name: "X-BulletProof-Protection"
+
+  - type: header
+    name: "X-SucuriWAF"
+
+  - type: header
+    name: "X-Protected-By"
+
+  - type: header
+    name: "X-RateLimit"
+
+  - type: header
+    name: "UrlMaster"
+
+  - type: header
+    name: "UrlRewriteModule"
+
+  - type: header
+    name: "SecurityCheck"
+
+  - type: header
+    name: "X-Distil-CS"
+
+  - type: header
+    name: "X-Fortinet"
+
+  # ModSecurity Headers
+  - type: header
+    name: "X-Mod-Security"
+
+  - type: header
+    name: "X-ModSecurity-Action"
+
+  - type: header_regex
+    pattern: "ModSecurity.*Action"
+
+  # Azure WAF Headers
+  - type: header
+    name: "X-Azure-Ref"
+
+  - type: header
+    name: "X-MS-Gateway-Error"
+
+  - type: header
+    name: "X-FEServer"
+
+  # F5 Headers
+  - type: header
+    name: "X-F5-Auth-Token"
+
+  - type: header
+    name: "X-F5-Request-ID"
+
+  - type: header
+    name: "X-F5-Session-ID"
+
+  # Nginx App Protect Headers
+  - type: header
+    name: "X-NAP-WAF"
+
+  - type: header
+    name: "X-NAP-RateLimit"
+
+  - type: header
+    name: "X-NAP-Request-ID"
+
+  # Additional Cloudflare Headers
+  - type: header
+    name: "CF-Connecting-IP"
+
+  - type: header
+    name: "CF-Worker"
+
+  - type: header
+    name: "CF-Ray"
+
+  - type: header
+    name: "CF-Cache-Status"
+
+  # Additional Akamai Headers
+  - type: header
+    name: "X-Akamai-Enforced"
+
+  - type: header
+    name: "X-Akamai-Auth-Error"
+
+  - type: header
+    name: "X-Akamai-Auth-Hmac"
+
+  # AWS WAF Headers
+  - type: header
+    name: "X-AMZ-CF-POP"
+
+  - type: header
+    name: "X-AMZ-WAF-Action"
+
+  - type: header
+    name: "X-AMZ-ID"
+
+  # WAF Response Body Patterns
+  - type: content
+    text: "blocked by web application firewall"
+
+  - type: content
+    text: "security solution blocked your request"
+
+  - type: content
+    text: "malicious traffic detected"
+
+  - type: content
+    text: "your request was blocked due to security policies"
+
+  - type: content
+    text: "your IP has been flagged for potential security violations"
+
+  - type: content
+    text: "automated access to this site has been blocked"
+
+  - type: content
+    text: "this request has been blocked by the security rules"
+
+  - type: content
+    text: "your request cannot be processed due to security concerns"
+
+  - type: content
+    text: "access denied by security gateway"
+
+  - type: content
+    text: "your activity has triggered our security measures"
+
+  - type: content
+    text: "our systems have detected unusual traffic"
+
+  - type: content
+    text: "cloudproxy@sucuri.net"
+
+  - type: content
+    text: "this ip address has been restricted"
+
+  - type: content
+    text: "waf.tencent-cloud.com"
+
+  - type: content
+    text: "your access to this site has been limited"
+
+  - type: content
+    text: "you have been temporarily blocked"
+
+  - type: content
+    text: "suspicious activity detected"
+
+  - type: content
+    text: "our system detected unusual activity"
+
+  - type: content
+    text: "security precaution"
+
+  - type: content
+    text: "ddos protection"
+
+  - type: content
+    text: "sensitive data protection"
+
+  - type: content
+    text: "captcha challenge"
+
+  # ModSecurity Body Patterns
+  - type: content
+    text: "ModSecurity: Access denied"
+
+  - type: content
+    text: "ModSecurity: Collection is not persistent"
+
+  - type: content
+    text: "ModSecurity Alert"
+
+  # Azure WAF Body Patterns
+  - type: content
+    text: "The request was blocked by WAF"
+
+  - type: content
+    text: "Our services aren't available right now"
+
+  - type: content
+    text: "Error 403 - This request is blocked by Azure WAF"
+
+  # F5 Body Patterns
+  - type: content
+    text: "The requested URL was rejected"
+
+  - type: content
+    text: "Request rejected by BIG-IP AFM"
+
+  - type: content
+    text: "The requested resource is blocked"
+
+  # Nginx App Protect Body Patterns
+  - type: content
+    text: "NAP Security Violation"
+
+  - type: content
+    text: "NGINX App Protect Denied"
+
+  - type: content
+    text: "Support ID:"
+
+  # Additional Error Types
+  - type: content
+    text: "Invalid WAF Token"
+
+  - type: content
+    text: "WAF Protection Active"
+
+  - type: content
+    text: "Rate Limit Exceeded"
+
+  - type: content
+    text: "Request Too Large"
+
+  - type: content
+    text: "Invalid HTTP Request Line"
+
+  # ModSecurity CRS
+  - type: content_regex
+    pattern: "ModSecurity.*Breach"
+
+  - type: content_regex
+    pattern: "SecRule.*Matched"
+
+  - type: content_regex
+    pattern: "OWASP_CRS.*Alert"
+
+  # Block Status Codes
+  - type: status_code
+    value: 403  # Forbidden
+
+  - type: status_code
+    value: 406  # Not Acceptable
+
+  - type: status_code
+    value: 429  # Too Many Requests
+
+  - type: status_code
+    value: 444  # Nginx Connection Closed Without Response
+
+  - type: status_code
+    value: 449  # Microsoft: Retry With
+
+  - type: status_code
+    value: 456  # Unrecoverable Error
+
+  - type: status_code
+    value: 495  # SSL Certificate Error
+
+  - type: status_code
+    value: 496  # SSL Certificate Required
+
+  - type: status_code
+    value: 497  # HTTP Request Sent to HTTPS Port
+
+  - type: status_code
+    value: 499  # Client Closed Request
+
+  - type: status_code
+    value: 405  # Method Not Allowed
+
+  - type: status_code
+    value: 503  # Service Unavailable
+
+  # Additional HTTP indicators
+  - type: cookie_challenge
+    patterns:
+      - "__cfduid"
+      - "__cf_bm"
+      - "ak_bmsc"
+      - "incap_ses_"
+      - "visid_incap_"
+    description: "Security challenge cookies"
+
+  - type: content_encoding
+    values:
+      - "br"  # Brotli compression (often used by Cloudflare)
+    description: "Encoding types common with WAF providers"
+
+  - type: redirect_pattern
+    patterns:
+      - "/cdn-cgi/"
+      - "/akamaighost/"
+      - "/403.html"
+    description: "Redirect paths indicating WAF presence"
+
+  # Behavioral signatures
+  - type: request_rate_response
+    description: "Progressive response changes with increasing request rate"
+
+  - type: scan_detection_response
+    description: "Different responses to normal vs scanner user-agents"
+    scanner_agents:
+      - "nmap"
+      - "ZAP"
+      - "nikto"
+
+  - type: progressive_blockage
+    description: "Increasing strictness after multiple suspicious requests"
