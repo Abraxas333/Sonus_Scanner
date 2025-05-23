@@ -3,6 +3,9 @@ import os
 import sys
 import json
 import asyncio
+import socket
+import fcntl
+import struct
 import multiprocessing as mp
 import subprocess as sp
 import scapy as scapy
@@ -19,6 +22,8 @@ class AsyncScanner:
         self.target = target
         self.output_dir = output_dir
         self.interface = interface
+        self.active_vpn = {}
+        self.current_pid = None
         self.results = []
         self.blocked = False
         self.active_scans = {}
@@ -364,6 +369,137 @@ class AsyncScanner:
     def metasploit_scan(self):
         pass
 
+
+    ######### VPN CONNECTION AND ROTATION #########
+
+    async def start_vpn_connection(self):
+        """Start a VPN connection with a specific interface name"""
+
+        # Get list of already used IPs
+        used_ips = [vpn_info['ip'] for vpn_info in self.active_vpn.values() if 'ip' in vpn_info]
+        new_ip = False
+        while not new_ip:
+            log_file = f"/tmp/openvpn_{self.interface}.log"
+            config_file = random.choice(VPN_CONFIGS)
+
+            # Start OpenVPN
+            cmd = [
+                'openvpn',
+                '--config', config_file,
+                '--dev', interface_name,
+                '--log', log_file
+            ]
+
+            process = await asyncio.create_subprocess_exec(
+                *cmd,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE
+            )
+
+            self.current_pid = process.pid
+
+            # Store initial process information
+            self.active_vpn[process.pid] = {
+                'config': config_file,
+                'process': process,
+                'log_file': log_file,
+                'interface': interface_name,
+                'status': 'connecting'
+            }
+
+            # Wait for connection to establish
+            connected = await self._wait_for_connection(log_file)
+
+            if connected:
+                # NOW get the IP address after connection is established
+                ip = await self.get_ip_address()
+
+                if ip and ip not in used_ips:
+                    # Success - new IP
+                    self.active_vpn[self.current_pid]['status'] = 'connected'
+                    self.active_vpn[self.current_pid]['ip'] = ip
+                    print(f"VPN connection established on {interface_name} with IP {ip}")
+                    new_ip = True
+                else:
+
+                    process.terminate()
+                    await process.wait()
+            else:
+                process.terminate()
+                await process.wait()
+
+    async def get_ip_address(self):
+        """
+        Return the IPv4 address assigned to the interface.
+        Returns None if the interface doesn't exist or has no IPv4 address.
+        """
+        try:
+            # Create a dummy socket
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            # SIOCGIFADDR = 0x8915: "get interface address"
+            iface_bytes = struct.pack('256s', self.interface.encode('utf-8')[:15])
+            res = fcntl.ioctl(sock.fileno(), 0x8915, iface_bytes)
+            # bytes 20–24 of the result contain the IPv4 address
+            ip = struct.unpack('!I', res[20:24])[0]
+            return socket.inet_ntoa(struct.pack('!I', ip))
+        except OSError as e:
+            print(f"Failed to get IP for {self.interface}: {e}")
+            return None
+
+    async def _wait_for_connection(self, log_file, timeout=30):
+        """Monitor log file for successful connection"""
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            if os.path.exists(log_file):
+                try:
+                    result = await asyncio.create_subprocess_exec(
+                        'tail', '-5', log_file,  # Fixed: should be '-5' not '5'
+                        stdout=asyncio.subprocess.PIPE,
+                        stderr=asyncio.subprocess.PIPE
+                    )
+                    stdout, _ = await result.communicate()
+                    if b"Initialization Sequence Completed" in stdout:
+                        # Give it a moment for the interface to fully come up
+                        await asyncio.sleep(1)
+                        return True
+                except:
+                    pass
+            await asyncio.sleep(1)
+        return False
+
+    async def stop_vpn(self):
+        """Stop the current VPN connection"""
+        if not self.current_pid or self.current_pid not in self.active_vpn:
+            return False
+
+        vpn_info = self.active_vpn[self.current_pid]
+        process = vpn_info['process']
+
+        try:
+            process.terminate()
+            await process.wait()
+            print(f"VPN stopped on {vpn_info.get('interface', 'unknown')}")
+        except:
+            try:
+                process.kill()
+                await process.wait()
+            except:
+                return False
+
+        self.active_vpn[self.current_pid]['status'] = 'stopped'
+        self.current_pid = None
+        return True
+
+    async def rotate_vpn(self):
+        """Rotate to a new VPN connection"""
+        print(f"Rotating VPN for {self.target}")
+        await self.stop_vpn()
+        await asyncio.sleep(2)  # Brief pause between connections
+        return await self.start_vpn_connection()
+
+
+    ######### MONITORING AND WAF DETECTION #########
+
     async def start_traffic_monitor(self):
         """Start monitoring traffic for WAF blocks"""
         self.stop_monitoring = False
@@ -660,40 +796,6 @@ class AsyncScanner:
             # This would need better handling in a real implementation
             return "0.0.0.0"
 
-    # WAF detection methods
-    def check_waf_block(packet):
-        # Layer 3 check
-        if IP in packet:
-            original_dst = packet[IP].dst
-            response_src = packet[IP].src
-            if response_src != original_dst:
-                # Response from different IP than requested
-                return True
-
-        # Layer 4 check
-        if TCP in packet:
-            if packet[TCP].flags & 0x04:  # RST flag
-                return True
-
-        # Layer 7 check
-        if Raw in packet:
-            http_data = extract_http_data(packet)
-            if http_data:
-                # Check status code
-                if http_data['status_code'] in [403, 429]:
-                    return True
-
-                # Check WAF headers
-                for header in http_data['headers']:
-                    if header.lower().startswith('x-') and (
-                            'waf' in header.lower() or 'security' in header.lower()):
-                        return True
-
-                # Check body content
-                if 'blocked' in http_data['body'].lower() or 'firewall' in http_data['body'].lower():
-                    return True
-
-        return False
 
     def check_cloudflare_dns(domain):
         """Check if domain resolves to Cloudflare IPs"""
@@ -739,47 +841,3 @@ class AsyncScanner:
         else:
             return "No Cloudflare detected"
 
-    def extract_http_response(packet):
-        """Extract HTTP response components from a packet"""
-        if Raw not in packet:
-            return None
-
-        try:
-            # Get raw payload and try to decode
-            payload = bytes(packet[Raw])
-            text = payload.decode('utf-8', errors='replace')
-
-            # Split into headers and body
-            if '\r\n\r\n' in text:
-                headers_text, body = text.split('\r\n\r\n', 1)
-            else:
-                headers_text, body = text.split('\n\n', 1)
-
-            # Parse status line
-            lines = headers_text.splitlines()
-            status_line = lines[0]
-            status_code = None
-
-            if status_line.startswith('HTTP/'):
-                parts = status_line.split(' ')
-                if len(parts) >= 2:
-                    try:
-                        status_code = int(parts[1])
-                    except ValueError:
-                        pass
-
-            # Parse headers
-            headers = {}
-            for line in lines[1:]:
-                if ':' in line:
-                    name, value = line.split(':', 1)
-                    headers[name.strip()] = value.strip()
-
-            return {
-                'status_code': status_code,
-                'headers': headers,
-                'body': body
-            }
-        except Exception as e:
-            print(f"Error parsing HTTP response: {e}")
-            return None
