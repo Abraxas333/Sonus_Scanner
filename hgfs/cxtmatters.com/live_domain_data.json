@@ -1,0 +1,21 @@
+{
+  "domain": "cxtmatters.com",
+  "is_live": true,
+  "url": "http://cxtmatters.com",
+  "https_url": "https://cxtmatters.com",
+  "ip_addresses": [
+    "3.33.139.32"
+  ],
+  "ip": "3.33.139.32",
+  "nameservers": [
+    "ns1.markmonitor.com.",
+    "ns2.markmonitor.com.",
+    "ns3.markmonitor.com.",
+    "ns4.markmonitor.com.",
+    "ns5.markmonitor.com.",
+    "ns6.markmonitor.com.",
+    "ns7.markmonitor.com."
+  ],
+  "timestamp": "2025-05-27T14:34:01.292229",
+  "command": "dig cxtmatters.com A +short"
+}

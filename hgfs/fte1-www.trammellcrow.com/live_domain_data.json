@@ -1,0 +1,15 @@
+{
+  "domain": "fte1-www.trammellcrow.com",
+  "is_live": true,
+  "url": "http://fte1-www.trammellcrow.com",
+  "https_url": "https://fte1-www.trammellcrow.com",
+  "ip_addresses": [
+    "fte1-www.trammellcrow.com.cdn.cloudflare.net."
+  ],
+  "ip": "fte1-www.trammellcrow.com.cdn.cloudflare.net.",
+  "nameservers": [
+    "fte1-www.trammellcrow.com.cdn.cloudflare.net."
+  ],
+  "timestamp": "2025-05-27T14:33:58.202693",
+  "command": "dig fte1-www.trammellcrow.com A +short"
+}

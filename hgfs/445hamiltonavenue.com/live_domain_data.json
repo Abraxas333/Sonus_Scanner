@@ -1,0 +1,16 @@
+{
+  "domain": "445hamiltonavenue.com",
+  "is_live": true,
+  "url": "http://445hamiltonavenue.com",
+  "https_url": "https://445hamiltonavenue.com",
+  "ip_addresses": [
+    "208.68.246.151"
+  ],
+  "ip": "208.68.246.151",
+  "nameservers": [
+    "dns1.cscdns.net.",
+    "dns2.cscdns.net."
+  ],
+  "timestamp": "2025-05-27T14:30:17.553673",
+  "command": "dig 445hamiltonavenue.com A +short"
+}

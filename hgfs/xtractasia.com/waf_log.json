@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:19.161080",
+  "command": "/usr/bin/wafw00f http://xtractasia.com -a -f json -o hgfs/xtractasia.com/waf.json -vvv 2>&1 | tee hgfs/xtractasia.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

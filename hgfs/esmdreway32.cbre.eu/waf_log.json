@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:19.216281",
+  "command": "/usr/bin/wafw00f http://esmdreway32.cbre.eu -a -f json -o hgfs/esmdreway32.cbre.eu/waf.json -vvv 2>&1 | tee hgfs/esmdreway32.cbre.eu/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

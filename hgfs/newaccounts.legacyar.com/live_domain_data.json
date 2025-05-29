@@ -1,0 +1,16 @@
+{
+  "domain": "newaccounts.legacyar.com",
+  "is_live": true,
+  "url": "http://newaccounts.legacyar.com",
+  "https_url": "https://newaccounts.legacyar.com",
+  "ip_addresses": [
+    "19113c8cbbd04430a729eb2c3ae5e31f.v1.radwarecloud.net.",
+    "66.22.30.147"
+  ],
+  "ip": "19113c8cbbd04430a729eb2c3ae5e31f.v1.radwarecloud.net.",
+  "nameservers": [
+    "19113c8cbbd04430a729eb2c3ae5e31f.v1.radwarecloud.net."
+  ],
+  "timestamp": "2025-05-27T14:30:20.668409",
+  "command": "dig newaccounts.legacyar.com A +short"
+}

@@ -6,13 +6,14 @@ import asyncio
 import socket
 import fcntl
 import struct
+import re
 import multiprocessing as mp
 import subprocess as sp
 import scapy as scapy
 
 from functools import partial
 from datetime import datetime
-from waf_signatures import get_signature
+from waf_signatures import get_signatures
 from scapy.layers.inet import IP, TCP, raw
 from scapy.modules.nmap import nmap_match_one_sig
 
@@ -24,17 +25,22 @@ class AsyncScanner:
         self.interface = interface
         self.active_vpn = {}
         self.current_pid = None
-        self.results = []
+        self.results = {}
         self.blocked = False
         self.active_scans = {}
         self.target_ip = None
         
     # check if domain is a wildcard (*.example.com) or standard (example.com)
-    async def check_domain_type(self):
+    async def run(self):
+
         if '*' in self.target:
-            return 'wildcard'
+            await self.enumerate_subdomains()
         else:
-            return 'standard'
+            await self.enumerate_domain()
+
+    async def enumerate_domain(self):
+        await self.check_liveness()
+        await self.sniff_waf()
 
     # helper methods
     def _register_tool(self, tool):
@@ -42,41 +48,28 @@ class AsyncScanner:
         self.active_scans[task_id] = tool
         return task_id
 
-    def _unregister_tool(self, tool):
+    def _unregister_tool(self, task_id):
         if task_id in self.active_scans:
             del self.active_scans[task_id]
 
     def get_active_tools(self):
         return list(self.active_scans.values())
 
-    # create parent directory where subsequent scans can create dirs for their results
-    # format: wildcard.example.com or example.com
-    # set self.output_dir = directory name and return it
-    async def create_domain_dir(self):
-        # Create a directory for the domain if it doesn't exist
-        # assign self.output dir the domain directory
-        domain_type = await self.check_domain_type()
-        if domain_type == 'wildcard':
-            domain_dir = os.path.join(self.output_dir, self.target.replace('*', 'wildcard'))
-            os.makedirs(domain_dir, exist_ok=True)
-            self.output_dir = domain_dir
-        else:
-            return 0
-
-        return self.output_dir
 
     # run amass on wildcard domains and create directories for each found subdomain
     async def enumerate_subdomains(self):
-        domain_type = await self.create_domain_dir()
-        if domain_type != 'wildcard':
-            return
+        domain_dir = os.path.join(self.output_dir, self.target.replace('*', 'wildcard'))
+        os.makedirs(domain_dir, exist_ok=True)
+        self.output_dir = domain_dir
 
         # strip the asterisk from the target and format the target into a wildcard domain dir name
         stripped_domain = self.target.replace('*', '')
         # start amass subdomain enumeration
         task_id = self._register_tool('amass')
 
-        cmd = [self.current_scan_tool, 'enum', '-d', stripped_domain, '-o', os.path.join(self.output_dir, self.target.replace('*', 'wildcard'))]
+        # refactor outputfile to json file
+        amass_output_file = os.path.join(domain_dir, 'subdomains.txt')
+        cmd = ['amass', 'enum', '-d', stripped_domain, '-o', amass_output_file]  # Fixed: added 'amass'
 
         try:
             process = await asyncio.create_subprocess_exec(
@@ -86,63 +79,48 @@ class AsyncScanner:
             stdout, stderr = await process.communicate()
             if process.returncode == 0:
                 subdomains_found = [line.strip() for line in stdout.decode().split('\n')
-                                    if line.strip() # throw away lines that are emtpy after stipping
+                                    if line.strip()  # throw away lines that are empty after stripping
                                     ]
                 if subdomains_found:
-                    directory_tasks = []
+                    # Fixed: Single loop, no nested issues
+                    subdomain_tasks = []
                     for subdomain in subdomains_found:
-                        subdomain_dir = os.path.join(self.output_dir, subdomain)
-                        task = asyncio.create_task(
-                            self._create_subdomain_directory(subdomain, subdomain_dir)
-                        )
-                        directory_tasks.append(task)
+                        task = asyncio.create_task(self._scan_subdomain(subdomain, domain_dir))
+                        subdomain_tasks.append(task)
 
-                    await asyncio.gather(*directory_tasks)
-                    print(f"Created directories for {len(subdomains_found)} subdomains")
+                    # Process all subdomains concurrently
+                    results = await asyncio.gather(*subdomain_tasks, return_exceptions=True)
+                    print(f"Completed scanning {len(subdomains_found)} subdomains")
                 else:
                     print(f"No subdomains found for {stripped_domain}")
             else:
                 error_msg = stderr.decode() if stderr else "Unknown error"
                 print(f"Amass failed: {error_msg}")
-                self.results.append({
-                    'tool': self.current_scan_tool,
-                    'status': 'failed',
-                    'message': error_msg,
-                    'domain': stripped_domain,
-                })
+
         except Exception as e:
             print(f"Error during subdomain enumeration: {e}")
-            self.results.append({
-                'tool': self.current_scan_tool,
-                'status': 'failed',
-                'error': str(e)
-            })
 
         finally:
             self._unregister_tool(task_id)
 
-        return [
-            {
-                'subdomain': result['subdomain'],
-                'directory': result['directory']
-            }
-            for result in self.results
-            if 'subdomain' in result and result['status'] == 'created'
-        ]
+    async def _scan_subdomain(self, subdomain, base_dir):
+        """Scan a single subdomain with isolated state"""
+        # Save original state
+        original_target = self.target
+        original_output_dir = self.output_dir
 
+        try:
+            # Set subdomain as target
+            self.target = subdomain
+            self.output_dir = base_dir  # Will be updated by check_liveness if live
 
+            # Run standard domain enumeration
+            await self.enumerate_domain()
 
-    async def _create_subdomain_directory(self, subdomain, directory):
-        os.makedirs(directory, exist_ok=True)
-        self.results.append({
-            'subdomain': subdomain,
-            'directory': directory,
-            'status': 'created'
-        })
-        return {
-            'subdomain': subdomain,
-            'directory': directory
-        }
+        finally:
+            # Restore original state
+            self.target = original_target
+            self.output_dir = original_output_dir
 
     async def check_liveness(self):
         # Set tool
@@ -168,9 +146,9 @@ class AsyncScanner:
                 return False
 
             # Domain is live - create directory if needed
-            domain_dir = self.output_dir
+            domain_dir = os.path.join(self.output_dir, self.target)
             os.makedirs(domain_dir, exist_ok=True)
-
+            self.output_dir = domain_dir
             # Parse IP addresses
             ip_addresses = [ip.strip() for ip in output.split('\n') if ip.strip()]
 
@@ -369,7 +347,6 @@ class AsyncScanner:
     def metasploit_scan(self):
         pass
 
-
     ######### VPN CONNECTION AND ROTATION #########
 
     async def start_vpn_connection(self):
@@ -386,7 +363,7 @@ class AsyncScanner:
             cmd = [
                 'openvpn',
                 '--config', config_file,
-                '--dev', interface_name,
+                '--dev', self.interface,
                 '--log', log_file
             ]
 
@@ -403,7 +380,7 @@ class AsyncScanner:
                 'config': config_file,
                 'process': process,
                 'log_file': log_file,
-                'interface': interface_name,
+                'interface': self.interface,
                 'status': 'connecting'
             }
 
@@ -532,7 +509,6 @@ class AsyncScanner:
         """Monitor traffic for WAF blocks using Scapy"""
         pcap_file = os.path.join(self.output_dir, f"{self.target}_traffic.pcap")
         blocks_pcap_file = os.path.join(self.output_dir, f"{self.target}_traffic_blocks.pcap")
-
 
         # Define WAF block signatures
         waf_signatures = get_signatures()

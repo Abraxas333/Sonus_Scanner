@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:34:01.712625",
+  "command": "/usr/bin/wafw00f http://test-reservaonline.cbre.es -a -f json -o hgfs/test-reservaonline.cbre.es/waf.json -vvv 2>&1 | tee hgfs/test-reservaonline.cbre.es/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

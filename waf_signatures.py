@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 # Global signature cache
 _signatures = None
 _last_modified_time = 0
-_signature_file = os.path.join(os.path.dirname(__file__), 'waf_signatures.yaml')
+_signature_file = os.path.join(os.path.dirname(__file__), 'waf_signatures.yml')
 
 
 def preprocess_signatures(signatures):

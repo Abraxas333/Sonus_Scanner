@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:34:01.604477",
+  "command": "/usr/bin/wafw00f http://cxtmatters.com -a -f json -o hgfs/cxtmatters.com/waf.json -vvv 2>&1 | tee hgfs/cxtmatters.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:19.207756",
+  "command": "/usr/bin/wafw00f http://ucom-aci-x-use4.ns1.fiservapis.com -a -f json -o hgfs/ucom-aci-x-use4.ns1.fiservapis.com/waf.json -vvv 2>&1 | tee hgfs/ucom-aci-x-use4.ns1.fiservapis.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

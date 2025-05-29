@@ -3,11 +3,11 @@ import multiprocessing
 import asyncio
 import os
 import sys
+import domain_getter
 from functools import partial
 
-from scanner import AsyncScanner  # Your scanner implementation
-from vpn_manager import VPNManager  # VPN management class
 
+from scanner import AsyncScanner  # Your scanner implementation
 # Global list, loaded once at startup
 VPN_CONFIGS = []  # Will be populated with available .ovpn files
 
@@ -19,27 +19,27 @@ def load_vpn_configs():
     except Exception as e:
         print("Error loading VPN configs: {}".format(e))
 
+output_dir = ''
 
-async def process_domain(domain, output_base_dir, vpn_config_dir, process_index):
+def process_domain(domain, process_index):
     """
     Function to run in each process - initializes and runs a scanner for one domain
     """
     # Set up output directory
-    domain_dir = os.path.join(output_base_dir, domain.replace('.', '_').replace('*', 'wildcard')) # not necessary?
-    os.makedirs(domain_dir, exist_ok=True)
+    #domain_dir = os.path.join(output_base_dir, domain.replace('.', '_').replace('*', 'wildcard')) # not necessary?
+    #os.makedirs(domain_dir, exist_ok=True)
     interface = f"tun{process_index}"
 
     # Create scanner for this domain
-    scanner = AsyncScanner(domain, domain_dir, interface)
-    
-    scanner.start_vpn_connection()
+    scanner = AsyncScanner(domain, output_dir, interface)
+
     # Run the async scanner within this process
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
     try:
         # Run the full scan workflow for this domain
-        result = loop.run_until_complete(scanner.run_full_scan())
+        result = loop.run_until_complete(scanner.run())
         print(f"Completed scan for {domain}")
         return {"domain": domain, "status": "completed", "result": result}
     except Exception as e:
@@ -52,16 +52,22 @@ async def process_domain(domain, output_base_dir, vpn_config_dir, process_index)
 def main():
     # Get command line arguments
     domains_file = sys.argv[1]
+    global output_dir
     output_dir = sys.argv[2] if len(sys.argv) > 2 else "recon_results"
     max_processes = int(sys.argv[3]) if len(sys.argv) > 3 else multiprocessing.cpu_count()
 
     load_vpn_configs()
 
-    # Read domains from file
-    with open(domains_file, 'r') as file:
-        domains = [line.strip() for line in file.readlines()]
+    try:
+        domains = domain_getter.update_domains(domains_file)
+        if not domains:
+            print(f"No domains found in {domains_file}")
+            sys.exit(1)
+    except Exception as e:
+        print(f"Error updating {domains_file}: {str(e)}")
+        sys.exit(1)
 
-    # Create output directory
+        # Create output directory
     os.makedirs(output_dir, exist_ok=True)
 
     with multiprocessing.Pool(processes=max_processes) as pool:
@@ -72,7 +78,7 @@ def main():
                 # j is the process index within this batch (0-7)
                 task = pool.apply_async(
                     process_domain,
-                    args=(domain, output_dir, j)
+                    args=(domain, j)
                 )
                 batch_tasks.append(task)
 

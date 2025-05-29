@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:18.319487",
+  "command": "/usr/bin/wafw00f http://stage-onlinestore.fiserv.com -a -f json -o hgfs/stage-onlinestore.fiserv.com/waf.json -vvv 2>&1 | tee hgfs/stage-onlinestore.fiserv.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

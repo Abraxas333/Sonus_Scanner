@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:33:57.707083",
+  "command": "/usr/bin/wafw00f http://centralpacificcert.olbanking.com -a -f json -o hgfs/centralpacificcert.olbanking.com/waf.json -vvv 2>&1 | tee hgfs/centralpacificcert.olbanking.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

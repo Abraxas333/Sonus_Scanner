@@ -1,0 +1,16 @@
+{
+  "domain": "ucom-aci-x-use4.ns1.fiservapis.com",
+  "is_live": true,
+  "url": "http://ucom-aci-x-use4.ns1.fiservapis.com",
+  "https_url": "https://ucom-aci-x-use4.ns1.fiservapis.com",
+  "ip_addresses": [
+    "82861958ae814555a9f529c3fd9dc45d.v1.radwarecloud.net.",
+    "176.100.165.17"
+  ],
+  "ip": "82861958ae814555a9f529c3fd9dc45d.v1.radwarecloud.net.",
+  "nameservers": [
+    "82861958ae814555a9f529c3fd9dc45d.v1.radwarecloud.net."
+  ],
+  "timestamp": "2025-05-27T14:30:18.622104",
+  "command": "dig ucom-aci-x-use4.ns1.fiservapis.com A +short"
+}

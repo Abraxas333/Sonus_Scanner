@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:19.040443",
+  "command": "/usr/bin/wafw00f http://api-cdn.optussport.tv -a -f json -o hgfs/api-cdn.optussport.tv/waf.json -vvv 2>&1 | tee hgfs/api-cdn.optussport.tv/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

@@ -1,0 +1,13 @@
+{
+  "domain": "jdpsproductdatawsqualtcv.tal.deere.com",
+  "is_live": true,
+  "url": "http://jdpsproductdatawsqualtcv.tal.deere.com",
+  "https_url": "https://jdpsproductdatawsqualtcv.tal.deere.com",
+  "ip_addresses": [
+    "164.121.19.173"
+  ],
+  "ip": "164.121.19.173",
+  "nameservers": [],
+  "timestamp": "2025-05-27T14:33:56.514680",
+  "command": "dig jdpsproductdatawsqualtcv.tal.deere.com A +short"
+}

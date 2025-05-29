@@ -1,0 +1,21 @@
+{
+  "domain": "companysite.com",
+  "is_live": true,
+  "url": "http://companysite.com",
+  "https_url": "https://companysite.com",
+  "ip_addresses": [
+    "207.1.125.108"
+  ],
+  "ip": "207.1.125.108",
+  "nameservers": [
+    "ns3.markmonitor.com.",
+    "ns4.markmonitor.com.",
+    "ns5.markmonitor.com.",
+    "ns6.markmonitor.com.",
+    "ns7.markmonitor.com.",
+    "ns1.markmonitor.com.",
+    "ns2.markmonitor.com."
+  ],
+  "timestamp": "2025-05-27T14:33:59.154406",
+  "command": "dig companysite.com A +short"
+}

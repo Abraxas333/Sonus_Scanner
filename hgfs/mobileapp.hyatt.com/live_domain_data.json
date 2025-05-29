@@ -1,0 +1,19 @@
+{
+  "domain": "mobileapp.hyatt.com",
+  "is_live": true,
+  "url": "http://mobileapp.hyatt.com",
+  "https_url": "https://mobileapp.hyatt.com",
+  "ip_addresses": [
+    "mobileapp.cns.hyatt.com.edgekey.net.",
+    "e40521.a.akamaiedge.net.",
+    "95.101.23.67",
+    "95.101.23.49"
+  ],
+  "ip": "mobileapp.cns.hyatt.com.edgekey.net.",
+  "nameservers": [
+    "mobileapp.cns.hyatt.com.edgekey.net.",
+    "e40521.a.akamaiedge.net."
+  ],
+  "timestamp": "2025-05-27T14:30:20.810454",
+  "command": "dig mobileapp.hyatt.com A +short"
+}

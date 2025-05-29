@@ -1,0 +1,16 @@
+{
+  "domain": "fourseasonsfcu-admin.originate.fiservapps.com",
+  "is_live": true,
+  "url": "http://fourseasonsfcu-admin.originate.fiservapps.com",
+  "https_url": "https://fourseasonsfcu-admin.originate.fiservapps.com",
+  "ip_addresses": [
+    "8b599444205e4518b02421145df9aa84.v1.radwarecloud.net.",
+    "66.22.85.61"
+  ],
+  "ip": "8b599444205e4518b02421145df9aa84.v1.radwarecloud.net.",
+  "nameservers": [
+    "8b599444205e4518b02421145df9aa84.v1.radwarecloud.net."
+  ],
+  "timestamp": "2025-05-27T14:33:58.441209",
+  "command": "dig fourseasonsfcu-admin.originate.fiservapps.com A +short"
+}

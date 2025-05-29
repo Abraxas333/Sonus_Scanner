@@ -1,0 +1,16 @@
+{
+  "domain": "bankri.olbanking.com",
+  "is_live": true,
+  "url": "http://bankri.olbanking.com",
+  "https_url": "https://bankri.olbanking.com",
+  "ip_addresses": [
+    "9f9d03d4f12840d08bc61cae861d7874.v1.radwarecloud.net.",
+    "176.100.165.177"
+  ],
+  "ip": "9f9d03d4f12840d08bc61cae861d7874.v1.radwarecloud.net.",
+  "nameservers": [
+    "9f9d03d4f12840d08bc61cae861d7874.v1.radwarecloud.net."
+  ],
+  "timestamp": "2025-05-27T14:30:17.570528",
+  "command": "dig bankri.olbanking.com A +short"
+}

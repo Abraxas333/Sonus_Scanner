@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:34:01.092318",
+  "command": "/usr/bin/wafw00f http://mtnselfcare.co.zm -a -f json -o hgfs/waf.json -vvv 2>&1 | tee hgfs/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

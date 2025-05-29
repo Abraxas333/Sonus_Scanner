@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:18.288094",
+  "command": "/usr/bin/wafw00f http://online.merituscu.net -a -f json -o hgfs/online.merituscu.net/waf.json -vvv 2>&1 | tee hgfs/online.merituscu.net/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

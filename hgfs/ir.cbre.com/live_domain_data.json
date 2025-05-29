@@ -1,0 +1,17 @@
+{
+  "domain": "ir.cbre.com",
+  "is_live": true,
+  "url": "http://ir.cbre.com",
+  "https_url": "https://ir.cbre.com",
+  "ip_addresses": [
+    "ir.cbre.com.web-geo.equisolve.com.",
+    "52.58.230.50",
+    "18.195.27.22"
+  ],
+  "ip": "ir.cbre.com.web-geo.equisolve.com.",
+  "nameservers": [
+    "ir.cbre.com.web-geo.equisolve.com."
+  ],
+  "timestamp": "2025-05-27T14:34:01.360157",
+  "command": "dig ir.cbre.com A +short"
+}

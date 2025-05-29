@@ -1,0 +1,17 @@
+{
+  "domain": "walletproxy.tapayments.com",
+  "is_live": true,
+  "url": "http://walletproxy.tapayments.com",
+  "https_url": "https://walletproxy.tapayments.com",
+  "ip_addresses": [
+    "walletproxy.production.cde.tamg.cloud.",
+    "13.219.116.124",
+    "52.45.210.116"
+  ],
+  "ip": "walletproxy.production.cde.tamg.cloud.",
+  "nameservers": [
+    "walletproxy.production.cde.tamg.cloud."
+  ],
+  "timestamp": "2025-05-27T14:30:20.789292",
+  "command": "dig walletproxy.tapayments.com A +short"
+}

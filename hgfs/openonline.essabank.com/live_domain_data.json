@@ -1,0 +1,16 @@
+{
+  "domain": "openonline.essabank.com",
+  "is_live": true,
+  "url": "http://openonline.essabank.com",
+  "https_url": "https://openonline.essabank.com",
+  "ip_addresses": [
+    "236a17460b4848eaaae5979670257582.v1.radwarecloud.net.",
+    "66.6.17.200"
+  ],
+  "ip": "236a17460b4848eaaae5979670257582.v1.radwarecloud.net.",
+  "nameservers": [
+    "236a17460b4848eaaae5979670257582.v1.radwarecloud.net."
+  ],
+  "timestamp": "2025-05-27T14:30:18.643596",
+  "command": "dig openonline.essabank.com A +short"
+}

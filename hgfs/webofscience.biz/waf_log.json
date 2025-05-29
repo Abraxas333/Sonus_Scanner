@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:33:57.751386",
+  "command": "/usr/bin/wafw00f http://webofscience.biz -a -f json -o hgfs/webofscience.biz/waf.json -vvv 2>&1 | tee hgfs/webofscience.biz/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

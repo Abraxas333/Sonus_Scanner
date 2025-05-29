@@ -1,0 +1,13 @@
+{
+  "domain": "mysql03.pla.com.br",
+  "is_live": true,
+  "url": "http://mysql03.pla.com.br",
+  "https_url": "https://mysql03.pla.com.br",
+  "ip_addresses": [
+    "191.252.115.32"
+  ],
+  "ip": "191.252.115.32",
+  "nameservers": [],
+  "timestamp": "2025-05-27T14:33:56.431469",
+  "command": "dig mysql03.pla.com.br A +short"
+}

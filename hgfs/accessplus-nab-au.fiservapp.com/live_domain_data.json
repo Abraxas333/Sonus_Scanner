@@ -1,0 +1,16 @@
+{
+  "domain": "accessplus-nab-au.fiservapp.com",
+  "is_live": true,
+  "url": "http://accessplus-nab-au.fiservapp.com",
+  "https_url": "https://accessplus-nab-au.fiservapp.com",
+  "ip_addresses": [
+    "accessplus-nab-au.fiservapp.au.cloud-fdc.com.",
+    "203.17.34.132"
+  ],
+  "ip": "accessplus-nab-au.fiservapp.au.cloud-fdc.com.",
+  "nameservers": [
+    "accessplus-nab-au.fiservapp.au.cloud-fdc.com."
+  ],
+  "timestamp": "2025-05-27T14:30:20.346775",
+  "command": "dig accessplus-nab-au.fiservapp.com A +short"
+}

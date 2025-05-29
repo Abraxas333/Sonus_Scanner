@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:33:58.827160",
+  "command": "/usr/bin/wafw00f http://clarivatesucks.com -a -f json -o hgfs/clarivatesucks.com/waf.json -vvv 2>&1 | tee hgfs/clarivatesucks.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

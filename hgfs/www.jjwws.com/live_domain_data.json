@@ -1,0 +1,26 @@
+{
+  "domain": "www.jjwws.com",
+  "is_live": true,
+  "url": "http://www.jjwws.com",
+  "https_url": "https://www.jjwws.com",
+  "ip_addresses": [
+    "ep-cdn-www-jjwws-com-global.azureedge.us.",
+    "ep-cdn-www-jjwws-com-global.afd.azureedge.us.",
+    "afd.msedge.azure.us.",
+    "t-0001.msedge.azure.us.",
+    "eafd-3p-profile.usgovtrafficmanager.net.",
+    "eafd-ffgov-snr9b2-roxy-default-sni.aksroxy.azureedge.us.",
+    "20.140.151.75"
+  ],
+  "ip": "ep-cdn-www-jjwws-com-global.azureedge.us.",
+  "nameservers": [
+    "ep-cdn-www-jjwws-com-global.azureedge.us.",
+    "ep-cdn-www-jjwws-com-global.afd.azureedge.us.",
+    "afd.msedge.azure.us.",
+    "t-0001.msedge.azure.us.",
+    "eafd-3p-profile.usgovtrafficmanager.net.",
+    "eafd-ffgov-snr9b2-roxy-default-sni.aksroxy.azureedge.us."
+  ],
+  "timestamp": "2025-05-27T14:33:56.835421",
+  "command": "dig www.jjwws.com A +short"
+}

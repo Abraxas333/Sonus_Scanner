@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:34:00.036622",
+  "command": "/usr/bin/wafw00f http://cwsb40-dr.checkfreeweb.com -a -f json -o hgfs/cwsb40-dr.checkfreeweb.com/waf.json -vvv 2>&1 | tee hgfs/cwsb40-dr.checkfreeweb.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

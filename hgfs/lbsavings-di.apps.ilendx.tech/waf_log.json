@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:18.254557",
+  "command": "/usr/bin/wafw00f http://lbsavings-di.apps.ilendx.tech -a -f json -o hgfs/lbsavings-di.apps.ilendx.tech/waf.json -vvv 2>&1 | tee hgfs/lbsavings-di.apps.ilendx.tech/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

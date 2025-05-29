@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:19.188947",
+  "command": "/usr/bin/wafw00f http://openonline.essabank.com -a -f json -o hgfs/openonline.essabank.com/waf.json -vvv 2>&1 | tee hgfs/openonline.essabank.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

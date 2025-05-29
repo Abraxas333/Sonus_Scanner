@@ -1,0 +1,16 @@
+{
+  "domain": "lbsavings-di.apps.ilendx.tech",
+  "is_live": true,
+  "url": "http://lbsavings-di.apps.ilendx.tech",
+  "https_url": "https://lbsavings-di.apps.ilendx.tech",
+  "ip_addresses": [
+    "aaa8096cad234afdaeaf35708ef9559c.v1.radwarecloud.net.",
+    "66.6.16.210"
+  ],
+  "ip": "aaa8096cad234afdaeaf35708ef9559c.v1.radwarecloud.net.",
+  "nameservers": [
+    "aaa8096cad234afdaeaf35708ef9559c.v1.radwarecloud.net."
+  ],
+  "timestamp": "2025-05-27T14:30:17.570777",
+  "command": "dig lbsavings-di.apps.ilendx.tech A +short"
+}

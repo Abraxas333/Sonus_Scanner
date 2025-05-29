@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:30:21.130842",
+  "command": "/usr/bin/wafw00f http://ns4.cbreinvestors.com -a -f json -o hgfs/ns4.cbreinvestors.com/waf.json -vvv 2>&1 | tee hgfs/ns4.cbreinvestors.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

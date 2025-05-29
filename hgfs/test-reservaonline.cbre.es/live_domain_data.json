@@ -1,0 +1,13 @@
+{
+  "domain": "test-reservaonline.cbre.es",
+  "is_live": true,
+  "url": "http://test-reservaonline.cbre.es",
+  "https_url": "https://test-reservaonline.cbre.es",
+  "ip_addresses": [
+    "63.34.117.83"
+  ],
+  "ip": "63.34.117.83",
+  "nameservers": [],
+  "timestamp": "2025-05-27T14:34:01.306585",
+  "command": "dig test-reservaonline.cbre.es A +short"
+}

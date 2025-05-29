@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-05-27T14:33:56.659177",
+  "command": "/usr/bin/wafw00f http://jdpsproductdatawsqualtcv.tal.deere.com -a -f json -o hgfs/jdpsproductdatawsqualtcv.tal.deere.com/waf.json -vvv 2>&1 | tee hgfs/jdpsproductdatawsqualtcv.tal.deere.com/waf_log.json",
+  "error": "name 're' is not defined",
+  "waf_detected": false
+}

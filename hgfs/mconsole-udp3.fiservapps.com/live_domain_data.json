@@ -1,0 +1,16 @@
+{
+  "domain": "mconsole-udp3.fiservapps.com",
+  "is_live": true,
+  "url": "http://mconsole-udp3.fiservapps.com",
+  "https_url": "https://mconsole-udp3.fiservapps.com",
+  "ip_addresses": [
+    "d44399e7bf8e4a9da287c520bf2b1507.v1.radwarecloud.net.",
+    "66.22.19.181"
+  ],
+  "ip": "d44399e7bf8e4a9da287c520bf2b1507.v1.radwarecloud.net.",
+  "nameservers": [
+    "d44399e7bf8e4a9da287c520bf2b1507.v1.radwarecloud.net."
+  ],
+  "timestamp": "2025-05-27T14:33:57.341212",
+  "command": "dig mconsole-udp3.fiservapps.com A +short"
+}
