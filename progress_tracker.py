@@ -143,18 +143,18 @@ class ProgressTracker:
     def print_progress_summary(self):
         """Print a summary of current progress"""
         if not self.progress:
-            print("No progress data found")
+            logging.info("No progress data found")
             return
 
         dead_count = sum(1 for status in self.progress.values() if status == self.DEAD_DOMAIN)
         complete_count = sum(1 for status in self.progress.values() if status == self.FULLY_COMPLETE)
         partial_count = len(self.progress) - dead_count - complete_count
 
-        print(f"\nProgress Summary:")
-        print(f"  Total domains tracked: {len(self.progress)}")
-        print(f"  Dead domains: {dead_count}")
-        print(f"  Fully complete: {complete_count}")
-        print(f"  Partially complete: {partial_count}")
+        logging.info(f"\nProgress Summary:")
+        logging.info(f"  Total domains tracked: {len(self.progress)}")
+        logging.info(f"  Dead domains: {dead_count}")
+        logging.info(f"  Fully complete: {complete_count}")
+        logging.info(f"  Partially complete: {partial_count}")
 
         # Show some examples of partial domains
         if partial_count > 0:
@@ -163,7 +163,7 @@ class ProgressTracker:
             for domain, status in self.progress.items():
                 if status not in [self.DEAD_DOMAIN, self.FULLY_COMPLETE] and count < 5:
                     completion = self.get_completion_status(domain)
-                    print(f"  {domain}: {completion['completed_scans']}")
+                    logging.info(f"  {domain}: {completion['completed_scans']}")
                     count += 1
 
 
@@ -175,11 +175,11 @@ if __name__ == "__main__":
     tracker.mark_scan_complete("example.com", "liveness")
     tracker.mark_scan_complete("example.com", "waf")
 
-    print(f"Liveness complete? {tracker.is_scan_complete('example.com', 'liveness')}")
-    print(f"Port scan complete? {tracker.is_scan_complete('example.com', 'port_scan')}")
-    print(f"Remaining scans: {tracker.get_remaining_scans('example.com')}")
+    logging.info(f"Liveness complete? {tracker.is_scan_complete('example.com', 'liveness')}")
+    logging.info(f"Port scan complete? {tracker.is_scan_complete('example.com', 'port_scan')}")
+    logging.info(f"Remaining scans: {tracker.get_remaining_scans('example.com')}")
 
     tracker.mark_domain_dead("dead-domain.com")
-    print(f"Should skip dead domain? {tracker.should_skip_domain('dead-domain.com')}")
+    logging.info(f"Should skip dead domain? {tracker.should_skip_domain('dead-domain.com')}")
 
     tracker.print_progress_summary()

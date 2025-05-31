@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:30:19.181388",
-  "command": "/usr/bin/wafw00f http://axisplatform.net -a -f json -o hgfs/axisplatform.net/waf.json -vvv 2>&1 | tee hgfs/axisplatform.net/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}

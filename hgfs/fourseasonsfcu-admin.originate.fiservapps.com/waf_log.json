@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:33:58.890816",
-  "command": "/usr/bin/wafw00f http://fourseasonsfcu-admin.originate.fiservapps.com -a -f json -o hgfs/fourseasonsfcu-admin.originate.fiservapps.com/waf.json -vvv 2>&1 | tee hgfs/fourseasonsfcu-admin.originate.fiservapps.com/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}

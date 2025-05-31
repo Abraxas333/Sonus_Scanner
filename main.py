@@ -3,21 +3,72 @@ import multiprocessing
 import asyncio
 import os
 import sys
+import logging
 import domain_getter
 from functools import partial
-
-
 from scanner import AsyncScanner  # Your scanner implementation
+
+# Logging
+logging.basicConfig(
+    filename="log.txt",
+    filemode="w",
+    level=logging.DEBUG,
+    format="%(asctime)s %(levelname)s: %(message)s"
+)
+
+# Redirect uncaught exceptions into the log
+def handle_exception(exc_type, exc_value, exc_traceback):
+    if issubclass(exc_type, KeyboardInterrupt):
+        # Let Ctrl-C behave normally
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+    logging.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+
+sys.excepthook = handle_exception
+
+def configure_worker_logging_and_stderr():
+    import sys, logging
+
+    # If this child process has no handlers yet, attach one.
+    root = logging.getLogger()
+    if not root.handlers:
+        logging.basicConfig(
+            filename="log.txt",
+            filemode="a",
+            level=logging.DEBUG,
+            format="%(asctime)s %(levelname)s: %(message)s"
+        )
+
+    # Redirect any writes to stderr into the logger
+    class WorkerStderrToLogger:
+        def write(self, message):
+            message = message.rstrip()
+            if message:
+                logging.error(message)
+        def flush(self):
+            pass
+
+    sys.stderr = WorkerStderrToLogger()
+
+    # Reinstall excepthook so that uncaught exceptions in this WORKER go into log.txt
+    def worker_excepthook(exc_type, exc_value, exc_traceback):
+        if issubclass(exc_type, KeyboardInterrupt):
+            sys.__excepthook__(exc_type, exc_value, exc_traceback)
+            return
+        logging.error("Uncaught exception (worker)",
+                      exc_info=(exc_type, exc_value, exc_traceback))
+
+    sys.excepthook = worker_excepthook
 # Global list, loaded once at startup
 VPN_CONFIGS = []  # Will be populated with available .ovpn files
 
 def load_vpn_configs():
     global VPN_CONFIGS
     try:
-        VPN_CONFIGS = [f for f in os.listdir('/etc/openvpn/client') if f.endswith('.ovpn')]
+        VPN_CONFIGS = [f for f in os.listdir('/var/www/recon/vpn_configs') if f.endswith('.ovpn')]
 
     except Exception as e:
-        print("Error loading VPN configs: {}".format(e))
+        logging.error("Error loading VPN configs: {}".format(e))
 
 output_dir = ''
 
@@ -25,6 +76,9 @@ def process_domain(domain, process_index):
     """
     Function to run in each process - initializes and runs a scanner for one domain
     """
+
+    configure_worker_logging_and_stderr()
+    logger = logging.getLogger(__name__)
     # Set up output directory
     #domain_dir = os.path.join(output_base_dir, domain.replace('.', '_').replace('*', 'wildcard')) # not necessary?
     #os.makedirs(domain_dir, exist_ok=True)
@@ -37,13 +91,22 @@ def process_domain(domain, process_index):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
+    # Install an asyncio exception handler so unhandled
+    # errors in coroutines are sent to the logger instead of stderr:
+    def handle_asyncio_exception(loop, context):
+        # context is a dict, often containing 'exception' or 'message'
+        msg = context.get("exception", context.get("message"))
+        logger.error("Asyncio exception: %s", msg, exc_info=context.get("exception"))
+
+    loop.set_exception_handler(handle_asyncio_exception)
+
     try:
         # Run the full scan workflow for this domain
         result = loop.run_until_complete(scanner.run())
-        print(f"Completed scan for {domain}")
+        logging.info(f"Completed scan for {domain}")
         return {"domain": domain, "status": "completed", "result": result}
     except Exception as e:
-        print(f"Error scanning {domain}: {str(e)}")
+        logging.error(f"Error scanning {domain}: {str(e)}")
         return {"domain": domain, "status": "error", "error": str(e)}
     finally:
         loop.close()
@@ -61,10 +124,10 @@ def main():
     try:
         domains = domain_getter.update_domains(domains_file)
         if not domains:
-            print(f"No domains found in {domains_file}")
+            logging.info(f"No domains found in {domains_file}")
             sys.exit(1)
     except Exception as e:
-        print(f"Error updating {domains_file}: {str(e)}")
+        logging.error(f"Error updating {domains_file}: {str(e)}")
         sys.exit(1)
 
         # Create output directory
@@ -86,17 +149,19 @@ def main():
             for task in batch_tasks:
                 result = task.get()  # This blocks until the task completes
                 results.append(result)
-                print(f"Domain {result['domain']} scan finished with status: {result['status']}")
+                #logging.info(f"Domain {result['domain']} scan finished with status: {result['status']}")
 
     # Summarize results
     successes = [r for r in results if r['status'] == 'completed']
     errors = [r for r in results if r['status'] == 'error']
 
-    print(f"\nScan Summary:")
-    print(f"Total domains: {len(domains)}")
-    print(f"Successful scans: {len(successes)}")
-    print(f"Failed scans: {len(errors)}")
+    logging.info(f"\nScan Summary:")
+    logging.info(f"Total domains: {len(domains)}")
+    logging.info(f"Successful scans: {len(successes)}")
+    logging.info(f"Failed scans: {len(errors)}")
 
 
 if __name__ == "__main__":
+    logging.info("Starting script")
     main()
+    logging.info("Finished script")

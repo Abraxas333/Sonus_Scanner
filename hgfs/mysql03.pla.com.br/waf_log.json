@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:33:56.569883",
-  "command": "/usr/bin/wafw00f http://mysql03.pla.com.br -a -f json -o hgfs/mysql03.pla.com.br/waf.json -vvv 2>&1 | tee hgfs/mysql03.pla.com.br/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}

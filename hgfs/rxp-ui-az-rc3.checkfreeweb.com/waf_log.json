@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:34:00.034381",
-  "command": "/usr/bin/wafw00f http://rxp-ui-az-rc3.checkfreeweb.com -a -f json -o hgfs/rxp-ui-az-rc3.checkfreeweb.com/waf.json -vvv 2>&1 | tee hgfs/rxp-ui-az-rc3.checkfreeweb.com/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}

@@ -7,10 +7,12 @@ import socket
 import fcntl
 import struct
 import re
+import aiohttp
+import random
 import multiprocessing as mp
 import subprocess as sp
 import scapy as scapy
-
+import time
 from functools import partial
 from datetime import datetime
 from waf_signatures import get_signatures
@@ -19,6 +21,7 @@ from scapy.modules.nmap import nmap_match_one_sig
 
 
 class AsyncScanner:
+    VPN_CONFIGS = [f for f in os.listdir('/var/www/recon/vpn_configs') if f.endswith('.ovpn')]
     def __init__(self, target, output_dir, interface):
         self.target = target
         self.output_dir = output_dir
@@ -29,9 +32,12 @@ class AsyncScanner:
         self.blocked = False
         self.active_scans = {}
         self.target_ip = None
+        self.waf_block_event = asyncio.Event()
         
     # check if domain is a wildcard (*.example.com) or standard (example.com)
     async def run(self):
+        await self.start_vpn_connection()
+        await self.start_traffic_monitor()
 
         if '*' in self.target:
             await self.enumerate_subdomains()
@@ -90,15 +96,15 @@ class AsyncScanner:
 
                     # Process all subdomains concurrently
                     results = await asyncio.gather(*subdomain_tasks, return_exceptions=True)
-                    print(f"Completed scanning {len(subdomains_found)} subdomains")
+                    logging.info(f"Completed scanning {len(subdomains_found)} subdomains")
                 else:
-                    print(f"No subdomains found for {stripped_domain}")
+                    logging.info(f"No subdomains found for {stripped_domain}")
             else:
                 error_msg = stderr.decode() if stderr else "Unknown error"
-                print(f"Amass failed: {error_msg}")
+                logging.info(f"Amass failed: {error_msg}")
 
         except Exception as e:
-            print(f"Error during subdomain enumeration: {e}")
+            logging.error(f"Error during subdomain enumeration: {e}")
 
         finally:
             self._unregister_tool(task_id)
@@ -142,7 +148,7 @@ class AsyncScanner:
 
             # If there's no output, domain is not live
             if not output:
-                print(f"Domain {self.target} is not live (no A records)")
+                logging.info(f"Domain {self.target} is not live (no A records)")
                 return False
 
             # Domain is live - create directory if needed
@@ -190,17 +196,17 @@ class AsyncScanner:
             # Store in results dictionary
             self.results[self.active_scans.get(task_id)] = result
 
-            print(f"Domain {self.target} is live with {len(ip_addresses)} IP addresses")
+            logging.info(f"Domain {self.target} is live with {len(ip_addresses)} IP addresses")
             return True
 
         except Exception as e:
-            print(f"Error checking liveness for {self.target}: {str(e)}")
+            logging.error(f"Error checking liveness for {self.target}: {str(e)}")
             return False
 
         finally:
             self._unregister_tool(task_id)
 
-    async def sniff_waf(self, custom_headers=False, headers_file=None, ):
+    async def sniff_waf(self, custom_headers=False, headers_file=None):
         task_id = self._register_tool("wafw00f")
         result_file = os.path.join(self.output_dir, "waf.json")
         log_file = os.path.join(self.output_dir, "waf_log.json")
@@ -299,9 +305,9 @@ class AsyncScanner:
                 # Store in results dictionary
                 self.results["wafw00f"] = result
 
-                print(f"Completed WAF detection for {self.target}")
+                logging.info(f"Completed WAF detection for {self.target}")
                 if result.get("waf_detected"):
-                    print(f"WAF detected: {result.get('firewall', 'Unknown')}")
+                    logging.info(f"WAF detected: {result.get('firewall', 'Unknown')}")
 
                 return result
 
@@ -318,18 +324,58 @@ class AsyncScanner:
                 json.dump(error_result, f, indent=2)
 
             self.results["wafw00f"] = error_result
-            print(f"Error in WAF detection for {self.target}: {str(e)}")
+            logging.error(f"Error in WAF detection for {self.target}: {str(e)}")
             return error_result
 
         finally:
             self._unregister_tool(task_id)
 
 
-    async def test_waf(self):
+    async def test_waf_bypass(self):
         task_id = self._register_tool("vegeta")
+        result_file = os.path.join(self.output_dir, "waf_bypass.json")
+        log_file = os.path.join(self.output_dir, "waf_bypass_log.json")
+        rates = [50, 100, 200, 500, 1000]
+
+        try:
+            await self.start_vpn_connection()
+            await self.start_traffic_monitor()
+            while not self.waf_block_event.is_set():
+                for rate in rates:
+                    vegeta_cmd = f"echo 'GET https://{self.target_ip}' | /usr/bin/vegeta attack -duration=5s -rate={rate} -max-workers={int(rate / 10)} | /usr/bin/vegeta report"
+                    cmd = ['sudo', '-u', 'recon_user', 'bash', '-c', vegeta_cmd]
+
+                    process = await asyncio.create_subprocess_exec(
+                        *cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+
+                    stdout, stderr = await process.communicate()
+                    stdout_text = stdout.decode('utf-8', errors='replace')
+                    stderr_text = stderr.decode('utf-8', errors='replace')
+
+            if self.waf_block_event.is_set():
+                payload = f"GET https://{self.target}"
+                for name, value, metadata in generate_mutations(payload, self.waf_type):
+                    if metadata.get("headers"):
+                        # Test with special headers
+                        success = await self.test_with_headers(value, metadata["headers"])
+                    else:
+                        # Test with just the mutated path
+                        success = await self.test_mutation(value)
+
+                    if success:
+                        logging.info(f"Bypass found: {name}")
+                        break
 
 
-        pass
+
+
+
+        except Exception as e:
+            logging.error(f"Error in WAF detection for {self.target}: {str(e)}")
+        finally:
+            self._unregister_tool(task_id)
+
+
     def scan_ports(self):
         pass
     def tech_detect(self):
@@ -357,7 +403,7 @@ class AsyncScanner:
         new_ip = False
         while not new_ip:
             log_file = f"/tmp/openvpn_{self.interface}.log"
-            config_file = random.choice(VPN_CONFIGS)
+            config_file = random.choice(self.VPN_CONFIGS)
 
             # Start OpenVPN
             cmd = [
@@ -395,7 +441,7 @@ class AsyncScanner:
                     # Success - new IP
                     self.active_vpn[self.current_pid]['status'] = 'connected'
                     self.active_vpn[self.current_pid]['ip'] = ip
-                    print(f"VPN connection established on {interface_name} with IP {ip}")
+                    logging.info(f"VPN connection established on {interface_name} with IP {ip}")
                     new_ip = True
                 else:
 
@@ -420,7 +466,7 @@ class AsyncScanner:
             ip = struct.unpack('!I', res[20:24])[0]
             return socket.inet_ntoa(struct.pack('!I', ip))
         except OSError as e:
-            print(f"Failed to get IP for {self.interface}: {e}")
+            logging.error(f"Failed to get IP for {self.interface}: {e}")
             return None
 
     async def _wait_for_connection(self, log_file, timeout=30):
@@ -455,7 +501,7 @@ class AsyncScanner:
         try:
             process.terminate()
             await process.wait()
-            print(f"VPN stopped on {vpn_info.get('interface', 'unknown')}")
+            logging.info(f"VPN stopped on {vpn_info.get('interface', 'unknown')}")
         except:
             try:
                 process.kill()
@@ -469,7 +515,7 @@ class AsyncScanner:
 
     async def rotate_vpn(self):
         """Rotate to a new VPN connection"""
-        print(f"Rotating VPN for {self.target}")
+        logging.info(f"Rotating VPN for {self.target}")
         await self.stop_vpn()
         await asyncio.sleep(2)  # Brief pause between connections
         return await self.start_vpn_connection()
@@ -483,7 +529,7 @@ class AsyncScanner:
 
         # Start the monitoring in a separate thread to not block asyncio
         self.monitor_task = asyncio.create_task(self._run_traffic_monitor())
-        print(f"Traffic monitoring started for {self.target} on {self.interface}")
+        logging.info(f"Traffic monitoring started for {self.target} on {self.interface}")
 
     async def stop_traffic_monitor(self):
         """Stop the traffic monitoring"""
@@ -494,7 +540,7 @@ class AsyncScanner:
                 await self.monitor_task
             except asyncio.CancelledError:
                 pass
-        print(f"Traffic monitoring stopped for {self.target}")
+        logging.info(f"Traffic monitoring stopped for {self.target}")
 
     async def _run_traffic_monitor(self):
         """Run the traffic monitoring in a way that doesn't block asyncio"""
@@ -503,7 +549,7 @@ class AsyncScanner:
         try:
             await loop.run_in_executor(None, self._monitor_traffic)
         except Exception as e:
-            print(f"Error in traffic monitor: {str(e)}")
+            logging.error(f"Error in traffic monitor: {str(e)}")
 
     def _monitor_traffic(self):
         """Monitor traffic for WAF blocks using Scapy"""
@@ -514,7 +560,7 @@ class AsyncScanner:
         waf_signatures = get_signatures()
 
         if not waf_signatures:
-            print("Warning: No WAF signatures loaded. Monitoring will be limited.")
+            logging.info("Warning: No WAF signatures loaded. Monitoring will be limited.")
 
         # Start capturing packets
         def packet_callback(packet):
@@ -533,9 +579,9 @@ class AsyncScanner:
 
                     # Check packet against WAF signatures
                     if self._check_waf_block(packet, waf_signatures):
-                        print(f"WAF BLOCK DETECTED for {self.target}")
+                        logging.info(f"WAF BLOCK DETECTED for {self.target}")
                         self.blocked = True
-
+                        self.waf_block_event.set()
                         # save the block indicating packets separately
                         wrpcap(blocks_pcap_file, [packet], append=True)
                         self.waf_block_count += 1
@@ -556,7 +602,7 @@ class AsyncScanner:
                         # Notify for VPN rotation if needed
                         # This would typically trigger an event or callback
                         # For now, we'll just log it
-                        print(f"VPN rotation needed for {self.interface}")
+                        loggin.info(f"VPN rotation needed for {self.interface}")
 
         # Start the capture on the specific interface
         try:
@@ -572,7 +618,7 @@ class AsyncScanner:
                 stop_filter=lambda p: self.stop_monitoring  # Stop when flagged
             )
         except Exception as e:
-            print(f"Error in traffic capture: {str(e)}")
+            logging.error(f"Error in traffic capture: {str(e)}")
 
     def _check_waf_block(self, packet, signatures):
         """Check if a packet matches any WAF block signatures"""
@@ -753,7 +799,7 @@ class AsyncScanner:
                 }
 
         except Exception as e:
-            print(f"Error extracting HTTP data: {e}")
+            loggin.error(f"Error extracting HTTP data: {e}")
             return None
 
     def _resolve_target_to_ip(self):

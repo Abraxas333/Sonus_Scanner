@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:33:58.652509",
-  "command": "/usr/bin/wafw00f http://cert.lsfcu.org -a -f json -o hgfs/cert.lsfcu.org/waf.json -vvv 2>&1 | tee hgfs/cert.lsfcu.org/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}

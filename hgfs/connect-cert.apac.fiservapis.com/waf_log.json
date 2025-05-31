@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:30:19.221299",
-  "command": "/usr/bin/wafw00f http://connect-cert.apac.fiservapis.com -a -f json -o hgfs/connect-cert.apac.fiservapis.com/waf.json -vvv 2>&1 | tee hgfs/connect-cert.apac.fiservapis.com/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}

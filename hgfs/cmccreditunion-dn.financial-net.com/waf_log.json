@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:33:58.877867",
-  "command": "/usr/bin/wafw00f http://cmccreditunion-dn.financial-net.com -a -f json -o hgfs/cmccreditunion-dn.financial-net.com/waf.json -vvv 2>&1 | tee hgfs/cmccreditunion-dn.financial-net.com/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}

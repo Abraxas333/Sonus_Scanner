@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:33:56.353539",
-  "command": "/usr/bin/wafw00f http://regression.qa.pclender.com -a -f json -o hgfs/regression.qa.pclender.com/waf.json -vvv 2>&1 | tee hgfs/regression.qa.pclender.com/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}

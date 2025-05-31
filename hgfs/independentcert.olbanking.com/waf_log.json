@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-05-27T14:34:01.731888",
-  "command": "/usr/bin/wafw00f http://independentcert.olbanking.com -a -f json -o hgfs/independentcert.olbanking.com/waf.json -vvv 2>&1 | tee hgfs/independentcert.olbanking.com/waf_log.json",
-  "error": "name 're' is not defined",
-  "waf_detected": false
-}
