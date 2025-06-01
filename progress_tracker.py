@@ -1,6 +1,10 @@
 import json
 import os
+import logging
 from typing import Dict, List
+
+# Create logger for this module
+logger = logging.getLogger(__name__)
 
 
 class ProgressTracker:
@@ -30,9 +34,9 @@ class ProgressTracker:
             try:
                 with open(self.progress_file, 'r') as f:
                     self.progress = json.load(f)
-                print(f"Loaded progress for {len(self.progress)} domains")
+                logger.info(f"Loaded progress for {len(self.progress)} domains")
             except Exception as e:
-                print(f"Error loading progress: {e}")
+                logger.error(f"Error loading progress: {e}", exc_info=True)
                 self.progress = {}
         else:
             self.progress = {}
@@ -43,7 +47,7 @@ class ProgressTracker:
             with open(self.progress_file, 'w') as f:
                 json.dump(self.progress, f, indent=2)
         except Exception as e:
-            print(f"Error saving progress: {e}")
+            logger.error(f"Error saving progress: {e}", exc_info=True)
 
     def should_skip_domain(self, domain: str) -> bool:
         """Check if domain should be skipped (dead or fully complete)"""
@@ -59,7 +63,7 @@ class ProgressTracker:
         """Mark domain as dead (not live)"""
         self.progress[domain] = self.DEAD_DOMAIN
         self.save_progress()
-        print(f"Marked {domain} as dead")
+        logger.info(f"Marked {domain} as dead")
 
     def is_scan_complete(self, domain: str, scan_type: str) -> bool:
         """Check if specific scan is complete for domain"""
@@ -91,7 +95,7 @@ class ProgressTracker:
         # Set the bit for this scan type
         self.progress[domain] |= self.SCAN_TYPES[scan_type]
 
-        print(f"Marked {scan_type} complete for {domain} (status: {self.progress[domain]})")
+        logger.info(f"Marked {scan_type} complete for {domain} (status: {self.progress[domain]})")
         self.save_progress()
 
     def get_remaining_scans(self, domain: str) -> List[str]:
@@ -143,43 +147,49 @@ class ProgressTracker:
     def print_progress_summary(self):
         """Print a summary of current progress"""
         if not self.progress:
-            logging.info("No progress data found")
+            logger.info("No progress data found")
             return
 
         dead_count = sum(1 for status in self.progress.values() if status == self.DEAD_DOMAIN)
         complete_count = sum(1 for status in self.progress.values() if status == self.FULLY_COMPLETE)
         partial_count = len(self.progress) - dead_count - complete_count
 
-        logging.info(f"\nProgress Summary:")
-        logging.info(f"  Total domains tracked: {len(self.progress)}")
-        logging.info(f"  Dead domains: {dead_count}")
-        logging.info(f"  Fully complete: {complete_count}")
-        logging.info(f"  Partially complete: {partial_count}")
+        logger.info("\nProgress Summary:")
+        logger.info(f"  Total domains tracked: {len(self.progress)}")
+        logger.info(f"  Dead domains: {dead_count}")
+        logger.info(f"  Fully complete: {complete_count}")
+        logger.info(f"  Partially complete: {partial_count}")
 
         # Show some examples of partial domains
         if partial_count > 0:
-            print(f"\nPartial domains (showing first 5):")
+            logger.info("\nPartial domains (showing first 5):")
             count = 0
             for domain, status in self.progress.items():
                 if status not in [self.DEAD_DOMAIN, self.FULLY_COMPLETE] and count < 5:
                     completion = self.get_completion_status(domain)
-                    logging.info(f"  {domain}: {completion['completed_scans']}")
+                    logger.info(f"  {domain}: {completion['completed_scans']}")
                     count += 1
 
 
 # Example usage:
 if __name__ == "__main__":
+    # Set up logging for testing
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s: %(message)s"
+    )
+
     tracker = ProgressTracker()
 
     # Example operations
     tracker.mark_scan_complete("example.com", "liveness")
     tracker.mark_scan_complete("example.com", "waf")
 
-    logging.info(f"Liveness complete? {tracker.is_scan_complete('example.com', 'liveness')}")
-    logging.info(f"Port scan complete? {tracker.is_scan_complete('example.com', 'port_scan')}")
-    logging.info(f"Remaining scans: {tracker.get_remaining_scans('example.com')}")
+    logger.info(f"Liveness complete? {tracker.is_scan_complete('example.com', 'liveness')}")
+    logger.info(f"Port scan complete? {tracker.is_scan_complete('example.com', 'port_scan')}")
+    logger.info(f"Remaining scans: {tracker.get_remaining_scans('example.com')}")
 
     tracker.mark_domain_dead("dead-domain.com")
-    logging.info(f"Should skip dead domain? {tracker.should_skip_domain('dead-domain.com')}")
+    logger.info(f"Should skip dead domain? {tracker.should_skip_domain('dead-domain.com')}")
 
     tracker.print_progress_summary()
