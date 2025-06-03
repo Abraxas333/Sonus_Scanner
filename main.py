@@ -3,6 +3,9 @@ import multiprocessing
 import asyncio
 import os
 import sys
+import random
+import subprocess
+import time
 import logging
 import domain_getter
 from functools import partial
@@ -88,10 +91,18 @@ def process_domain(domain, process_index):
     """
     Function to run in each process - initializes and runs a scanner for one domain
     """
-    configure_worker_logging_and_stderr()
-    logger = logging.getLogger(__name__)
+    interface = f"tun{process_index}"
+
+    # Check if VPN already exists on this interface
+    if not is_vpn_active(interface):
+        # Create VPN connection once per worker
+        if not setup_worker_vpn(interface):
+            logger.error(f"Failed to setup VPN on {interface}")
+            return {"domain": domain, "status": "error", "error": "VPN setup failed"}
 
     try:
+        # Create scanner - it will use the existing VPN
+        scanner = AsyncScanner(domain, output_dir, interface)
         logger.info(f"Starting scan for domain: {domain} with process index: {process_index}")
 
         # Set up output directory
@@ -212,6 +223,30 @@ def main():
             logger.error(f"  {err['domain']}: {err.get('error', 'Unknown error')}")
 
 
+def is_vpn_active(interface):
+    """Check if VPN is already active on interface"""
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        iface_bytes = struct.pack('256s', interface.encode('utf-8')[:15])
+        res = fcntl.ioctl(sock.fileno(), 0x8915, iface_bytes)
+        ip = struct.unpack('!I', res[20:24])[0]
+        return socket.inet_ntoa(struct.pack('!I', ip))
+    except:
+        return None
+
+
+def setup_worker_vpn(interface):
+    """Setup VPN for this worker - runs once per worker"""
+    # Simple synchronous VPN setup
+    config_file = os.path.join('/var/www/recon/vpn_configs', random.choice(VPN_CONFIGS))
+    cmd = ['openvpn', '--config', config_file, '--dev', interface, '--daemon']
+
+    result = subprocess.run(cmd)
+    if result.returncode == 0:
+        # Wait for connection
+        time.sleep(5)
+        return is_vpn_active(interface) is not None
+    return False
 if __name__ == "__main__":
     try:
         logger.info("=" * 60)

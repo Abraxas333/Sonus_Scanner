@@ -1,0 +1,315 @@
+2025-06-03 11:29:41,713 INFO: ============================================================
+2025-06-03 11:29:41,714 INFO: Starting domain scanner
+2025-06-03 11:29:41,714 INFO: ============================================================
+2025-06-03 11:29:41,714 INFO: Starting main script
+2025-06-03 11:29:41,715 INFO: Domains file: domains.txt
+2025-06-03 11:29:41,715 INFO: Output directory: targets
+2025-06-03 11:29:41,715 INFO: Max processes: 2
+2025-06-03 11:29:41,716 INFO: Loaded 9 VPN configurations
+2025-06-03 11:29:41,717 DEBUG: Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-06-03 11:29:42,234 DEBUG: https://raw.githubusercontent.com:443 "GET /arkadiyt/bounty-targets-data/main/data/domains.txt HTTP/1.1" 200 178988
+2025-06-03 11:29:42,345 DEBUG: Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-06-03 11:29:42,657 DEBUG: https://raw.githubusercontent.com:443 "GET /arkadiyt/bounty-targets-data/main/data/wildcards.txt HTTP/1.1" 200 15162
+2025-06-03 11:29:42,705 INFO: Loaded 37061 domains
+2025-06-03 11:29:42,706 INFO: Created output directory: targets
+2025-06-03 11:29:42,728 INFO: Processing batch 1 with 2 domains
+2025-06-03 11:29:47,738 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:29:47,738 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:29:47,739 INFO: Domain *.bigmoralis.com scan finished with status: error
+2025-06-03 11:29:47,739 INFO: Domain *.avcj.com scan finished with status: error
+2025-06-03 11:29:47,740 INFO: Processing batch 2 with 2 domains
+2025-06-03 11:29:52,746 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:29:52,747 INFO: Domain careers.ui.com scan finished with status: error
+2025-06-03 11:29:52,747 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:29:52,747 INFO: Domain www.training.vantageanalytics.cbre.com scan finished with status: error
+2025-06-03 11:29:52,748 INFO: Processing batch 3 with 2 domains
+2025-06-03 11:29:57,754 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:29:57,754 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:29:57,755 INFO: Domain zometa.ca scan finished with status: error
+2025-06-03 11:29:57,755 INFO: Domain nextgenerationselection.com scan finished with status: error
+2025-06-03 11:29:57,755 INFO: Processing batch 4 with 2 domains
+2025-06-03 11:30:02,761 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:02,762 INFO: Domain *.cyberghost.com scan finished with status: error
+2025-06-03 11:30:02,762 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:02,763 INFO: Domain verify.arkoselabs.com scan finished with status: error
+2025-06-03 11:30:02,763 INFO: Processing batch 5 with 2 domains
+2025-06-03 11:30:07,770 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:07,770 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:07,771 INFO: Domain xbpg.hepsiian.com scan finished with status: error
+2025-06-03 11:30:07,771 INFO: Domain ipplatform.dk scan finished with status: error
+2025-06-03 11:30:07,771 INFO: Processing batch 6 with 2 domains
+2025-06-03 11:30:12,778 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:12,778 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:12,779 INFO: Domain demo-domains-395.biz scan finished with status: error
+2025-06-03 11:30:12,779 INFO: Domain cert-developer.firstdata.com scan finished with status: error
+2025-06-03 11:30:12,780 INFO: Processing batch 7 with 2 domains
+2025-06-03 11:30:17,787 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:17,788 INFO: Domain copoco-admin.originate.fiservapps.com scan finished with status: error
+2025-06-03 11:30:17,789 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:17,789 INFO: Domain agribusiness-tm.nonprod.cbre.com scan finished with status: error
+2025-06-03 11:30:17,790 INFO: Processing batch 8 with 2 domains
+2025-06-03 11:30:22,797 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:22,799 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:22,800 INFO: Domain *.transunion.co.br scan finished with status: error
+2025-06-03 11:30:22,800 INFO: Domain app.thousandeyes.com scan finished with status: error
+2025-06-03 11:30:22,800 INFO: Processing batch 9 with 2 domains
+2025-06-03 11:30:27,808 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:27,808 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:27,809 INFO: Domain secureemail.hepsiian.com scan finished with status: error
+2025-06-03 11:30:27,810 INFO: Domain secure-hyperionbank.com scan finished with status: error
+2025-06-03 11:30:27,810 INFO: Processing batch 10 with 2 domains
+2025-06-03 11:30:32,817 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:32,817 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:32,818 INFO: Domain histcite.co.uk scan finished with status: error
+2025-06-03 11:30:32,818 INFO: Domain *.biarrinetworks.com scan finished with status: error
+2025-06-03 11:30:32,819 INFO: Processing batch 11 with 2 domains
+2025-06-03 11:30:37,825 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:37,826 INFO: Domain www.deere.com scan finished with status: error
+2025-06-03 11:30:37,827 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:37,827 INFO: Domain vector.sentera.com scan finished with status: error
+2025-06-03 11:30:37,828 INFO: Processing batch 12 with 2 domains
+2025-06-03 11:30:42,836 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:42,836 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:42,836 INFO: Domain *inf.fndlsb.net scan finished with status: error
+2025-06-03 11:30:42,837 INFO: Domain api.gift.solutions scan finished with status: error
+2025-06-03 11:30:42,837 INFO: Processing batch 13 with 2 domains
+2025-06-03 11:30:47,844 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:47,844 INFO: Domain ucom-cfa-x-usc1.ns1.fiservapis.com scan finished with status: error
+2025-06-03 11:30:47,845 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:47,845 INFO: Domain mtnmobilemoney.com scan finished with status: error
+2025-06-03 11:30:47,846 INFO: Processing batch 14 with 2 domains
+2025-06-03 11:30:52,853 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:52,854 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:52,855 INFO: Domain riskminder.aon.dk scan finished with status: error
+2025-06-03 11:30:52,855 INFO: Domain uat.miq.cbre.com scan finished with status: error
+2025-06-03 11:30:52,855 INFO: Processing batch 15 with 2 domains
+2025-06-03 11:30:57,862 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:30:57,863 INFO: Domain panhandlefcu.com scan finished with status: error
+2025-06-03 11:30:57,864 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:30:57,865 INFO: Domain rarebooks-on-demand.com scan finished with status: error
+2025-06-03 11:30:57,865 INFO: Processing batch 16 with 2 domains
+2025-06-03 11:31:02,872 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:02,872 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:02,873 INFO: Domain serialssolutions.us scan finished with status: error
+2025-06-03 11:31:02,877 INFO: Domain www.pulsetech.cbre.co.in scan finished with status: error
+2025-06-03 11:31:02,877 INFO: Processing batch 17 with 2 domains
+2025-06-03 11:31:07,884 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:07,885 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:07,886 INFO: Domain *huntingtonhealthnetwork.net scan finished with status: error
+2025-06-03 11:31:07,886 INFO: Domain www.wirtgen.com.br scan finished with status: error
+2025-06-03 11:31:07,886 INFO: Processing batch 18 with 2 domains
+2025-06-03 11:31:12,894 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:12,895 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:12,896 INFO: Domain test-edge-usc1.ns1.fiservapis.com scan finished with status: error
+2025-06-03 11:31:12,896 INFO: Domain *.myaspect.net scan finished with status: error
+2025-06-03 11:31:12,896 INFO: Processing batch 19 with 2 domains
+2025-06-03 11:31:17,903 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:17,903 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:17,906 INFO: Domain estimator-api-qa.cbre.com scan finished with status: error
+2025-06-03 11:31:17,907 INFO: Domain rivertrustfcu.vbwebservices.com scan finished with status: error
+2025-06-03 11:31:17,908 INFO: Processing batch 20 with 2 domains
+2025-06-03 11:31:22,918 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:22,918 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:22,919 INFO: Domain forchtbank.apps-uat.ilendx.tech scan finished with status: error
+2025-06-03 11:31:22,919 INFO: Domain yeswehack.staging.komoju.com scan finished with status: error
+2025-06-03 11:31:22,920 INFO: Processing batch 21 with 2 domains
+2025-06-03 11:31:27,928 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:27,928 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:27,928 INFO: Domain cnppsm.abb.com.cn scan finished with status: error
+2025-06-03 11:31:27,929 INFO: Domain panhandlefcu-dn.financial-net.com scan finished with status: error
+2025-06-03 11:31:27,929 INFO: Processing batch 22 with 2 domains
+2025-06-03 11:31:32,936 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:32,936 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:32,937 INFO: Domain www.spark.ai scan finished with status: error
+2025-06-03 11:31:32,937 INFO: Domain drugsofthefuture.com scan finished with status: error
+2025-06-03 11:31:32,938 INFO: Processing batch 23 with 2 domains
+2025-06-03 11:31:37,944 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:37,946 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:37,947 INFO: Domain webquote.qat.cbreapps.com scan finished with status: error
+2025-06-03 11:31:37,947 INFO: Domain www.dev3test.cbre.com scan finished with status: error
+2025-06-03 11:31:37,947 INFO: Processing batch 24 with 2 domains
+2025-06-03 11:31:42,954 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:42,954 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:42,955 INFO: Domain www.pvpn.cbre.eu scan finished with status: error
+2025-06-03 11:31:42,955 INFO: Domain social.playstation.com scan finished with status: error
+2025-06-03 11:31:42,955 INFO: Processing batch 25 with 2 domains
+2025-06-03 11:31:47,961 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:47,961 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:47,962 INFO: Domain mid-americabank-admin.originate.fiservapps.com scan finished with status: error
+2025-06-03 11:31:47,962 INFO: Domain cmms-auth.serviceinsight.cbre.com scan finished with status: error
+2025-06-03 11:31:47,962 INFO: Processing batch 26 with 2 domains
+2025-06-03 11:31:52,970 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:52,972 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:52,973 INFO: Domain servicegateway-qa3.fiservapps.com scan finished with status: error
+2025-06-03 11:31:52,973 INFO: Domain cs-cons.services.wirtgen-group.com scan finished with status: error
+2025-06-03 11:31:52,973 INFO: Processing batch 27 with 2 domains
+2025-06-03 11:31:57,982 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:31:57,982 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:31:57,982 INFO: Domain splus-kepler-upload.pnimedia.com scan finished with status: error
+2025-06-03 11:31:57,983 INFO: Domain proquestlearn.co.uk scan finished with status: error
+2025-06-03 11:31:57,983 INFO: Processing batch 28 with 2 domains
+2025-06-03 11:32:02,989 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:02,989 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:02,993 INFO: Domain research.cbre.co.th scan finished with status: error
+2025-06-03 11:32:02,993 INFO: Domain credlineitau.com.br scan finished with status: error
+2025-06-03 11:32:02,993 INFO: Processing batch 29 with 2 domains
+2025-06-03 11:32:08,000 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:08,001 INFO: Domain thegenealogydatabase.com scan finished with status: error
+2025-06-03 11:32:08,002 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:08,005 INFO: Domain cpa-inprostart.net scan finished with status: error
+2025-06-03 11:32:08,005 INFO: Processing batch 30 with 2 domains
+2025-06-03 11:32:13,011 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:13,011 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:13,012 INFO: Domain totalchoicefcu-dc.cert.fec-dc.fiservapps.com scan finished with status: error
+2025-06-03 11:32:13,012 INFO: Domain gm.intego.dk scan finished with status: error
+2025-06-03 11:32:13,012 INFO: Processing batch 31 with 2 domains
+2025-06-03 11:32:18,019 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:18,019 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:18,020 INFO: Domain faithcommcu-dc.cert.fec-dc.fiservapps.com scan finished with status: error
+2025-06-03 11:32:18,020 INFO: Domain eip-webhook-staging.cbre.com scan finished with status: error
+2025-06-03 11:32:18,021 INFO: Processing batch 32 with 2 domains
+2025-06-03 11:32:23,029 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:23,030 INFO: Domain boh-cc.olbanking.com scan finished with status: error
+2025-06-03 11:32:23,030 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:23,031 INFO: Domain blog.cbre.ae scan finished with status: error
+2025-06-03 11:32:23,031 INFO: Processing batch 33 with 2 domains
+2025-06-03 11:32:28,038 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:28,039 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:28,039 INFO: Domain bridge2bwb.com scan finished with status: error
+2025-06-03 11:32:28,040 INFO: Domain blog.greensoluce.com scan finished with status: error
+2025-06-03 11:32:28,040 INFO: Processing batch 34 with 2 domains
+2025-06-03 11:32:33,047 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:33,048 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:33,048 INFO: Domain www.thuisbezorgd.nl scan finished with status: error
+2025-06-03 11:32:33,049 INFO: Domain endnote360.org scan finished with status: error
+2025-06-03 11:32:33,049 INFO: Processing batch 35 with 2 domains
+2025-06-03 11:32:38,055 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:38,056 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:38,056 INFO: Domain openvideolibrary.com scan finished with status: error
+2025-06-03 11:32:38,057 INFO: Domain dev-edge-use4.ns1.fiservapis.com scan finished with status: error
+2025-06-03 11:32:38,057 INFO: Processing batch 36 with 2 domains
+2025-06-03 11:32:43,064 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:43,064 INFO: Domain staging.coda.io scan finished with status: error
+2025-06-03 11:32:43,066 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:43,066 INFO: Domain ucom-wmt-int-x-use4.ns1.fiservapis.com scan finished with status: error
+2025-06-03 11:32:43,067 INFO: Processing batch 37 with 2 domains
+2025-06-03 11:32:48,073 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:48,073 INFO: Domain myinsurancepassport.com.au scan finished with status: error
+2025-06-03 11:32:48,075 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:48,075 INFO: Domain parts.waratah.com scan finished with status: error
+2025-06-03 11:32:48,076 INFO: Processing batch 38 with 2 domains
+2025-06-03 11:32:53,082 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:53,082 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:53,083 INFO: Domain accounts.logi.com scan finished with status: error
+2025-06-03 11:32:53,084 INFO: Domain gia-portal-qa.cbre.com scan finished with status: error
+2025-06-03 11:32:53,085 INFO: Processing batch 39 with 2 domains
+2025-06-03 11:32:58,095 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:32:58,095 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:32:58,096 INFO: Domain transfer-dev.transunion.com scan finished with status: error
+2025-06-03 11:32:58,096 INFO: Domain derwentnavigator.com scan finished with status: error
+2025-06-03 11:32:58,096 INFO: Processing batch 40 with 2 domains
+2025-06-03 11:33:03,102 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:03,103 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:03,103 INFO: Domain clarivateanalytics.com.ng scan finished with status: error
+2025-06-03 11:33:03,104 INFO: Domain cortellis.co.za scan finished with status: error
+2025-06-03 11:33:03,104 INFO: Processing batch 41 with 2 domains
+2025-06-03 11:33:08,111 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:08,113 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:08,113 INFO: Domain freiafotballtur.no scan finished with status: error
+2025-06-03 11:33:08,113 INFO: Domain autodiscover.cbreim.com scan finished with status: error
+2025-06-03 11:33:08,113 INFO: Processing batch 42 with 2 domains
+2025-06-03 11:33:13,120 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:13,121 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:13,121 INFO: Domain owa.cbrevietnam.com scan finished with status: error
+2025-06-03 11:33:13,121 INFO: Domain residentvision.transunion.com scan finished with status: error
+2025-06-03 11:33:13,121 INFO: Processing batch 43 with 2 domains
+2025-06-03 11:33:18,128 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:18,129 INFO: Domain *.sandbox.directly.com scan finished with status: error
+2025-06-03 11:33:18,129 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:18,130 INFO: Domain railwaycreditunion-dn.financial-net.com scan finished with status: error
+2025-06-03 11:33:18,130 INFO: Processing batch 44 with 2 domains
+2025-06-03 11:33:23,136 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:23,136 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:23,137 INFO: Domain isiwebofknowledge.org scan finished with status: error
+2025-06-03 11:33:23,137 INFO: Domain webofsciencegroup.jp scan finished with status: error
+2025-06-03 11:33:23,137 INFO: Processing batch 45 with 2 domains
+2025-06-03 11:33:28,144 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:28,145 INFO: Domain mtnbusiness.net scan finished with status: error
+2025-06-03 11:33:28,146 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:28,149 INFO: Domain patent-copies.com scan finished with status: error
+2025-06-03 11:33:28,149 INFO: Processing batch 46 with 2 domains
+2025-06-03 11:33:33,156 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:33,157 INFO: Domain otp.firstdata.com.ar scan finished with status: error
+2025-06-03 11:33:33,158 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:33,158 INFO: Domain mobilesales.services.wirtgen-group.com scan finished with status: error
+2025-06-03 11:33:33,158 INFO: Processing batch 47 with 2 domains
+2025-06-03 11:33:38,165 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:38,167 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:38,167 INFO: Domain weatherheadfcu-dn.financial-net.com scan finished with status: error
+2025-06-03 11:33:38,167 INFO: Domain uiweb.cbre.com scan finished with status: error
+2025-06-03 11:33:38,167 INFO: Processing batch 48 with 2 domains
+2025-06-03 11:33:43,174 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:43,176 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:43,176 INFO: Domain cpaglobal.com.pl scan finished with status: error
+2025-06-03 11:33:43,177 INFO: Domain cart.gallileo-frankfurt.com scan finished with status: error
+2025-06-03 11:33:43,177 INFO: Processing batch 49 with 2 domains
+2025-06-03 11:33:48,183 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:48,183 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:48,184 INFO: Domain integrationsourcing.cbre.fr scan finished with status: error
+2025-06-03 11:33:48,184 INFO: Domain uat.dataservices.cbre.eu scan finished with status: error
+2025-06-03 11:33:48,184 INFO: Processing batch 50 with 2 domains
+2025-06-03 11:33:53,192 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:53,193 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:53,197 INFO: Domain extractresearch.com scan finished with status: error
+2025-06-03 11:33:53,197 INFO: Domain ovfcu-dn.financial-net.com scan finished with status: error
+2025-06-03 11:33:53,197 INFO: Processing batch 51 with 2 domains
+2025-06-03 11:33:58,204 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:33:58,205 INFO: Domain us-west-2.aws.us.artifactory.gcsonp.cbre.com scan finished with status: error
+2025-06-03 11:33:58,205 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:33:58,205 INFO: Domain nz-uat.nonprod.cbre.com scan finished with status: error
+2025-06-03 11:33:58,205 INFO: Processing batch 52 with 2 domains
+2025-06-03 11:34:03,213 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:03,214 INFO: Domain arcgiscenter.cbre.eu scan finished with status: error
+2025-06-03 11:34:03,214 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:03,215 INFO: Domain eforms.neogov.com scan finished with status: error
+2025-06-03 11:34:03,215 INFO: Processing batch 53 with 2 domains
+2025-06-03 11:34:08,222 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:08,224 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:08,224 INFO: Domain *.pi-ecminsight.com scan finished with status: error
+2025-06-03 11:34:08,224 INFO: Domain transfers.bankofamerica.com scan finished with status: error
+2025-06-03 11:34:08,224 INFO: Processing batch 54 with 2 domains
+2025-06-03 11:34:13,231 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:13,231 INFO: Domain clinchfieldcu-dn.financial-net.com scan finished with status: error
+2025-06-03 11:34:13,233 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:13,233 INFO: Domain notary.aven.com scan finished with status: error
+2025-06-03 11:34:13,233 INFO: Processing batch 55 with 2 domains
+2025-06-03 11:34:18,240 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:18,240 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:18,240 INFO: Domain team.bluerivertechnology.com scan finished with status: error
+2025-06-03 11:34:18,241 INFO: Domain urarerontaibila.ro scan finished with status: error
+2025-06-03 11:34:18,241 INFO: Processing batch 56 with 2 domains
+2025-06-03 11:34:23,248 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:23,249 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:23,250 INFO: Domain stats.gleague.nba.com scan finished with status: error
+2025-06-03 11:34:23,250 INFO: Domain trademarksdirectoryservice.net scan finished with status: error
+2025-06-03 11:34:23,250 INFO: Processing batch 57 with 2 domains
+2025-06-03 11:34:28,257 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:28,258 INFO: Domain lad-uat.cbre.com scan finished with status: error
+2025-06-03 11:34:28,259 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:28,260 INFO: Domain costco.wgiftcard.com scan finished with status: error
+2025-06-03 11:34:28,261 INFO: Processing batch 58 with 2 domains
+2025-06-03 11:34:33,268 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:33,268 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:33,269 INFO: Domain rockdalefcu.vbwebservices.com scan finished with status: error
+2025-06-03 11:34:33,273 INFO: Domain lexusbank-cs.apps.ilendx.tech scan finished with status: error
+2025-06-03 11:34:33,273 INFO: Processing batch 59 with 2 domains
+2025-06-03 11:34:38,280 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:38,281 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:38,281 INFO: Domain syrfirecu-di.apps-uat.ilendx.tech scan finished with status: error
+2025-06-03 11:34:38,281 INFO: Domain *.dropboxforum.com scan finished with status: error
+2025-06-03 11:34:38,282 INFO: Processing batch 60 with 2 domains
+2025-06-03 11:34:43,292 ERROR: Failed to setup VPN on tun0
+2025-06-03 11:34:43,293 INFO: Domain application-lifecycle-el.abb.com scan finished with status: error
+2025-06-03 11:34:43,293 ERROR: Failed to setup VPN on tun1
+2025-06-03 11:34:43,293 INFO: Domain onboarding-api.truelayer.com scan finished with status: error
+2025-06-03 11:34:43,294 INFO: Processing batch 61 with 2 domains

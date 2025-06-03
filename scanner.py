@@ -14,6 +14,7 @@ import multiprocessing as mp
 import subprocess as sp
 import logging
 import time
+import socket
 from functools import partial
 from datetime import datetime
 from waf_signatures import get_signatures
@@ -173,32 +174,14 @@ class AsyncScanner:
         task_id = self._register_tool('dig')
 
         try:
-            logger.info(f"Checking liveness for {self.target}")
-            # Use dig with +short to get just the IP addresses
-            cmd = ['dig', self.target, 'A', '+short', -Eo, '([0-9]{1,3}\.){3}[0-9]{1,3}']
-            process = await asyncio.create_subprocess_exec(
-                *cmd,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE
-            )
-
-            stdout, stderr = await process.communicate()
-
-            # Get IP addresses from output
-            output = stdout.decode().strip()
-
-            # If there's no output, domain is not live
-            if not output:
-                logger.info(f"Domain {self.target} is not live (no A records)")
-                return False
+            # This automatically handles CNAMEs and returns the final IP
+            ip = socket.gethostbyname(self.target)
+            self.target_ip = ip
 
             # Domain is live - create directory if needed
             domain_dir = os.path.join(self.output_dir, self.target)
             os.makedirs(domain_dir, exist_ok=True)
             self.output_dir = domain_dir
-
-            # Parse IP addresses
-            ip_addresses = [ip.strip() for ip in output.split('\n') if ip.strip()]
 
             # set target_ip attribute
             self.target_ip = ip_addresses[0]
@@ -242,8 +225,9 @@ class AsyncScanner:
             logger.info(f"Domain {self.target} is live with {len(ip_addresses)} IP addresses")
             return True
 
-        except Exception as e:
-            logger.error(f"Error checking liveness for {self.target}: {str(e)}", exc_info=True)
+        except socket.gaierror:
+            # Domain doesn't resolve
+            logger.info(f"Domain {self.target} is not live (no A records)")
             return False
 
         finally:
@@ -470,6 +454,15 @@ class AsyncScanner:
         """Start a VPN connection with a specific interface name"""
         logger.info(f"Starting VPN connection on interface {self.interface}")
 
+        existing_ip = await self.get_ip_address()
+        if existing_ip:
+            logger.info(f"VPN already active on {self.interface} with IP {existing_ip}")
+            self.active_vpn[0] = {  # Use dummy PID
+                'interface': self.interface,
+                'status': 'connected',
+                'ip': existing_ip
+            }
+            return True
         # Get list of already used IPs
         used_ips = [vpn_info['ip'] for vpn_info in self.active_vpn.values() if 'ip' in vpn_info]
         new_ip = False
