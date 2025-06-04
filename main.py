@@ -96,6 +96,7 @@ def load_vpn_configs():
     global VPN_CONFIGS
     try:
         VPN_CONFIGS = [f for f in os.listdir('/var/www/recon/vpn_configs') if f.endswith('.ovpn')]
+
         logger.info(f"Loaded {len(VPN_CONFIGS)} VPN configurations")
     except Exception as e:
         logger.error(f"Error loading VPN configs: {str(e)}", exc_info=True)
@@ -107,7 +108,7 @@ def process_domain(domain, process_index):
     """
     Function to run in each process - initializes and runs a scanner for one domain
     """
-    setup_all_namespaces(process_index)
+
 
     interface = f"tun{process_index}"
 
@@ -171,7 +172,7 @@ def main():
     logger.info(f"Max processes: {max_processes}")
 
     load_vpn_configs()
-
+    setup_all_namespaces(max_processes)
     try:
         domains = domain_getter.update_domains(domains_file)
         if not domains:
