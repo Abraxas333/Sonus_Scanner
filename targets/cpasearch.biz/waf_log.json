@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T16:01:45.569612",
-  "command": "/usr/bin/wafw00f http://cpasearch.biz -a -f json -o targets/cpasearch.biz/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}

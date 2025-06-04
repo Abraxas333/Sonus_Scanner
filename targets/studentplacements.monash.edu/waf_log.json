@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T15:57:10.071479",
-  "command": "/usr/bin/wafw00f http://studentplacements.monash.edu -a -f json -o targets/studentplacements.monash.edu/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}

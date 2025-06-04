@@ -30,10 +30,11 @@ logger = logging.getLogger(__name__)
 class AsyncScanner:
     VPN_CONFIGS = []
 
-    def __init__(self, target, output_dir, interface):
+    def __init__(self, target, output_dir, interface, namespace=None):
         self.target = target
         self.output_dir = output_dir
         self.interface = interface
+        self.namespace = namespace
         self.active_vpn = {}
         self.current_pid = None
         self.results = {}
@@ -54,12 +55,22 @@ class AsyncScanner:
                 logger.error(f"Error loading VPN configs: {e}")
                 self.VPN_CONFIGS = []
 
+    async def _run_in_namespace(self, cmd):
+        """Helper to run commands in the network namespace"""
+        if self.namespace:
+            # Prepend namespace execution
+            return ['sudo', 'ip', 'netns', 'exec', self.namespace] + cmd
+        return cmd
+
     # check if domain is a wildcard (*.example.com) or standard (example.com)
     async def run(self):
         try:
-            logger.info(f"Starting scan for target: {self.target}")
-            await self.start_vpn_connection()
+            logger.info(f"Starting scan for target: {self.target} in namespace: {self.namespace}")
 
+            # Verify VPN is active in namespace (don't create new one)
+            if not await self.verify_vpn_active():
+                logger.error(f"No active VPN found in namespace {self.namespace}")
+                raise Exception("VPN not active in namespace")
 
             if '*' in self.target:
                 await self.enumerate_subdomains()
@@ -70,6 +81,39 @@ class AsyncScanner:
         except Exception as e:
             logger.error(f"Error in run() for {self.target}: {str(e)}", exc_info=True)
             raise
+
+    async def verify_vpn_active(self):
+        """Verify VPN is active in the namespace"""
+        if not self.namespace:
+            logger.error("No namespace configured")
+            return False
+        # Check if interface exists and has IP in namespace
+        cmd = await self._run_in_namespace(['ip', 'addr', 'show', self.interface])
+        try:
+            process = await asyncio.create_subprocess_exec(
+                *cmd,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE
+            )
+            stdout, stderr = await process.communicate()
+
+            if process.returncode == 0:
+                output = stdout.decode()
+                # Look for the interface and its IP
+                if self.interface in output and 'inet ' in output:
+                    # Extract IP address
+                    import re
+                    for line in output.split('\n'):
+                        if 'inet ' in line and not 'inet6' in line:
+                            match = re.search(r'inet (\d+\.\d+\.\d+\.\d+)', line)
+                            if match:
+                                ip = match.group(1)
+                                logger.info(f"VPN active on {self.interface} in {self.namespace} with IP {ip}")
+                                return True
+        except Exception as e:
+            logger.error(f"Error verifying VPN: {e}")
+
+        return False
 
     async def enumerate_domain(self):
         try:
@@ -385,7 +429,7 @@ class AsyncScanner:
 
         try:
             logger.info(f"Starting WAF bypass testing for {self.target}")
-            await self.start_vpn_connection()
+
             await self.start_traffic_monitor()
 
             while not self.waf_block_event.is_set():
@@ -622,13 +666,18 @@ class AsyncScanner:
 
     ######### MONITORING AND WAF DETECTION #########
 
+    # Modify start_traffic_monitor to use both Scapy AND NFQUEUE
     async def start_traffic_monitor(self):
         """Start monitoring traffic for WAF blocks"""
         self.stop_monitoring = False
         self.packet_count = 0
         self.waf_block_count = 0
 
-        # Start the monitoring in a separate thread to not block asyncio
+        # Set up NFQUEUE interception first
+        await self.setup_packet_interception()
+
+        # Then start Scapy monitoring (which now works because we're in namespace)
+        # Since packet_handler runs in the namespace, Scapy's sniff() will also work
         self.monitor_task = asyncio.create_task(self._run_traffic_monitor())
         logger.info(f"Traffic monitoring started for {self.target} on {self.interface}")
 
@@ -727,6 +776,47 @@ class AsyncScanner:
             )
         except Exception as e:
             logger.error(f"Error in traffic capture: {str(e)}", exc_info=True)
+
+    async def setup_packet_interception(self):
+        """Setup NFQUEUE for packet interception and modification"""
+        if not self.namespace:
+            logger.warning("No namespace configured for packet interception")
+            return
+
+        # Assign a unique queue number based on process index
+        queue_num = int(self.interface[-1]) + 1  # tun0 -> queue 1, tun1 -> queue 2, etc.
+
+        # Set up iptables rules in the namespace
+        iptables_cmd = await self._run_in_namespace([
+            'iptables', '-t', 'raw', '-A', 'OUTPUT',
+            '-d', self.target_ip, '-j', 'NFQUEUE', '--queue-num', str(queue_num)
+        ])
+
+        process = await asyncio.create_subprocess_exec(
+            *iptables_cmd,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE
+        )
+        stdout, stderr = await process.communicate()
+
+        if process.returncode != 0:
+            logger.error(f"Failed to set up iptables rule: {stderr.decode()}")
+            return
+
+        # Start the packet interceptor
+        interceptor_cmd = await self._run_in_namespace([
+            sys.executable, 'packet_interceptor.py',
+            self.target_ip, self.output_dir, str(queue_num)
+        ])
+
+        self.packet_handler_process = await asyncio.create_subprocess_exec(
+            *interceptor_cmd,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE
+        )
+
+        logger.info(f"Started packet interceptor for {self.target_ip} on queue {queue_num}")
+
 
     def _check_waf_block(self, packet, signatures):
         """Check if a packet matches any WAF block signatures"""
@@ -914,3 +1004,5 @@ class AsyncScanner:
         except Exception as e:
             logger.error(f"Error extracting HTTP data: {e}")
             return None
+
+

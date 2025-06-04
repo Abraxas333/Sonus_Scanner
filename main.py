@@ -73,6 +73,14 @@ def configure_worker_logging_and_stderr():
 
     sys.excepthook = worker_excepthook
 
+def cleanup_iptables(max_processes):
+    """Clean up any leftover iptables rules"""
+    for i in range(max_processes):
+        subprocess.run([
+            'sudo', 'ip', 'netns', 'exec', f'ns{i}',
+            'iptables', '-t', 'raw', '-F'
+        ], capture_output=True)
+
 # create/verify network namespaces
 def ensure_namespace(n):
     ns_name = f"ns{n}"
@@ -108,12 +116,13 @@ def process_domain(domain, process_index):
     """
     Function to run in each process - initializes and runs a scanner for one domain
     """
-
+    configure_worker_logging_and_stderr()
 
     interface = f"tun{process_index}"
+    namespace = f"ns{process_index}"
 
     # Check if VPN already exists on this interface
-    if not is_vpn_active(interface):
+    if not is_vpn_active_in_namespace(interface, namespace):
         # Create VPN connection once per worker
         if not setup_worker_vpn(interface):
             logger.error(f"Failed to setup VPN on {interface}")
@@ -122,8 +131,8 @@ def process_domain(domain, process_index):
     try:
 
         # Create scanner for this domain
-        scanner = AsyncScanner(domain, output_dir, interface)
-        logger.info(f"Starting scan for domain: {domain} with process index: {process_index}")
+        scanner = AsyncScanner(domain, output_dir, interface, namespace)
+        logger.info(f"Starting scan for domain: {domain} with process index: {process_index} in namespace: {namespace}")
 
         # Run the async scanner within this process
         loop = asyncio.new_event_loop()
@@ -154,6 +163,39 @@ def process_domain(domain, process_index):
         return {"domain": domain, "status": "error", "error": str(e)}
 
 
+def is_vpn_active_in_namespace(interface, namespace):
+    """Check if VPN is already active on interface within the namespace"""
+    try:
+        # Run ip addr show in the namespace
+        result = subprocess.run(
+            ['sudo', 'ip', 'netns', 'exec', namespace, 'ip', 'addr', 'show', interface],
+            capture_output=True,
+            text=True
+        )
+
+        if result.returncode == 0 and 'inet ' in result.stdout:
+            # Interface exists and has IP
+            return True
+        return False
+    except Exception as e:
+        logger.error(f"Error checking VPN in namespace: {e}")
+        return False
+
+
+def setup_worker_vpn(interface):
+    """Setup VPN for this worker - runs once per worker"""
+    # Simple synchronous VPN setup
+    namespace = f"ns{interface[-1]}"
+    config_file = os.path.join('/var/www/recon/vpn_configs', random.choice(VPN_CONFIGS))
+    cmd = ['sudo', 'ip', 'netns', 'exec', namespace, 'openvpn', '--config', config_file, '--dev', interface, '--daemon']
+
+    result = subprocess.run(cmd)
+    if result.returncode == 0:
+        # Wait for connection
+        time.sleep(5)
+        return is_vpn_active_in_namespace(interface, namespace) is not None
+    return False
+
 def main():
     logger.info("Starting main script")
 
@@ -171,7 +213,10 @@ def main():
     logger.info(f"Output directory: {output_dir}")
     logger.info(f"Max processes: {max_processes}")
 
+    cleanup_iptables(max_processes)
+
     load_vpn_configs()
+
     setup_all_namespaces(max_processes)
     try:
         domains = domain_getter.update_domains(domains_file)
@@ -236,32 +281,6 @@ def main():
         for err in errors[:10]:  # Show first 10 errors
             logger.error(f"  {err['domain']}: {err.get('error', 'Unknown error')}")
 
-
-def is_vpn_active(interface):
-    """Check if VPN is already active on interface"""
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        iface_bytes = struct.pack('256s', interface.encode('utf-8')[:15])
-        res = fcntl.ioctl(sock.fileno(), 0x8915, iface_bytes)
-        ip = struct.unpack('!I', res[20:24])[0]
-        return socket.inet_ntoa(struct.pack('!I', ip))
-    except:
-        return None
-
-
-def setup_worker_vpn(interface):
-    """Setup VPN for this worker - runs once per worker"""
-    # Simple synchronous VPN setup
-    network_namespace = f"ns{interface[-1]}"
-    config_file = os.path.join('/var/www/recon/vpn_configs', random.choice(VPN_CONFIGS))
-    cmd = ['sudo', 'ip', 'netns', 'exec', network_namespace, 'openvpn', '--config', config_file, '--dev', interface, '--daemon']
-
-    result = subprocess.run(cmd)
-    if result.returncode == 0:
-        # Wait for connection
-        time.sleep(5)
-        return is_vpn_active(interface) is not None
-    return False
 if __name__ == "__main__":
     try:
         logger.info("=" * 60)

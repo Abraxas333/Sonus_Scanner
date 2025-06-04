@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T15:59:26.087330",
-  "command": "/usr/bin/wafw00f http://cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com -a -f json -o targets/cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}

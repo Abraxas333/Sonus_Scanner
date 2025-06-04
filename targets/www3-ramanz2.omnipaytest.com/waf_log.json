@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T15:59:28.326621",
-  "command": "/usr/bin/wafw00f http://www3-ramanz2.omnipaytest.com -a -f json -o targets/www3-ramanz2.omnipaytest.com/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}

@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T15:59:24.844994",
-  "command": "/usr/bin/wafw00f http://kiwi.partner.viator.com -a -f json -o targets/kiwi.partner.viator.com/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}

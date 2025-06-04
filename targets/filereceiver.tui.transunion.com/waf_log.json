@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T16:03:36.264722",
-  "command": "/usr/bin/wafw00f http://filereceiver.tui.transunion.com -a -f json -o targets/filereceiver.tui.transunion.com/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}

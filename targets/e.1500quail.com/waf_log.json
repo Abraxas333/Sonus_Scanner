@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T15:57:00.255122",
-  "command": "/usr/bin/wafw00f http://e.1500quail.com -a -f json -o targets/e.1500quail.com/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}

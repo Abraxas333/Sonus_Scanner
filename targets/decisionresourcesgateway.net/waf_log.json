@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T15:57:03.370279",
-  "command": "/usr/bin/wafw00f http://decisionresourcesgateway.net -a -f json -o targets/decisionresourcesgateway.net/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}

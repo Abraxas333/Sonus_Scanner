@@ -1,6 +1,0 @@
-{
-  "timestamp": "2025-06-03T16:01:31.715822",
-  "command": "/usr/bin/wafw00f http://teststs.uzleuven.be -a -f json -o targets/teststs.uzleuven.be/waf.json -vvv",
-  "error": "'list' object has no attribute 'get'",
-  "waf_detected": false
-}
