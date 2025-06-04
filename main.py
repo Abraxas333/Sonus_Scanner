@@ -6,6 +6,9 @@ import sys
 import random
 import subprocess
 import time
+import socket
+import fcntl
+import struct
 import logging
 import domain_getter
 from functools import partial
@@ -70,10 +73,24 @@ def configure_worker_logging_and_stderr():
 
     sys.excepthook = worker_excepthook
 
+# create/verify network namespaces
+def ensure_namespace(n):
+    ns_name = f"ns{n}"
 
-# Global list, loaded once at startup
+    # check if network namespace ns{1...count} already exist
+    out = subprocess.run(["ip", "netns", "list"], stdout=subprocess.PIPE, text=True)
+    if ns_name in out.stdout.split():
+        return
+
+    subprocess.run(["sudo", "ip", "netns", "add", ns_name], check=True)
+
+def setup_all_namespaces(count):
+    for i in range(count):
+        ensure_namespace(i)
+
+
+# Global list of ovpn configuration files, loaded once at startup
 VPN_CONFIGS = []  # Will be populated with available .ovpn files
-
 
 def load_vpn_configs():
     global VPN_CONFIGS
@@ -83,7 +100,6 @@ def load_vpn_configs():
     except Exception as e:
         logger.error(f"Error loading VPN configs: {str(e)}", exc_info=True)
 
-
 output_dir = ''
 
 
@@ -91,6 +107,8 @@ def process_domain(domain, process_index):
     """
     Function to run in each process - initializes and runs a scanner for one domain
     """
+    setup_all_namespaces(process_index)
+
     interface = f"tun{process_index}"
 
     # Check if VPN already exists on this interface
@@ -101,15 +119,10 @@ def process_domain(domain, process_index):
             return {"domain": domain, "status": "error", "error": "VPN setup failed"}
 
     try:
-        # Create scanner - it will use the existing VPN
-        scanner = AsyncScanner(domain, output_dir, interface)
-        logger.info(f"Starting scan for domain: {domain} with process index: {process_index}")
-
-        # Set up output directory
-        interface = f"tun{process_index}"
 
         # Create scanner for this domain
         scanner = AsyncScanner(domain, output_dir, interface)
+        logger.info(f"Starting scan for domain: {domain} with process index: {process_index}")
 
         # Run the async scanner within this process
         loop = asyncio.new_event_loop()
@@ -238,8 +251,9 @@ def is_vpn_active(interface):
 def setup_worker_vpn(interface):
     """Setup VPN for this worker - runs once per worker"""
     # Simple synchronous VPN setup
+    network_namespace = f"ns{interface[-1]}"
     config_file = os.path.join('/var/www/recon/vpn_configs', random.choice(VPN_CONFIGS))
-    cmd = ['openvpn', '--config', config_file, '--dev', interface, '--daemon']
+    cmd = ['sudo', 'ip', 'netns', 'exec', network_namespace, 'openvpn', '--config', config_file, '--dev', interface, '--daemon']
 
     result = subprocess.run(cmd)
     if result.returncode == 0:

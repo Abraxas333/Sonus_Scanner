@@ -1,0 +1,16 @@
+[
+  {
+    "detected": true,
+    "firewall": "Cloudflare",
+    "manufacturer": "Cloudflare Inc.",
+    "trigger_url": "https://www.identityforce.com:443/",
+    "url": "http://familysecuritytoday.com"
+  },
+  {
+    "detected": false,
+    "firewall": "None",
+    "manufacturer": "None",
+    "trigger_url": null,
+    "url": "http://familysecuritytoday.com"
+  }
+]

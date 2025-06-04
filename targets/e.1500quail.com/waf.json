@@ -1,0 +1,23 @@
+[
+  {
+    "detected": true,
+    "firewall": "AWS Elastic Load Balancer",
+    "manufacturer": "Amazon",
+    "trigger_url": "http://e.1500quail.com/?pjtnhtac=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E&muyglunn=UNION+SELECT+ALL+FROM+information_schema+AND+%22+or+SLEEP%285%29+or+%22&bviwrmvq=..%2F..%2Fetc%2Fpasswd",
+    "url": "http://e.1500quail.com"
+  },
+  {
+    "detected": true,
+    "firewall": "Envoy",
+    "manufacturer": "EnvoyProxy",
+    "trigger_url": "http://e.1500quail.com/?pjtnhtac=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E&muyglunn=UNION+SELECT+ALL+FROM+information_schema+AND+%22+or+SLEEP%285%29+or+%22&bviwrmvq=..%2F..%2Fetc%2Fpasswd",
+    "url": "http://e.1500quail.com"
+  },
+  {
+    "detected": true,
+    "firewall": "Generic",
+    "manufacturer": "Unknown",
+    "trigger_url": "http://e.1500quail.com/?seuthflx=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E",
+    "url": "http://e.1500quail.com"
+  }
+]

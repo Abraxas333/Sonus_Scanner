@@ -1,0 +1,16 @@
+[
+  {
+    "detected": true,
+    "firewall": "AWS Elastic Load Balancer",
+    "manufacturer": "Amazon",
+    "trigger_url": "http://researchblog.co.uk/?lqikhmwx=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E&vvtdvcsh=UNION+SELECT+ALL+FROM+information_schema+AND+%22+or+SLEEP%285%29+or+%22&qwoaunpf=..%2F..%2Fetc%2Fpasswd",
+    "url": "http://researchblog.co.uk"
+  },
+  {
+    "detected": true,
+    "firewall": "Generic",
+    "manufacturer": "Unknown",
+    "trigger_url": true,
+    "url": "http://researchblog.co.uk"
+  }
+]

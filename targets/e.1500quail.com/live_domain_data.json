@@ -1,0 +1,15 @@
+{
+  "domain": "e.1500quail.com",
+  "is_live": true,
+  "url": "http://e.1500quail.com",
+  "https_url": "https://e.1500quail.com",
+  "ip_addresses": [
+    "15.197.155.180"
+  ],
+  "ip": "15.197.155.180",
+  "nameservers": [
+    "email.secureserver.net."
+  ],
+  "timestamp": "2025-06-03T15:56:55.911035",
+  "command": "dig NS e.1500quail.com +short"
+}

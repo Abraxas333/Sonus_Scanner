@@ -1,0 +1,15 @@
+{
+  "domain": "cc-aus.fiservclients.com",
+  "is_live": true,
+  "url": "http://cc-aus.fiservclients.com",
+  "https_url": "https://cc-aus.fiservclients.com",
+  "ip_addresses": [
+    "203.17.35.41"
+  ],
+  "ip": "203.17.35.41",
+  "nameservers": [
+    "cc-aus.fiservclients.au.cloud-fdc.com."
+  ],
+  "timestamp": "2025-06-03T16:01:32.578591",
+  "command": "dig NS cc-aus.fiservclients.com +short"
+}

@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-06-03T15:57:16.259288",
+  "command": "/usr/bin/wafw00f http://motionfcu-dc.cert.fec-dc.fiservapps.com -a -f json -o targets/motionfcu-dc.cert.fec-dc.fiservapps.com/waf.json -vvv",
+  "error": "'list' object has no attribute 'get'",
+  "waf_detected": false
+}

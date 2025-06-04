@@ -1,0 +1,13 @@
+{
+  "domain": "teststs.uzleuven.be",
+  "is_live": true,
+  "url": "http://teststs.uzleuven.be",
+  "https_url": "https://teststs.uzleuven.be",
+  "ip_addresses": [
+    "193.58.149.107"
+  ],
+  "ip": "193.58.149.107",
+  "nameservers": [],
+  "timestamp": "2025-06-03T16:01:31.138517",
+  "command": "dig NS teststs.uzleuven.be +short"
+}

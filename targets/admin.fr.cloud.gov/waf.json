@@ -1,0 +1,16 @@
+[
+  {
+    "detected": true,
+    "firewall": "AWS Elastic Load Balancer",
+    "manufacturer": "Amazon",
+    "trigger_url": "http://admin.fr.cloud.gov/?xvcnkqgb=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E&keucornw=UNION+SELECT+ALL+FROM+information_schema+AND+%22+or+SLEEP%285%29+or+%22&dysfxyfy=..%2F..%2Fetc%2Fpasswd",
+    "url": "http://admin.fr.cloud.gov"
+  },
+  {
+    "detected": true,
+    "firewall": "Generic",
+    "manufacturer": "Unknown",
+    "trigger_url": "http://admin.fr.cloud.gov/?dmzluwle=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E",
+    "url": "http://admin.fr.cloud.gov"
+  }
+]

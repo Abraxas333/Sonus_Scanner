@@ -1,0 +1,13 @@
+{
+  "domain": "admin.fr.cloud.gov",
+  "is_live": true,
+  "url": "http://admin.fr.cloud.gov",
+  "https_url": "https://admin.fr.cloud.gov",
+  "ip_addresses": [
+    "15.205.21.121"
+  ],
+  "ip": "15.205.21.121",
+  "nameservers": [],
+  "timestamp": "2025-06-03T15:57:10.265542",
+  "command": "dig NS admin.fr.cloud.gov +short"
+}

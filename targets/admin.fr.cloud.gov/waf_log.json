@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-06-03T15:57:16.584015",
+  "command": "/usr/bin/wafw00f http://admin.fr.cloud.gov -a -f json -o targets/admin.fr.cloud.gov/waf.json -vvv",
+  "error": "'list' object has no attribute 'get'",
+  "waf_detected": false
+}

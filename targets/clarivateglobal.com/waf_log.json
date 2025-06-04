@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-06-03T16:03:43.722398",
+  "command": "/usr/bin/wafw00f http://clarivateglobal.com -a -f json -o targets/clarivateglobal.com/waf.json -vvv",
+  "error": "'list' object has no attribute 'get'",
+  "waf_detected": false
+}

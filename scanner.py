@@ -59,7 +59,7 @@ class AsyncScanner:
         try:
             logger.info(f"Starting scan for target: {self.target}")
             await self.start_vpn_connection()
-            await self.start_traffic_monitor()
+
 
             if '*' in self.target:
                 await self.enumerate_subdomains()
@@ -76,6 +76,7 @@ class AsyncScanner:
             logger.info(f"Enumerating domain: {self.target}")
             is_live = await self.check_liveness()
             if is_live:
+                await self.start_traffic_monitor()
                 await self.sniff_waf()
             else:
                 logger.info(f"Domain {self.target} is not live, skipping further enumeration")
@@ -177,15 +178,12 @@ class AsyncScanner:
             # This automatically handles CNAMEs and returns the final IP
             ip = socket.gethostbyname(self.target)
             self.target_ip = ip
+            logger.info(f"Domain {self.target} resolved to IP: {self.target_ip}")
 
             # Domain is live - create directory if needed
             domain_dir = os.path.join(self.output_dir, self.target)
             os.makedirs(domain_dir, exist_ok=True)
             self.output_dir = domain_dir
-
-            # set target_ip attribute
-            self.target_ip = ip_addresses[0]
-            logger.info(f"Domain {self.target} resolved to IP: {self.target_ip}")
 
             # Get nameservers
             ns_cmd = ['dig', 'NS', self.target, '+short']
@@ -207,11 +205,11 @@ class AsyncScanner:
                 "is_live": True,
                 "url": f"http://{self.target}",
                 "https_url": f"https://{self.target}",
-                "ip_addresses": ip_addresses,
-                "ip": ip_addresses[0] if ip_addresses else None,
+                "ip_addresses": [self.target_ip],  # Make it a list for consistency
+                "ip": self.target_ip,
                 "nameservers": nameservers,
                 "timestamp": datetime.now().isoformat(),
-                "command": " ".join(cmd)
+                "command": " ".join(ns_cmd)
             }
 
             # Save results to file
@@ -222,12 +220,15 @@ class AsyncScanner:
             # Store in results dictionary
             self.results[self.active_scans.get(task_id)] = result
 
-            logger.info(f"Domain {self.target} is live with {len(ip_addresses)} IP addresses")
+            logger.info(f"Domain {self.target} is live with IP address: {self.target_ip}")
             return True
 
-        except socket.gaierror:
+        except socket.gaierror as e:
             # Domain doesn't resolve
-            logger.info(f"Domain {self.target} is not live (no A records)")
+            logger.info(f"Domain {self.target} is not live (DNS resolution failed: {e})")
+            return False
+        except Exception as e:
+            logger.error(f"Unexpected error checking liveness for {self.target}: {e}")
             return False
 
         finally:
@@ -245,6 +246,7 @@ class AsyncScanner:
             if custom_headers and headers_file:
                 if os.path.exists(headers_file):
                     cmd.extend(['-H', headers_file])
+            await asyncio.sleep(0.2)
 
             process = await asyncio.create_subprocess_exec(
                 *cmd,
@@ -482,6 +484,11 @@ class AsyncScanner:
 
             # Start OpenVPN
             cmd = [
+                'sudo',
+                'ip',
+                'netns',
+                'exec',
+                'ns'
                 'openvpn',
                 '--config', config_file,
                 '--dev', self.interface,
@@ -660,12 +667,16 @@ class AsyncScanner:
         def packet_callback(packet):
             if self.stop_monitoring:
                 return
+            try:
+                logger.debug(f"SNIFTEST: {packet[IP].src} → {packet[IP].dst}  (len={len(packet)})")
+            except Exception:
+                logger.debug("SNIFTEST: non-IP packet")
 
             # Check if the packet is related to our target
-            if IP in packet and TCP in packet:
+            if self.target_ip and packet.haslayer(IP):
                 # Only look at packets to/from our target
                 if packet[IP].src == self.target_ip or packet[IP].dst == self.target_ip:
-
+                    logger.debug(f"Writing packet: {packet[IP].src} → {packet[IP].dst}")
                     # save all packets to pcap_file and count packets
                     wrpcap(pcap_file, [packet], append=True)
                     self.packet_count += 1

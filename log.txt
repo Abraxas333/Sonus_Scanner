@@ -1,315 +1,629 @@
-2025-06-03 11:29:41,713 INFO: ============================================================
-2025-06-03 11:29:41,714 INFO: Starting domain scanner
-2025-06-03 11:29:41,714 INFO: ============================================================
-2025-06-03 11:29:41,714 INFO: Starting main script
-2025-06-03 11:29:41,715 INFO: Domains file: domains.txt
-2025-06-03 11:29:41,715 INFO: Output directory: targets
-2025-06-03 11:29:41,715 INFO: Max processes: 2
-2025-06-03 11:29:41,716 INFO: Loaded 9 VPN configurations
-2025-06-03 11:29:41,717 DEBUG: Starting new HTTPS connection (1): raw.githubusercontent.com:443
-2025-06-03 11:29:42,234 DEBUG: https://raw.githubusercontent.com:443 "GET /arkadiyt/bounty-targets-data/main/data/domains.txt HTTP/1.1" 200 178988
-2025-06-03 11:29:42,345 DEBUG: Starting new HTTPS connection (1): raw.githubusercontent.com:443
-2025-06-03 11:29:42,657 DEBUG: https://raw.githubusercontent.com:443 "GET /arkadiyt/bounty-targets-data/main/data/wildcards.txt HTTP/1.1" 200 15162
-2025-06-03 11:29:42,705 INFO: Loaded 37061 domains
-2025-06-03 11:29:42,706 INFO: Created output directory: targets
-2025-06-03 11:29:42,728 INFO: Processing batch 1 with 2 domains
-2025-06-03 11:29:47,738 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:29:47,738 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:29:47,739 INFO: Domain *.bigmoralis.com scan finished with status: error
-2025-06-03 11:29:47,739 INFO: Domain *.avcj.com scan finished with status: error
-2025-06-03 11:29:47,740 INFO: Processing batch 2 with 2 domains
-2025-06-03 11:29:52,746 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:29:52,747 INFO: Domain careers.ui.com scan finished with status: error
-2025-06-03 11:29:52,747 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:29:52,747 INFO: Domain www.training.vantageanalytics.cbre.com scan finished with status: error
-2025-06-03 11:29:52,748 INFO: Processing batch 3 with 2 domains
-2025-06-03 11:29:57,754 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:29:57,754 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:29:57,755 INFO: Domain zometa.ca scan finished with status: error
-2025-06-03 11:29:57,755 INFO: Domain nextgenerationselection.com scan finished with status: error
-2025-06-03 11:29:57,755 INFO: Processing batch 4 with 2 domains
-2025-06-03 11:30:02,761 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:02,762 INFO: Domain *.cyberghost.com scan finished with status: error
-2025-06-03 11:30:02,762 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:02,763 INFO: Domain verify.arkoselabs.com scan finished with status: error
-2025-06-03 11:30:02,763 INFO: Processing batch 5 with 2 domains
-2025-06-03 11:30:07,770 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:07,770 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:07,771 INFO: Domain xbpg.hepsiian.com scan finished with status: error
-2025-06-03 11:30:07,771 INFO: Domain ipplatform.dk scan finished with status: error
-2025-06-03 11:30:07,771 INFO: Processing batch 6 with 2 domains
-2025-06-03 11:30:12,778 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:12,778 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:12,779 INFO: Domain demo-domains-395.biz scan finished with status: error
-2025-06-03 11:30:12,779 INFO: Domain cert-developer.firstdata.com scan finished with status: error
-2025-06-03 11:30:12,780 INFO: Processing batch 7 with 2 domains
-2025-06-03 11:30:17,787 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:17,788 INFO: Domain copoco-admin.originate.fiservapps.com scan finished with status: error
-2025-06-03 11:30:17,789 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:17,789 INFO: Domain agribusiness-tm.nonprod.cbre.com scan finished with status: error
-2025-06-03 11:30:17,790 INFO: Processing batch 8 with 2 domains
-2025-06-03 11:30:22,797 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:22,799 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:22,800 INFO: Domain *.transunion.co.br scan finished with status: error
-2025-06-03 11:30:22,800 INFO: Domain app.thousandeyes.com scan finished with status: error
-2025-06-03 11:30:22,800 INFO: Processing batch 9 with 2 domains
-2025-06-03 11:30:27,808 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:27,808 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:27,809 INFO: Domain secureemail.hepsiian.com scan finished with status: error
-2025-06-03 11:30:27,810 INFO: Domain secure-hyperionbank.com scan finished with status: error
-2025-06-03 11:30:27,810 INFO: Processing batch 10 with 2 domains
-2025-06-03 11:30:32,817 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:32,817 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:32,818 INFO: Domain histcite.co.uk scan finished with status: error
-2025-06-03 11:30:32,818 INFO: Domain *.biarrinetworks.com scan finished with status: error
-2025-06-03 11:30:32,819 INFO: Processing batch 11 with 2 domains
-2025-06-03 11:30:37,825 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:37,826 INFO: Domain www.deere.com scan finished with status: error
-2025-06-03 11:30:37,827 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:37,827 INFO: Domain vector.sentera.com scan finished with status: error
-2025-06-03 11:30:37,828 INFO: Processing batch 12 with 2 domains
-2025-06-03 11:30:42,836 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:42,836 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:42,836 INFO: Domain *inf.fndlsb.net scan finished with status: error
-2025-06-03 11:30:42,837 INFO: Domain api.gift.solutions scan finished with status: error
-2025-06-03 11:30:42,837 INFO: Processing batch 13 with 2 domains
-2025-06-03 11:30:47,844 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:47,844 INFO: Domain ucom-cfa-x-usc1.ns1.fiservapis.com scan finished with status: error
-2025-06-03 11:30:47,845 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:47,845 INFO: Domain mtnmobilemoney.com scan finished with status: error
-2025-06-03 11:30:47,846 INFO: Processing batch 14 with 2 domains
-2025-06-03 11:30:52,853 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:52,854 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:52,855 INFO: Domain riskminder.aon.dk scan finished with status: error
-2025-06-03 11:30:52,855 INFO: Domain uat.miq.cbre.com scan finished with status: error
-2025-06-03 11:30:52,855 INFO: Processing batch 15 with 2 domains
-2025-06-03 11:30:57,862 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:30:57,863 INFO: Domain panhandlefcu.com scan finished with status: error
-2025-06-03 11:30:57,864 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:30:57,865 INFO: Domain rarebooks-on-demand.com scan finished with status: error
-2025-06-03 11:30:57,865 INFO: Processing batch 16 with 2 domains
-2025-06-03 11:31:02,872 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:02,872 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:02,873 INFO: Domain serialssolutions.us scan finished with status: error
-2025-06-03 11:31:02,877 INFO: Domain www.pulsetech.cbre.co.in scan finished with status: error
-2025-06-03 11:31:02,877 INFO: Processing batch 17 with 2 domains
-2025-06-03 11:31:07,884 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:07,885 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:07,886 INFO: Domain *huntingtonhealthnetwork.net scan finished with status: error
-2025-06-03 11:31:07,886 INFO: Domain www.wirtgen.com.br scan finished with status: error
-2025-06-03 11:31:07,886 INFO: Processing batch 18 with 2 domains
-2025-06-03 11:31:12,894 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:12,895 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:12,896 INFO: Domain test-edge-usc1.ns1.fiservapis.com scan finished with status: error
-2025-06-03 11:31:12,896 INFO: Domain *.myaspect.net scan finished with status: error
-2025-06-03 11:31:12,896 INFO: Processing batch 19 with 2 domains
-2025-06-03 11:31:17,903 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:17,903 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:17,906 INFO: Domain estimator-api-qa.cbre.com scan finished with status: error
-2025-06-03 11:31:17,907 INFO: Domain rivertrustfcu.vbwebservices.com scan finished with status: error
-2025-06-03 11:31:17,908 INFO: Processing batch 20 with 2 domains
-2025-06-03 11:31:22,918 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:22,918 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:22,919 INFO: Domain forchtbank.apps-uat.ilendx.tech scan finished with status: error
-2025-06-03 11:31:22,919 INFO: Domain yeswehack.staging.komoju.com scan finished with status: error
-2025-06-03 11:31:22,920 INFO: Processing batch 21 with 2 domains
-2025-06-03 11:31:27,928 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:27,928 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:27,928 INFO: Domain cnppsm.abb.com.cn scan finished with status: error
-2025-06-03 11:31:27,929 INFO: Domain panhandlefcu-dn.financial-net.com scan finished with status: error
-2025-06-03 11:31:27,929 INFO: Processing batch 22 with 2 domains
-2025-06-03 11:31:32,936 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:32,936 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:32,937 INFO: Domain www.spark.ai scan finished with status: error
-2025-06-03 11:31:32,937 INFO: Domain drugsofthefuture.com scan finished with status: error
-2025-06-03 11:31:32,938 INFO: Processing batch 23 with 2 domains
-2025-06-03 11:31:37,944 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:37,946 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:37,947 INFO: Domain webquote.qat.cbreapps.com scan finished with status: error
-2025-06-03 11:31:37,947 INFO: Domain www.dev3test.cbre.com scan finished with status: error
-2025-06-03 11:31:37,947 INFO: Processing batch 24 with 2 domains
-2025-06-03 11:31:42,954 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:42,954 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:42,955 INFO: Domain www.pvpn.cbre.eu scan finished with status: error
-2025-06-03 11:31:42,955 INFO: Domain social.playstation.com scan finished with status: error
-2025-06-03 11:31:42,955 INFO: Processing batch 25 with 2 domains
-2025-06-03 11:31:47,961 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:47,961 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:47,962 INFO: Domain mid-americabank-admin.originate.fiservapps.com scan finished with status: error
-2025-06-03 11:31:47,962 INFO: Domain cmms-auth.serviceinsight.cbre.com scan finished with status: error
-2025-06-03 11:31:47,962 INFO: Processing batch 26 with 2 domains
-2025-06-03 11:31:52,970 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:52,972 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:52,973 INFO: Domain servicegateway-qa3.fiservapps.com scan finished with status: error
-2025-06-03 11:31:52,973 INFO: Domain cs-cons.services.wirtgen-group.com scan finished with status: error
-2025-06-03 11:31:52,973 INFO: Processing batch 27 with 2 domains
-2025-06-03 11:31:57,982 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:31:57,982 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:31:57,982 INFO: Domain splus-kepler-upload.pnimedia.com scan finished with status: error
-2025-06-03 11:31:57,983 INFO: Domain proquestlearn.co.uk scan finished with status: error
-2025-06-03 11:31:57,983 INFO: Processing batch 28 with 2 domains
-2025-06-03 11:32:02,989 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:02,989 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:02,993 INFO: Domain research.cbre.co.th scan finished with status: error
-2025-06-03 11:32:02,993 INFO: Domain credlineitau.com.br scan finished with status: error
-2025-06-03 11:32:02,993 INFO: Processing batch 29 with 2 domains
-2025-06-03 11:32:08,000 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:08,001 INFO: Domain thegenealogydatabase.com scan finished with status: error
-2025-06-03 11:32:08,002 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:08,005 INFO: Domain cpa-inprostart.net scan finished with status: error
-2025-06-03 11:32:08,005 INFO: Processing batch 30 with 2 domains
-2025-06-03 11:32:13,011 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:13,011 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:13,012 INFO: Domain totalchoicefcu-dc.cert.fec-dc.fiservapps.com scan finished with status: error
-2025-06-03 11:32:13,012 INFO: Domain gm.intego.dk scan finished with status: error
-2025-06-03 11:32:13,012 INFO: Processing batch 31 with 2 domains
-2025-06-03 11:32:18,019 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:18,019 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:18,020 INFO: Domain faithcommcu-dc.cert.fec-dc.fiservapps.com scan finished with status: error
-2025-06-03 11:32:18,020 INFO: Domain eip-webhook-staging.cbre.com scan finished with status: error
-2025-06-03 11:32:18,021 INFO: Processing batch 32 with 2 domains
-2025-06-03 11:32:23,029 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:23,030 INFO: Domain boh-cc.olbanking.com scan finished with status: error
-2025-06-03 11:32:23,030 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:23,031 INFO: Domain blog.cbre.ae scan finished with status: error
-2025-06-03 11:32:23,031 INFO: Processing batch 33 with 2 domains
-2025-06-03 11:32:28,038 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:28,039 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:28,039 INFO: Domain bridge2bwb.com scan finished with status: error
-2025-06-03 11:32:28,040 INFO: Domain blog.greensoluce.com scan finished with status: error
-2025-06-03 11:32:28,040 INFO: Processing batch 34 with 2 domains
-2025-06-03 11:32:33,047 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:33,048 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:33,048 INFO: Domain www.thuisbezorgd.nl scan finished with status: error
-2025-06-03 11:32:33,049 INFO: Domain endnote360.org scan finished with status: error
-2025-06-03 11:32:33,049 INFO: Processing batch 35 with 2 domains
-2025-06-03 11:32:38,055 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:38,056 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:38,056 INFO: Domain openvideolibrary.com scan finished with status: error
-2025-06-03 11:32:38,057 INFO: Domain dev-edge-use4.ns1.fiservapis.com scan finished with status: error
-2025-06-03 11:32:38,057 INFO: Processing batch 36 with 2 domains
-2025-06-03 11:32:43,064 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:43,064 INFO: Domain staging.coda.io scan finished with status: error
-2025-06-03 11:32:43,066 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:43,066 INFO: Domain ucom-wmt-int-x-use4.ns1.fiservapis.com scan finished with status: error
-2025-06-03 11:32:43,067 INFO: Processing batch 37 with 2 domains
-2025-06-03 11:32:48,073 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:48,073 INFO: Domain myinsurancepassport.com.au scan finished with status: error
-2025-06-03 11:32:48,075 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:48,075 INFO: Domain parts.waratah.com scan finished with status: error
-2025-06-03 11:32:48,076 INFO: Processing batch 38 with 2 domains
-2025-06-03 11:32:53,082 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:53,082 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:53,083 INFO: Domain accounts.logi.com scan finished with status: error
-2025-06-03 11:32:53,084 INFO: Domain gia-portal-qa.cbre.com scan finished with status: error
-2025-06-03 11:32:53,085 INFO: Processing batch 39 with 2 domains
-2025-06-03 11:32:58,095 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:32:58,095 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:32:58,096 INFO: Domain transfer-dev.transunion.com scan finished with status: error
-2025-06-03 11:32:58,096 INFO: Domain derwentnavigator.com scan finished with status: error
-2025-06-03 11:32:58,096 INFO: Processing batch 40 with 2 domains
-2025-06-03 11:33:03,102 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:03,103 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:03,103 INFO: Domain clarivateanalytics.com.ng scan finished with status: error
-2025-06-03 11:33:03,104 INFO: Domain cortellis.co.za scan finished with status: error
-2025-06-03 11:33:03,104 INFO: Processing batch 41 with 2 domains
-2025-06-03 11:33:08,111 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:08,113 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:08,113 INFO: Domain freiafotballtur.no scan finished with status: error
-2025-06-03 11:33:08,113 INFO: Domain autodiscover.cbreim.com scan finished with status: error
-2025-06-03 11:33:08,113 INFO: Processing batch 42 with 2 domains
-2025-06-03 11:33:13,120 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:13,121 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:13,121 INFO: Domain owa.cbrevietnam.com scan finished with status: error
-2025-06-03 11:33:13,121 INFO: Domain residentvision.transunion.com scan finished with status: error
-2025-06-03 11:33:13,121 INFO: Processing batch 43 with 2 domains
-2025-06-03 11:33:18,128 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:18,129 INFO: Domain *.sandbox.directly.com scan finished with status: error
-2025-06-03 11:33:18,129 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:18,130 INFO: Domain railwaycreditunion-dn.financial-net.com scan finished with status: error
-2025-06-03 11:33:18,130 INFO: Processing batch 44 with 2 domains
-2025-06-03 11:33:23,136 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:23,136 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:23,137 INFO: Domain isiwebofknowledge.org scan finished with status: error
-2025-06-03 11:33:23,137 INFO: Domain webofsciencegroup.jp scan finished with status: error
-2025-06-03 11:33:23,137 INFO: Processing batch 45 with 2 domains
-2025-06-03 11:33:28,144 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:28,145 INFO: Domain mtnbusiness.net scan finished with status: error
-2025-06-03 11:33:28,146 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:28,149 INFO: Domain patent-copies.com scan finished with status: error
-2025-06-03 11:33:28,149 INFO: Processing batch 46 with 2 domains
-2025-06-03 11:33:33,156 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:33,157 INFO: Domain otp.firstdata.com.ar scan finished with status: error
-2025-06-03 11:33:33,158 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:33,158 INFO: Domain mobilesales.services.wirtgen-group.com scan finished with status: error
-2025-06-03 11:33:33,158 INFO: Processing batch 47 with 2 domains
-2025-06-03 11:33:38,165 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:38,167 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:38,167 INFO: Domain weatherheadfcu-dn.financial-net.com scan finished with status: error
-2025-06-03 11:33:38,167 INFO: Domain uiweb.cbre.com scan finished with status: error
-2025-06-03 11:33:38,167 INFO: Processing batch 48 with 2 domains
-2025-06-03 11:33:43,174 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:43,176 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:43,176 INFO: Domain cpaglobal.com.pl scan finished with status: error
-2025-06-03 11:33:43,177 INFO: Domain cart.gallileo-frankfurt.com scan finished with status: error
-2025-06-03 11:33:43,177 INFO: Processing batch 49 with 2 domains
-2025-06-03 11:33:48,183 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:48,183 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:48,184 INFO: Domain integrationsourcing.cbre.fr scan finished with status: error
-2025-06-03 11:33:48,184 INFO: Domain uat.dataservices.cbre.eu scan finished with status: error
-2025-06-03 11:33:48,184 INFO: Processing batch 50 with 2 domains
-2025-06-03 11:33:53,192 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:53,193 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:53,197 INFO: Domain extractresearch.com scan finished with status: error
-2025-06-03 11:33:53,197 INFO: Domain ovfcu-dn.financial-net.com scan finished with status: error
-2025-06-03 11:33:53,197 INFO: Processing batch 51 with 2 domains
-2025-06-03 11:33:58,204 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:33:58,205 INFO: Domain us-west-2.aws.us.artifactory.gcsonp.cbre.com scan finished with status: error
-2025-06-03 11:33:58,205 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:33:58,205 INFO: Domain nz-uat.nonprod.cbre.com scan finished with status: error
-2025-06-03 11:33:58,205 INFO: Processing batch 52 with 2 domains
-2025-06-03 11:34:03,213 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:03,214 INFO: Domain arcgiscenter.cbre.eu scan finished with status: error
-2025-06-03 11:34:03,214 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:03,215 INFO: Domain eforms.neogov.com scan finished with status: error
-2025-06-03 11:34:03,215 INFO: Processing batch 53 with 2 domains
-2025-06-03 11:34:08,222 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:08,224 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:08,224 INFO: Domain *.pi-ecminsight.com scan finished with status: error
-2025-06-03 11:34:08,224 INFO: Domain transfers.bankofamerica.com scan finished with status: error
-2025-06-03 11:34:08,224 INFO: Processing batch 54 with 2 domains
-2025-06-03 11:34:13,231 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:13,231 INFO: Domain clinchfieldcu-dn.financial-net.com scan finished with status: error
-2025-06-03 11:34:13,233 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:13,233 INFO: Domain notary.aven.com scan finished with status: error
-2025-06-03 11:34:13,233 INFO: Processing batch 55 with 2 domains
-2025-06-03 11:34:18,240 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:18,240 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:18,240 INFO: Domain team.bluerivertechnology.com scan finished with status: error
-2025-06-03 11:34:18,241 INFO: Domain urarerontaibila.ro scan finished with status: error
-2025-06-03 11:34:18,241 INFO: Processing batch 56 with 2 domains
-2025-06-03 11:34:23,248 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:23,249 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:23,250 INFO: Domain stats.gleague.nba.com scan finished with status: error
-2025-06-03 11:34:23,250 INFO: Domain trademarksdirectoryservice.net scan finished with status: error
-2025-06-03 11:34:23,250 INFO: Processing batch 57 with 2 domains
-2025-06-03 11:34:28,257 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:28,258 INFO: Domain lad-uat.cbre.com scan finished with status: error
-2025-06-03 11:34:28,259 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:28,260 INFO: Domain costco.wgiftcard.com scan finished with status: error
-2025-06-03 11:34:28,261 INFO: Processing batch 58 with 2 domains
-2025-06-03 11:34:33,268 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:33,268 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:33,269 INFO: Domain rockdalefcu.vbwebservices.com scan finished with status: error
-2025-06-03 11:34:33,273 INFO: Domain lexusbank-cs.apps.ilendx.tech scan finished with status: error
-2025-06-03 11:34:33,273 INFO: Processing batch 59 with 2 domains
-2025-06-03 11:34:38,280 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:38,281 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:38,281 INFO: Domain syrfirecu-di.apps-uat.ilendx.tech scan finished with status: error
-2025-06-03 11:34:38,281 INFO: Domain *.dropboxforum.com scan finished with status: error
-2025-06-03 11:34:38,282 INFO: Processing batch 60 with 2 domains
-2025-06-03 11:34:43,292 ERROR: Failed to setup VPN on tun0
-2025-06-03 11:34:43,293 INFO: Domain application-lifecycle-el.abb.com scan finished with status: error
-2025-06-03 11:34:43,293 ERROR: Failed to setup VPN on tun1
-2025-06-03 11:34:43,293 INFO: Domain onboarding-api.truelayer.com scan finished with status: error
-2025-06-03 11:34:43,294 INFO: Processing batch 61 with 2 domains
+2025-06-03 15:56:54,599 INFO: ============================================================
+2025-06-03 15:56:54,600 INFO: Starting domain scanner
+2025-06-03 15:56:54,600 INFO: ============================================================
+2025-06-03 15:56:54,600 INFO: Starting main script
+2025-06-03 15:56:54,601 INFO: Domains file: domains.txt
+2025-06-03 15:56:54,601 INFO: Output directory: targets
+2025-06-03 15:56:54,602 INFO: Max processes: 6
+2025-06-03 15:56:54,602 INFO: Loaded 9 VPN configurations
+2025-06-03 15:56:54,604 DEBUG: Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-06-03 15:56:55,187 DEBUG: https://raw.githubusercontent.com:443 "GET /arkadiyt/bounty-targets-data/main/data/domains.txt HTTP/1.1" 200 178992
+2025-06-03 15:56:55,337 DEBUG: Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-06-03 15:56:55,651 DEBUG: https://raw.githubusercontent.com:443 "GET /arkadiyt/bounty-targets-data/main/data/wildcards.txt HTTP/1.1" 200 15162
+2025-06-03 15:56:55,695 INFO: Loaded 37050 domains
+2025-06-03 15:56:55,696 INFO: Created output directory: targets
+2025-06-03 15:56:55,713 INFO: Processing batch 1 with 6 domains
+2025-06-03 15:56:55,714 INFO: Starting scan for domain: qa.api.firstdata.com with process index: 0
+2025-06-03 15:56:55,718 DEBUG: Using selector: EpollSelector
+2025-06-03 15:56:55,715 INFO: Starting scan for domain: studentplacements.monash.edu with process index: 1
+2025-06-03 15:56:55,720 DEBUG: Using selector: EpollSelector
+2025-06-03 15:56:55,716 INFO: Starting scan for domain: biocarepatientsupportprogram.ca with process index: 2
+2025-06-03 15:56:55,721 DEBUG: Using selector: EpollSelector
+2025-06-03 15:56:55,717 INFO: Starting scan for domain: decisionresourcesgateway.net with process index: 3
+2025-06-03 15:56:55,723 DEBUG: Using selector: EpollSelector
+2025-06-03 15:56:55,717 INFO: Starting scan for domain: e.1500quail.com with process index: 4
+2025-06-03 15:56:55,718 INFO: Starting scan for domain: originate-admin.cfg.bank with process index: 5
+2025-06-03 15:56:55,719 INFO: Starting scan for target: qa.api.firstdata.com
+2025-06-03 15:56:55,726 INFO: Starting VPN connection on interface tun0
+2025-06-03 15:56:55,726 INFO: VPN already active on tun0 with IP 10.98.0.28
+2025-06-03 15:56:55,726 INFO: Enumerating domain: qa.api.firstdata.com
+2025-06-03 15:56:55,727 DEBUG: Registered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,721 INFO: Starting scan for target: studentplacements.monash.edu
+2025-06-03 15:56:55,728 INFO: Starting VPN connection on interface tun1
+2025-06-03 15:56:55,728 INFO: VPN already active on tun1 with IP 10.98.0.7
+2025-06-03 15:56:55,728 INFO: Enumerating domain: studentplacements.monash.edu
+2025-06-03 15:56:55,722 INFO: Starting scan for target: biocarepatientsupportprogram.ca
+2025-06-03 15:56:55,729 INFO: Starting VPN connection on interface tun2
+2025-06-03 15:56:55,729 INFO: VPN already active on tun2 with IP 10.98.0.24
+2025-06-03 15:56:55,730 INFO: Enumerating domain: biocarepatientsupportprogram.ca
+2025-06-03 15:56:55,730 DEBUG: Registered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,724 INFO: Starting scan for target: decisionresourcesgateway.net
+2025-06-03 15:56:55,730 INFO: Starting VPN connection on interface tun3
+2025-06-03 15:56:55,724 DEBUG: Using selector: EpollSelector
+2025-06-03 15:56:55,725 DEBUG: Using selector: EpollSelector
+2025-06-03 15:56:55,732 INFO: Starting scan for target: e.1500quail.com
+2025-06-03 15:56:55,729 DEBUG: Registered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,733 INFO: Starting VPN connection on interface tun4
+2025-06-03 15:56:55,731 INFO: VPN already active on tun3 with IP 10.98.0.14
+2025-06-03 15:56:55,732 INFO: Starting scan for target: originate-admin.cfg.bank
+2025-06-03 15:56:55,733 INFO: Starting VPN connection on interface tun5
+2025-06-03 15:56:55,733 INFO: Enumerating domain: decisionresourcesgateway.net
+2025-06-03 15:56:55,734 DEBUG: Registered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,733 INFO: VPN already active on tun4 with IP 10.98.0.15
+2025-06-03 15:56:55,733 INFO: VPN already active on tun5 with IP 10.98.0.9
+2025-06-03 15:56:55,734 INFO: Enumerating domain: originate-admin.cfg.bank
+2025-06-03 15:56:55,734 INFO: Enumerating domain: e.1500quail.com
+2025-06-03 15:56:55,735 DEBUG: Registered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,735 DEBUG: Registered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,816 INFO: Domain biocarepatientsupportprogram.ca is not live (DNS resolution failed: [Errno -5] No address associated with hostname)
+2025-06-03 15:56:55,817 INFO: Domain decisionresourcesgateway.net resolved to IP: 184.168.131.241
+2025-06-03 15:56:55,817 DEBUG: Unregistered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,818 INFO: Domain biocarepatientsupportprogram.ca is not live, skipping further enumeration
+2025-06-03 15:56:55,821 INFO: Completed scan for target: biocarepatientsupportprogram.ca
+2025-06-03 15:56:55,822 INFO: Completed scan for biocarepatientsupportprogram.ca
+2025-06-03 15:56:55,825 INFO: Domain qa.api.firstdata.com resolved to IP: 66.22.57.57
+2025-06-03 15:56:55,825 INFO: Domain originate-admin.cfg.bank resolved to IP: 66.22.30.71
+2025-06-03 15:56:55,830 INFO: Domain e.1500quail.com resolved to IP: 15.197.155.180
+2025-06-03 15:56:55,893 INFO: Domain decisionresourcesgateway.net is live with IP address: 184.168.131.241
+2025-06-03 15:56:55,893 DEBUG: Unregistered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,894 INFO: Traffic monitoring started for decisionresourcesgateway.net on tun3
+2025-06-03 15:56:55,894 DEBUG: Registered tool wafw00f with task_id 140528114347136
+2025-06-03 15:56:55,894 INFO: Starting WAF detection for decisionresourcesgateway.net
+2025-06-03 15:56:55,896 INFO: Starting packet capture on tun3 with filter: host 184.168.131.241 and tcp
+2025-06-03 15:56:55,901 INFO: Domain originate-admin.cfg.bank is live with IP address: 66.22.30.71
+2025-06-03 15:56:55,901 DEBUG: Unregistered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,902 INFO: Traffic monitoring started for originate-admin.cfg.bank on tun5
+2025-06-03 15:56:55,902 DEBUG: Registered tool wafw00f with task_id 140528114347136
+2025-06-03 15:56:55,902 INFO: Starting WAF detection for originate-admin.cfg.bank
+2025-06-03 15:56:55,904 INFO: Starting packet capture on tun5 with filter: host 66.22.30.71 and tcp
+2025-06-03 15:56:55,912 INFO: Domain qa.api.firstdata.com is live with IP address: 66.22.57.57
+2025-06-03 15:56:55,912 DEBUG: Unregistered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,913 INFO: Traffic monitoring started for qa.api.firstdata.com on tun0
+2025-06-03 15:56:55,913 DEBUG: Registered tool wafw00f with task_id 140528114347136
+2025-06-03 15:56:55,913 INFO: Domain e.1500quail.com is live with IP address: 15.197.155.180
+2025-06-03 15:56:55,914 DEBUG: Unregistered tool dig with task_id 140528114347136
+2025-06-03 15:56:55,914 INFO: Starting WAF detection for qa.api.firstdata.com
+2025-06-03 15:56:55,914 INFO: Traffic monitoring started for e.1500quail.com on tun4
+2025-06-03 15:56:55,915 DEBUG: Registered tool wafw00f with task_id 140528114347136
+2025-06-03 15:56:55,915 INFO: Starting packet capture on tun0 with filter: host 66.22.57.57 and tcp
+2025-06-03 15:56:55,915 INFO: Starting WAF detection for e.1500quail.com
+2025-06-03 15:56:55,917 INFO: Starting packet capture on tun4 with filter: host 15.197.155.180 and tcp
+2025-06-03 15:56:56,157 INFO: Domain studentplacements.monash.edu resolved to IP: 40.127.71.104
+2025-06-03 15:56:56,596 INFO: Domain studentplacements.monash.edu is live with IP address: 40.127.71.104
+2025-06-03 15:56:56,597 DEBUG: Unregistered tool dig with task_id 140528114347136
+2025-06-03 15:56:56,597 INFO: Traffic monitoring started for studentplacements.monash.edu on tun1
+2025-06-03 15:56:56,597 DEBUG: Registered tool wafw00f with task_id 140528114347136
+2025-06-03 15:56:56,597 INFO: Starting WAF detection for studentplacements.monash.edu
+2025-06-03 15:56:56,599 INFO: Starting packet capture on tun1 with filter: host 40.127.71.104 and tcp
+2025-06-03 15:57:00,257 ERROR: Error in WAF detection for e.1500quail.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:57:00,259 DEBUG: Unregistered tool wafw00f with task_id 140528114347136
+2025-06-03 15:57:00,260 INFO: Completed scan for target: e.1500quail.com
+2025-06-03 15:57:00,260 INFO: Completed scan for e.1500quail.com
+2025-06-03 15:57:01,730 ERROR: Error in WAF detection for qa.api.firstdata.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:57:01,732 DEBUG: Unregistered tool wafw00f with task_id 140528114347136
+2025-06-03 15:57:01,732 INFO: Completed scan for target: qa.api.firstdata.com
+2025-06-03 15:57:01,732 INFO: Completed scan for qa.api.firstdata.com
+2025-06-03 15:57:01,733 INFO: Domain qa.api.firstdata.com scan finished with status: completed
+2025-06-03 15:57:03,371 ERROR: Error in WAF detection for decisionresourcesgateway.net: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:57:03,374 DEBUG: Unregistered tool wafw00f with task_id 140528114347136
+2025-06-03 15:57:03,374 INFO: Completed scan for target: decisionresourcesgateway.net
+2025-06-03 15:57:03,374 INFO: Completed scan for decisionresourcesgateway.net
+2025-06-03 15:57:09,247 ERROR: Error in WAF detection for originate-admin.cfg.bank: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:57:09,249 DEBUG: Unregistered tool wafw00f with task_id 140528114347136
+2025-06-03 15:57:09,250 INFO: Completed scan for target: originate-admin.cfg.bank
+2025-06-03 15:57:09,250 INFO: Completed scan for originate-admin.cfg.bank
+2025-06-03 15:57:10,078 ERROR: Error in WAF detection for studentplacements.monash.edu: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:57:10,080 DEBUG: Unregistered tool wafw00f with task_id 140528114347136
+2025-06-03 15:57:10,080 INFO: Completed scan for target: studentplacements.monash.edu
+2025-06-03 15:57:10,081 INFO: Completed scan for studentplacements.monash.edu
+2025-06-03 15:57:10,081 INFO: Domain studentplacements.monash.edu scan finished with status: completed
+2025-06-03 15:57:10,081 INFO: Domain biocarepatientsupportprogram.ca scan finished with status: completed
+2025-06-03 15:57:10,082 INFO: Domain decisionresourcesgateway.net scan finished with status: completed
+2025-06-03 15:57:10,082 INFO: Domain e.1500quail.com scan finished with status: completed
+2025-06-03 15:57:10,082 INFO: Domain originate-admin.cfg.bank scan finished with status: completed
+2025-06-03 15:57:10,082 INFO: Processing batch 2 with 6 domains
+2025-06-03 15:57:10,082 INFO: Starting scan for domain: researchblog.co.uk with process index: 0
+2025-06-03 15:57:10,083 DEBUG: Using selector: EpollSelector
+2025-06-03 15:57:10,082 INFO: Starting scan for domain: motionfcu-dc.cert.fec-dc.fiservapps.com with process index: 1
+2025-06-03 15:57:10,083 INFO: Starting scan for target: researchblog.co.uk
+2025-06-03 15:57:10,083 INFO: Starting scan for domain: admin.fr.cloud.gov with process index: 2
+2025-06-03 15:57:10,084 DEBUG: Using selector: EpollSelector
+2025-06-03 15:57:10,083 INFO: Starting scan for domain: ipfwd.com with process index: 3
+2025-06-03 15:57:10,084 DEBUG: Using selector: EpollSelector
+2025-06-03 15:57:10,083 INFO: Starting scan for domain: www.brokerhub-dev.cbre.com with process index: 5
+2025-06-03 15:57:10,084 DEBUG: Using selector: EpollSelector
+2025-06-03 15:57:10,083 INFO: Starting scan for domain: ru-qa.nonprod.cbre.com with process index: 4
+2025-06-03 15:57:10,083 DEBUG: Using selector: EpollSelector
+2025-06-03 15:57:10,083 INFO: Starting VPN connection on interface tun0
+2025-06-03 15:57:10,084 INFO: Starting scan for target: admin.fr.cloud.gov
+2025-06-03 15:57:10,085 INFO: Starting VPN connection on interface tun2
+2025-06-03 15:57:10,085 INFO: VPN already active on tun2 with IP 10.98.0.24
+2025-06-03 15:57:10,085 INFO: Starting scan for target: ipfwd.com
+2025-06-03 15:57:10,086 INFO: Starting VPN connection on interface tun3
+2025-06-03 15:57:10,085 INFO: Starting scan for target: www.brokerhub-dev.cbre.com
+2025-06-03 15:57:10,086 INFO: Starting VPN connection on interface tun5
+2025-06-03 15:57:10,085 DEBUG: Using selector: EpollSelector
+2025-06-03 15:57:10,085 INFO: Starting scan for target: motionfcu-dc.cert.fec-dc.fiservapps.com
+2025-06-03 15:57:10,087 INFO: Starting VPN connection on interface tun1
+2025-06-03 15:57:10,085 INFO: VPN already active on tun0 with IP 10.98.0.28
+2025-06-03 15:57:10,087 INFO: Enumerating domain: researchblog.co.uk
+2025-06-03 15:57:10,086 INFO: Enumerating domain: admin.fr.cloud.gov
+2025-06-03 15:57:10,086 INFO: VPN already active on tun3 with IP 10.98.0.14
+2025-06-03 15:57:10,086 INFO: VPN already active on tun5 with IP 10.98.0.9
+2025-06-03 15:57:10,087 INFO: Starting scan for target: ru-qa.nonprod.cbre.com
+2025-06-03 15:57:10,087 INFO: VPN already active on tun1 with IP 10.98.0.7
+2025-06-03 15:57:10,088 INFO: Enumerating domain: motionfcu-dc.cert.fec-dc.fiservapps.com
+2025-06-03 15:57:10,087 DEBUG: Registered tool dig with task_id 140528114347712
+2025-06-03 15:57:10,088 DEBUG: Registered tool dig with task_id 140528109100224
+2025-06-03 15:57:10,087 DEBUG: Registered tool dig with task_id 140528109100224
+2025-06-03 15:57:10,088 INFO: Enumerating domain: ipfwd.com
+2025-06-03 15:57:10,089 DEBUG: Registered tool dig with task_id 140528109100224
+2025-06-03 15:57:10,088 INFO: Enumerating domain: www.brokerhub-dev.cbre.com
+2025-06-03 15:57:10,089 DEBUG: Registered tool dig with task_id 140528109100224
+2025-06-03 15:57:10,088 INFO: Starting VPN connection on interface tun4
+2025-06-03 15:57:10,089 INFO: VPN already active on tun4 with IP 10.98.0.15
+2025-06-03 15:57:10,089 INFO: Enumerating domain: ru-qa.nonprod.cbre.com
+2025-06-03 15:57:10,090 DEBUG: Registered tool dig with task_id 140528109100224
+2025-06-03 15:57:10,176 INFO: Domain researchblog.co.uk resolved to IP: 3.33.251.168
+2025-06-03 15:57:10,194 INFO: Domain admin.fr.cloud.gov resolved to IP: 15.205.21.121
+2025-06-03 15:57:10,243 INFO: Domain researchblog.co.uk is live with IP address: 3.33.251.168
+2025-06-03 15:57:10,243 DEBUG: Unregistered tool dig with task_id 140528114347712
+2025-06-03 15:57:10,244 INFO: Traffic monitoring started for researchblog.co.uk on tun0
+2025-06-03 15:57:10,244 DEBUG: Registered tool wafw00f with task_id 140528114347712
+2025-06-03 15:57:10,244 INFO: Starting WAF detection for researchblog.co.uk
+2025-06-03 15:57:10,246 INFO: Starting packet capture on tun0 with filter: host 3.33.251.168 and tcp
+2025-06-03 15:57:10,267 INFO: Domain admin.fr.cloud.gov is live with IP address: 15.205.21.121
+2025-06-03 15:57:10,268 DEBUG: Unregistered tool dig with task_id 140528109100224
+2025-06-03 15:57:10,268 INFO: Traffic monitoring started for admin.fr.cloud.gov on tun2
+2025-06-03 15:57:10,268 DEBUG: Registered tool wafw00f with task_id 140528109100224
+2025-06-03 15:57:10,268 INFO: Starting WAF detection for admin.fr.cloud.gov
+2025-06-03 15:57:10,269 INFO: Starting packet capture on tun2 with filter: host 15.205.21.121 and tcp
+2025-06-03 15:57:10,473 INFO: Domain motionfcu-dc.cert.fec-dc.fiservapps.com resolved to IP: 66.22.19.128
+2025-06-03 15:57:10,540 INFO: Domain motionfcu-dc.cert.fec-dc.fiservapps.com is live with IP address: 66.22.19.128
+2025-06-03 15:57:10,541 DEBUG: Unregistered tool dig with task_id 140528109100224
+2025-06-03 15:57:10,541 INFO: Traffic monitoring started for motionfcu-dc.cert.fec-dc.fiservapps.com on tun1
+2025-06-03 15:57:10,541 DEBUG: Registered tool wafw00f with task_id 140528109100224
+2025-06-03 15:57:10,541 INFO: Starting WAF detection for motionfcu-dc.cert.fec-dc.fiservapps.com
+2025-06-03 15:57:10,542 INFO: Starting packet capture on tun1 with filter: host 66.22.19.128 and tcp
+2025-06-03 15:57:15,086 ERROR: Error in WAF detection for researchblog.co.uk: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:57:15,088 DEBUG: Unregistered tool wafw00f with task_id 140528114347712
+2025-06-03 15:57:15,089 INFO: Completed scan for target: researchblog.co.uk
+2025-06-03 15:57:15,089 INFO: Completed scan for researchblog.co.uk
+2025-06-03 15:57:15,089 INFO: Domain researchblog.co.uk scan finished with status: completed
+2025-06-03 15:57:16,266 ERROR: Error in WAF detection for motionfcu-dc.cert.fec-dc.fiservapps.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:57:16,267 DEBUG: Unregistered tool wafw00f with task_id 140528109100224
+2025-06-03 15:57:16,267 INFO: Completed scan for target: motionfcu-dc.cert.fec-dc.fiservapps.com
+2025-06-03 15:57:16,267 INFO: Completed scan for motionfcu-dc.cert.fec-dc.fiservapps.com
+2025-06-03 15:57:16,268 INFO: Domain motionfcu-dc.cert.fec-dc.fiservapps.com scan finished with status: completed
+2025-06-03 15:57:16,585 ERROR: Error in WAF detection for admin.fr.cloud.gov: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:57:16,586 DEBUG: Unregistered tool wafw00f with task_id 140528109100224
+2025-06-03 15:57:16,586 INFO: Completed scan for target: admin.fr.cloud.gov
+2025-06-03 15:57:16,587 INFO: Completed scan for admin.fr.cloud.gov
+2025-06-03 15:57:16,587 INFO: Domain admin.fr.cloud.gov scan finished with status: completed
+2025-06-03 15:59:10,190 INFO: Domain www.brokerhub-dev.cbre.com is not live (DNS resolution failed: [Errno -3] Temporary failure in name resolution)
+2025-06-03 15:59:10,192 DEBUG: Unregistered tool dig with task_id 140528109100224
+2025-06-03 15:59:10,191 INFO: Domain ru-qa.nonprod.cbre.com is not live (DNS resolution failed: [Errno -3] Temporary failure in name resolution)
+2025-06-03 15:59:10,192 DEBUG: Unregistered tool dig with task_id 140528109100224
+2025-06-03 15:59:10,192 INFO: Domain www.brokerhub-dev.cbre.com is not live, skipping further enumeration
+2025-06-03 15:59:10,193 INFO: Domain ru-qa.nonprod.cbre.com is not live, skipping further enumeration
+2025-06-03 15:59:10,194 INFO: Completed scan for target: www.brokerhub-dev.cbre.com
+2025-06-03 15:59:10,194 INFO: Completed scan for target: ru-qa.nonprod.cbre.com
+2025-06-03 15:59:10,195 INFO: Completed scan for www.brokerhub-dev.cbre.com
+2025-06-03 15:59:10,196 INFO: Completed scan for ru-qa.nonprod.cbre.com
+2025-06-03 15:59:20,562 INFO: Domain ipfwd.com is not live (DNS resolution failed: [Errno -3] Temporary failure in name resolution)
+2025-06-03 15:59:20,563 DEBUG: Unregistered tool dig with task_id 140528109100224
+2025-06-03 15:59:20,564 INFO: Domain ipfwd.com is not live, skipping further enumeration
+2025-06-03 15:59:20,564 INFO: Completed scan for target: ipfwd.com
+2025-06-03 15:59:20,565 INFO: Completed scan for ipfwd.com
+2025-06-03 15:59:20,566 INFO: Domain ipfwd.com scan finished with status: completed
+2025-06-03 15:59:20,567 INFO: Domain ru-qa.nonprod.cbre.com scan finished with status: completed
+2025-06-03 15:59:20,567 INFO: Domain www.brokerhub-dev.cbre.com scan finished with status: completed
+2025-06-03 15:59:20,568 INFO: Processing batch 3 with 6 domains
+2025-06-03 15:59:20,570 INFO: Starting scan for domain: uscdcvfi02.clarion.cbre.net with process index: 0
+2025-06-03 15:59:20,571 DEBUG: Using selector: EpollSelector
+2025-06-03 15:59:20,570 INFO: Starting scan for domain: peopleorgchart.cbre.com with process index: 1
+2025-06-03 15:59:20,572 INFO: Starting scan for target: uscdcvfi02.clarion.cbre.net
+2025-06-03 15:59:20,571 INFO: Starting scan for domain: www3-ramanz2.omnipaytest.com with process index: 2
+2025-06-03 15:59:20,571 INFO: Starting scan for domain: cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com with process index: 3
+2025-06-03 15:59:20,572 INFO: Starting scan for domain: www.tchap.gouv.fr with process index: 4
+2025-06-03 15:59:20,572 DEBUG: Using selector: EpollSelector
+2025-06-03 15:59:20,573 INFO: Starting scan for target: peopleorgchart.cbre.com
+2025-06-03 15:59:20,572 INFO: Starting scan for domain: kiwi.partner.viator.com with process index: 5
+2025-06-03 15:59:20,574 DEBUG: Using selector: EpollSelector
+2025-06-03 15:59:20,572 INFO: Starting VPN connection on interface tun0
+2025-06-03 15:59:20,574 INFO: VPN already active on tun0 with IP 10.98.0.28
+2025-06-03 15:59:20,573 DEBUG: Using selector: EpollSelector
+2025-06-03 15:59:20,573 DEBUG: Using selector: EpollSelector
+2025-06-03 15:59:20,573 DEBUG: Using selector: EpollSelector
+2025-06-03 15:59:20,573 INFO: Starting VPN connection on interface tun1
+2025-06-03 15:59:20,575 INFO: VPN already active on tun1 with IP 10.98.0.7
+2025-06-03 15:59:20,574 INFO: Starting scan for target: kiwi.partner.viator.com
+2025-06-03 15:59:20,575 INFO: Starting VPN connection on interface tun5
+2025-06-03 15:59:20,574 INFO: Enumerating domain: uscdcvfi02.clarion.cbre.net
+2025-06-03 15:59:20,576 DEBUG: Registered tool dig with task_id 140528109100224
+2025-06-03 15:59:20,574 INFO: Starting scan for target: www3-ramanz2.omnipaytest.com
+2025-06-03 15:59:20,575 INFO: Starting scan for target: cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com
+2025-06-03 15:59:20,575 INFO: Starting scan for target: www.tchap.gouv.fr
+2025-06-03 15:59:20,575 INFO: Enumerating domain: peopleorgchart.cbre.com
+2025-06-03 15:59:20,577 DEBUG: Registered tool dig with task_id 140528109100800
+2025-06-03 15:59:20,576 INFO: VPN already active on tun5 with IP 10.98.0.9
+2025-06-03 15:59:20,578 INFO: Enumerating domain: kiwi.partner.viator.com
+2025-06-03 15:59:20,577 INFO: Starting VPN connection on interface tun2
+2025-06-03 15:59:20,577 INFO: Starting VPN connection on interface tun3
+2025-06-03 15:59:20,577 INFO: Starting VPN connection on interface tun4
+2025-06-03 15:59:20,578 DEBUG: Registered tool dig with task_id 140528109099840
+2025-06-03 15:59:20,578 INFO: VPN already active on tun2 with IP 10.98.0.24
+2025-06-03 15:59:20,580 INFO: Enumerating domain: www3-ramanz2.omnipaytest.com
+2025-06-03 15:59:20,578 INFO: VPN already active on tun3 with IP 10.98.0.14
+2025-06-03 15:59:20,579 INFO: VPN already active on tun4 with IP 10.98.0.15
+2025-06-03 15:59:20,580 INFO: Enumerating domain: www.tchap.gouv.fr
+2025-06-03 15:59:20,580 DEBUG: Registered tool dig with task_id 140528109101952
+2025-06-03 15:59:20,580 INFO: Enumerating domain: cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com
+2025-06-03 15:59:20,581 DEBUG: Registered tool dig with task_id 140528109099840
+2025-06-03 15:59:20,581 DEBUG: Registered tool dig with task_id 140528109099840
+2025-06-03 15:59:20,681 INFO: Domain cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com resolved to IP: 66.22.89.52
+2025-06-03 15:59:20,700 INFO: Domain kiwi.partner.viator.com resolved to IP: 199.232.17.91
+2025-06-03 15:59:20,714 INFO: Domain www.tchap.gouv.fr resolved to IP: 143.196.253.119
+2025-06-03 15:59:20,738 INFO: Domain cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com is live with IP address: 66.22.89.52
+2025-06-03 15:59:20,738 DEBUG: Unregistered tool dig with task_id 140528109099840
+2025-06-03 15:59:20,738 INFO: Traffic monitoring started for cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com on tun3
+2025-06-03 15:59:20,738 DEBUG: Registered tool wafw00f with task_id 140528109099840
+2025-06-03 15:59:20,739 INFO: Starting WAF detection for cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com
+2025-06-03 15:59:20,739 INFO: Starting packet capture on tun3 with filter: host 66.22.89.52 and tcp
+2025-06-03 15:59:20,757 INFO: Domain kiwi.partner.viator.com is live with IP address: 199.232.17.91
+2025-06-03 15:59:20,758 DEBUG: Unregistered tool dig with task_id 140528109099840
+2025-06-03 15:59:20,759 INFO: Traffic monitoring started for kiwi.partner.viator.com on tun5
+2025-06-03 15:59:20,759 DEBUG: Registered tool wafw00f with task_id 140528109099840
+2025-06-03 15:59:20,759 INFO: Starting WAF detection for kiwi.partner.viator.com
+2025-06-03 15:59:20,760 INFO: Starting packet capture on tun5 with filter: host 199.232.17.91 and tcp
+2025-06-03 15:59:20,771 INFO: Domain www3-ramanz2.omnipaytest.com resolved to IP: 203.17.35.36
+2025-06-03 15:59:20,792 INFO: Domain www.tchap.gouv.fr is live with IP address: 143.196.253.119
+2025-06-03 15:59:20,793 DEBUG: Unregistered tool dig with task_id 140528109099840
+2025-06-03 15:59:20,793 INFO: Traffic monitoring started for www.tchap.gouv.fr on tun4
+2025-06-03 15:59:20,793 DEBUG: Registered tool wafw00f with task_id 140528109099840
+2025-06-03 15:59:20,793 INFO: Starting WAF detection for www.tchap.gouv.fr
+2025-06-03 15:59:20,794 INFO: Starting packet capture on tun4 with filter: host 143.196.253.119 and tcp
+2025-06-03 15:59:20,880 INFO: Domain www3-ramanz2.omnipaytest.com is live with IP address: 203.17.35.36
+2025-06-03 15:59:20,880 DEBUG: Unregistered tool dig with task_id 140528109101952
+2025-06-03 15:59:20,881 INFO: Traffic monitoring started for www3-ramanz2.omnipaytest.com on tun2
+2025-06-03 15:59:20,881 DEBUG: Registered tool wafw00f with task_id 140528109101952
+2025-06-03 15:59:20,881 INFO: Starting WAF detection for www3-ramanz2.omnipaytest.com
+2025-06-03 15:59:20,882 INFO: Starting packet capture on tun2 with filter: host 203.17.35.36 and tcp
+2025-06-03 15:59:24,852 ERROR: Error in WAF detection for kiwi.partner.viator.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:59:24,852 DEBUG: Unregistered tool wafw00f with task_id 140528109099840
+2025-06-03 15:59:24,853 INFO: Completed scan for target: kiwi.partner.viator.com
+2025-06-03 15:59:24,853 INFO: Completed scan for kiwi.partner.viator.com
+2025-06-03 15:59:26,089 ERROR: Error in WAF detection for cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:59:26,090 DEBUG: Unregistered tool wafw00f with task_id 140528109099840
+2025-06-03 15:59:26,091 INFO: Completed scan for target: cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com
+2025-06-03 15:59:26,091 INFO: Completed scan for cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com
+2025-06-03 15:59:28,291 ERROR: Error in WAF detection for www.tchap.gouv.fr: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:59:28,292 DEBUG: Unregistered tool wafw00f with task_id 140528109099840
+2025-06-03 15:59:28,292 INFO: Completed scan for target: www.tchap.gouv.fr
+2025-06-03 15:59:28,292 INFO: Completed scan for www.tchap.gouv.fr
+2025-06-03 15:59:28,328 ERROR: Error in WAF detection for www3-ramanz2.omnipaytest.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 15:59:28,329 DEBUG: Unregistered tool wafw00f with task_id 140528109101952
+2025-06-03 15:59:28,329 INFO: Completed scan for target: www3-ramanz2.omnipaytest.com
+2025-06-03 15:59:28,330 INFO: Completed scan for www3-ramanz2.omnipaytest.com
+2025-06-03 16:01:20,638 INFO: Domain peopleorgchart.cbre.com is not live (DNS resolution failed: [Errno -3] Temporary failure in name resolution)
+2025-06-03 16:01:20,639 DEBUG: Unregistered tool dig with task_id 140528109100800
+2025-06-03 16:01:20,640 INFO: Domain peopleorgchart.cbre.com is not live, skipping further enumeration
+2025-06-03 16:01:20,640 INFO: Completed scan for target: peopleorgchart.cbre.com
+2025-06-03 16:01:20,641 INFO: Completed scan for peopleorgchart.cbre.com
+2025-06-03 16:01:30,980 INFO: Domain uscdcvfi02.clarion.cbre.net is not live (DNS resolution failed: [Errno -3] Temporary failure in name resolution)
+2025-06-03 16:01:30,981 DEBUG: Unregistered tool dig with task_id 140528109100224
+2025-06-03 16:01:30,982 INFO: Domain uscdcvfi02.clarion.cbre.net is not live, skipping further enumeration
+2025-06-03 16:01:30,983 INFO: Completed scan for target: uscdcvfi02.clarion.cbre.net
+2025-06-03 16:01:30,984 INFO: Completed scan for uscdcvfi02.clarion.cbre.net
+2025-06-03 16:01:30,986 INFO: Domain uscdcvfi02.clarion.cbre.net scan finished with status: completed
+2025-06-03 16:01:30,987 INFO: Domain peopleorgchart.cbre.com scan finished with status: completed
+2025-06-03 16:01:30,988 INFO: Domain www3-ramanz2.omnipaytest.com scan finished with status: completed
+2025-06-03 16:01:30,989 INFO: Domain cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com scan finished with status: completed
+2025-06-03 16:01:30,989 INFO: Domain www.tchap.gouv.fr scan finished with status: completed
+2025-06-03 16:01:30,989 INFO: Domain kiwi.partner.viator.com scan finished with status: completed
+2025-06-03 16:01:30,990 INFO: Processing batch 4 with 6 domains
+2025-06-03 16:01:30,991 INFO: Starting scan for domain: teststs.uzleuven.be with process index: 0
+2025-06-03 16:01:30,991 INFO: Starting scan for domain: eri-api-prod.cbre.com with process index: 1
+2025-06-03 16:01:30,993 DEBUG: Using selector: EpollSelector
+2025-06-03 16:01:30,992 INFO: Starting scan for domain: institutounibanco.org.br with process index: 2
+2025-06-03 16:01:30,992 INFO: Starting scan for domain: alexanderstreet.com with process index: 3
+2025-06-03 16:01:30,992 DEBUG: Using selector: EpollSelector
+2025-06-03 16:01:30,993 INFO: Starting scan for domain: cc-aus.fiservclients.com with process index: 4
+2025-06-03 16:01:30,993 INFO: Starting scan for domain: cpasearch.biz with process index: 5
+2025-06-03 16:01:30,994 INFO: Starting scan for target: eri-api-prod.cbre.com
+2025-06-03 16:01:30,997 INFO: Starting VPN connection on interface tun1
+2025-06-03 16:01:30,995 DEBUG: Using selector: EpollSelector
+2025-06-03 16:01:30,995 DEBUG: Using selector: EpollSelector
+2025-06-03 16:01:30,999 INFO: Starting scan for target: alexanderstreet.com
+2025-06-03 16:01:30,996 INFO: Starting scan for target: teststs.uzleuven.be
+2025-06-03 16:01:31,000 INFO: Starting VPN connection on interface tun0
+2025-06-03 16:01:30,996 DEBUG: Using selector: EpollSelector
+2025-06-03 16:01:30,997 DEBUG: Using selector: EpollSelector
+2025-06-03 16:01:30,998 INFO: VPN already active on tun1 with IP 10.98.0.7
+2025-06-03 16:01:31,001 INFO: Enumerating domain: eri-api-prod.cbre.com
+2025-06-03 16:01:30,999 INFO: Starting scan for target: institutounibanco.org.br
+2025-06-03 16:01:31,001 INFO: Starting VPN connection on interface tun2
+2025-06-03 16:01:30,999 INFO: Starting VPN connection on interface tun3
+2025-06-03 16:01:31,000 INFO: VPN already active on tun0 with IP 10.98.0.28
+2025-06-03 16:01:31,002 INFO: Enumerating domain: teststs.uzleuven.be
+2025-06-03 16:01:31,000 INFO: Starting scan for target: cc-aus.fiservclients.com
+2025-06-03 16:01:31,003 INFO: Starting VPN connection on interface tun4
+2025-06-03 16:01:31,001 INFO: Starting scan for target: cpasearch.biz
+2025-06-03 16:01:31,001 DEBUG: Registered tool dig with task_id 140528109100608
+2025-06-03 16:01:31,002 INFO: VPN already active on tun2 with IP 10.98.0.24
+2025-06-03 16:01:31,002 INFO: VPN already active on tun3 with IP 10.98.0.14
+2025-06-03 16:01:31,003 DEBUG: Registered tool dig with task_id 140528109100800
+2025-06-03 16:01:31,003 INFO: VPN already active on tun4 with IP 10.98.0.15
+2025-06-03 16:01:31,005 INFO: Enumerating domain: cc-aus.fiservclients.com
+2025-06-03 16:01:31,004 INFO: Starting VPN connection on interface tun5
+2025-06-03 16:01:31,004 INFO: Enumerating domain: institutounibanco.org.br
+2025-06-03 16:01:31,005 INFO: VPN already active on tun5 with IP 10.98.0.9
+2025-06-03 16:01:31,005 INFO: Enumerating domain: alexanderstreet.com
+2025-06-03 16:01:31,005 DEBUG: Registered tool dig with task_id 140528109100800
+2025-06-03 16:01:31,005 DEBUG: Registered tool dig with task_id 140528109100608
+2025-06-03 16:01:31,006 INFO: Enumerating domain: cpasearch.biz
+2025-06-03 16:01:31,007 DEBUG: Registered tool dig with task_id 140528109100224
+2025-06-03 16:01:31,006 DEBUG: Registered tool dig with task_id 140528109101376
+2025-06-03 16:01:31,082 INFO: Domain teststs.uzleuven.be resolved to IP: 193.58.149.107
+2025-06-03 16:01:31,082 INFO: Domain cpasearch.biz resolved to IP: 3.33.139.32
+2025-06-03 16:01:31,089 INFO: Domain alexanderstreet.com resolved to IP: 54.173.211.228
+2025-06-03 16:01:31,140 INFO: Domain teststs.uzleuven.be is live with IP address: 193.58.149.107
+2025-06-03 16:01:31,140 DEBUG: Unregistered tool dig with task_id 140528109100800
+2025-06-03 16:01:31,141 INFO: Traffic monitoring started for teststs.uzleuven.be on tun0
+2025-06-03 16:01:31,141 DEBUG: Registered tool wafw00f with task_id 140528109100800
+2025-06-03 16:01:31,141 INFO: Starting WAF detection for teststs.uzleuven.be
+2025-06-03 16:01:31,142 INFO: Starting packet capture on tun0 with filter: host 193.58.149.107 and tcp
+2025-06-03 16:01:31,145 INFO: Domain cpasearch.biz is live with IP address: 3.33.139.32
+2025-06-03 16:01:31,145 DEBUG: Unregistered tool dig with task_id 140528109100224
+2025-06-03 16:01:31,146 INFO: Traffic monitoring started for cpasearch.biz on tun5
+2025-06-03 16:01:31,146 DEBUG: Registered tool wafw00f with task_id 140528109100224
+2025-06-03 16:01:31,146 INFO: Starting WAF detection for cpasearch.biz
+2025-06-03 16:01:31,147 INFO: Starting packet capture on tun5 with filter: host 3.33.139.32 and tcp
+2025-06-03 16:01:31,155 INFO: Domain alexanderstreet.com is live with IP address: 54.173.211.228
+2025-06-03 16:01:31,155 DEBUG: Unregistered tool dig with task_id 140528109101376
+2025-06-03 16:01:31,155 INFO: Traffic monitoring started for alexanderstreet.com on tun3
+2025-06-03 16:01:31,156 DEBUG: Registered tool wafw00f with task_id 140528109101376
+2025-06-03 16:01:31,156 INFO: Starting WAF detection for alexanderstreet.com
+2025-06-03 16:01:31,156 INFO: Starting packet capture on tun3 with filter: host 54.173.211.228 and tcp
+2025-06-03 16:01:31,181 INFO: Domain institutounibanco.org.br resolved to IP: 13.107.246.60
+2025-06-03 16:01:31,289 INFO: Domain institutounibanco.org.br is live with IP address: 13.107.246.60
+2025-06-03 16:01:31,289 DEBUG: Unregistered tool dig with task_id 140528109100608
+2025-06-03 16:01:31,289 INFO: Traffic monitoring started for institutounibanco.org.br on tun2
+2025-06-03 16:01:31,290 DEBUG: Registered tool wafw00f with task_id 140528109100608
+2025-06-03 16:01:31,290 INFO: Starting WAF detection for institutounibanco.org.br
+2025-06-03 16:01:31,290 INFO: Starting packet capture on tun2 with filter: host 13.107.246.60 and tcp
+2025-06-03 16:01:31,717 ERROR: Error in WAF detection for teststs.uzleuven.be: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:01:31,718 DEBUG: Unregistered tool wafw00f with task_id 140528109100800
+2025-06-03 16:01:31,719 INFO: Completed scan for target: teststs.uzleuven.be
+2025-06-03 16:01:31,719 INFO: Completed scan for teststs.uzleuven.be
+2025-06-03 16:01:31,719 INFO: Domain teststs.uzleuven.be scan finished with status: completed
+2025-06-03 16:01:31,725 INFO: Domain cc-aus.fiservclients.com resolved to IP: 203.17.35.41
+2025-06-03 16:01:32,580 INFO: Domain cc-aus.fiservclients.com is live with IP address: 203.17.35.41
+2025-06-03 16:01:32,580 DEBUG: Unregistered tool dig with task_id 140528109100800
+2025-06-03 16:01:32,581 INFO: Traffic monitoring started for cc-aus.fiservclients.com on tun4
+2025-06-03 16:01:32,581 DEBUG: Registered tool wafw00f with task_id 140528109100800
+2025-06-03 16:01:32,581 INFO: Starting WAF detection for cc-aus.fiservclients.com
+2025-06-03 16:01:32,581 INFO: Starting packet capture on tun4 with filter: host 203.17.35.41 and tcp
+2025-06-03 16:01:40,530 ERROR: Error in WAF detection for alexanderstreet.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:01:40,531 DEBUG: Unregistered tool wafw00f with task_id 140528109101376
+2025-06-03 16:01:40,531 INFO: Completed scan for target: alexanderstreet.com
+2025-06-03 16:01:40,531 INFO: Completed scan for alexanderstreet.com
+2025-06-03 16:01:40,747 ERROR: Error in WAF detection for cc-aus.fiservclients.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:01:40,747 DEBUG: Unregistered tool wafw00f with task_id 140528109100800
+2025-06-03 16:01:40,748 INFO: Completed scan for target: cc-aus.fiservclients.com
+2025-06-03 16:01:40,748 INFO: Completed scan for cc-aus.fiservclients.com
+2025-06-03 16:01:44,502 ERROR: Error in WAF detection for institutounibanco.org.br: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:01:44,503 DEBUG: Unregistered tool wafw00f with task_id 140528109100608
+2025-06-03 16:01:44,504 INFO: Completed scan for target: institutounibanco.org.br
+2025-06-03 16:01:44,504 INFO: Completed scan for institutounibanco.org.br
+2025-06-03 16:01:45,577 ERROR: Error in WAF detection for cpasearch.biz: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:01:45,577 DEBUG: Unregistered tool wafw00f with task_id 140528109100224
+2025-06-03 16:01:45,578 INFO: Completed scan for target: cpasearch.biz
+2025-06-03 16:01:45,578 INFO: Completed scan for cpasearch.biz
+2025-06-03 16:03:31,078 INFO: Domain eri-api-prod.cbre.com is not live (DNS resolution failed: [Errno -2] Name or service not known)
+2025-06-03 16:03:31,079 DEBUG: Unregistered tool dig with task_id 140528109100608
+2025-06-03 16:03:31,080 INFO: Domain eri-api-prod.cbre.com is not live, skipping further enumeration
+2025-06-03 16:03:31,080 INFO: Completed scan for target: eri-api-prod.cbre.com
+2025-06-03 16:03:31,081 INFO: Completed scan for eri-api-prod.cbre.com
+2025-06-03 16:03:31,082 INFO: Domain eri-api-prod.cbre.com scan finished with status: completed
+2025-06-03 16:03:31,083 INFO: Domain institutounibanco.org.br scan finished with status: completed
+2025-06-03 16:03:31,083 INFO: Domain alexanderstreet.com scan finished with status: completed
+2025-06-03 16:03:31,083 INFO: Domain cc-aus.fiservclients.com scan finished with status: completed
+2025-06-03 16:03:31,084 INFO: Domain cpasearch.biz scan finished with status: completed
+2025-06-03 16:03:31,084 INFO: Processing batch 5 with 6 domains
+2025-06-03 16:03:31,085 INFO: Starting scan for domain: mymtapjtst.cbre.com with process index: 0
+2025-06-03 16:03:31,085 DEBUG: Using selector: EpollSelector
+2025-06-03 16:03:31,085 INFO: Starting scan for domain: clarivateglobal.com with process index: 2
+2025-06-03 16:03:31,085 INFO: Starting scan for domain: familysecuritytoday.com with process index: 1
+2025-06-03 16:03:31,086 INFO: Starting scan for target: mymtapjtst.cbre.com
+2025-06-03 16:03:31,087 INFO: Starting VPN connection on interface tun0
+2025-06-03 16:03:31,086 INFO: Starting scan for domain: *.tui.transunion.com with process index: 3
+2025-06-03 16:03:31,088 INFO: VPN already active on tun0 with IP 10.98.0.28
+2025-06-03 16:03:31,086 INFO: Starting scan for domain: mail.2000avenueofthestars.com with process index: 4
+2025-06-03 16:03:31,086 INFO: Starting scan for domain: filereceiver.tui.transunion.com with process index: 5
+2025-06-03 16:03:31,089 DEBUG: Using selector: EpollSelector
+2025-06-03 16:03:31,086 DEBUG: Using selector: EpollSelector
+2025-06-03 16:03:31,089 INFO: Starting scan for target: clarivateglobal.com
+2025-06-03 16:03:31,087 DEBUG: Using selector: EpollSelector
+2025-06-03 16:03:31,088 INFO: Enumerating domain: mymtapjtst.cbre.com
+2025-06-03 16:03:31,088 DEBUG: Using selector: EpollSelector
+2025-06-03 16:03:31,089 DEBUG: Using selector: EpollSelector
+2025-06-03 16:03:31,089 INFO: Starting scan for target: filereceiver.tui.transunion.com
+2025-06-03 16:03:31,092 INFO: Starting VPN connection on interface tun5
+2025-06-03 16:03:31,092 INFO: VPN already active on tun5 with IP 10.98.0.9
+2025-06-03 16:03:31,090 INFO: Starting VPN connection on interface tun2
+2025-06-03 16:03:31,090 INFO: Starting scan for target: familysecuritytoday.com
+2025-06-03 16:03:31,093 INFO: Starting VPN connection on interface tun1
+2025-06-03 16:03:31,091 DEBUG: Registered tool dig with task_id 140528109100416
+2025-06-03 16:03:31,091 INFO: Starting scan for target: *.tui.transunion.com
+2025-06-03 16:03:31,091 INFO: Starting scan for target: mail.2000avenueofthestars.com
+2025-06-03 16:03:31,092 INFO: Enumerating domain: filereceiver.tui.transunion.com
+2025-06-03 16:03:31,094 DEBUG: Registered tool dig with task_id 140528109100416
+2025-06-03 16:03:31,093 INFO: VPN already active on tun2 with IP 10.98.0.24
+2025-06-03 16:03:31,093 INFO: VPN already active on tun1 with IP 10.98.0.7
+2025-06-03 16:03:31,094 INFO: Starting VPN connection on interface tun3
+2025-06-03 16:03:31,094 INFO: Starting VPN connection on interface tun4
+2025-06-03 16:03:31,094 INFO: Enumerating domain: clarivateglobal.com
+2025-06-03 16:03:31,095 INFO: VPN already active on tun4 with IP 10.98.0.15
+2025-06-03 16:03:31,094 INFO: Enumerating domain: familysecuritytoday.com
+2025-06-03 16:03:31,095 INFO: VPN already active on tun3 with IP 10.98.0.14
+2025-06-03 16:03:31,095 DEBUG: Registered tool dig with task_id 140528109100224
+2025-06-03 16:03:31,095 INFO: Enumerating domain: mail.2000avenueofthestars.com
+2025-06-03 16:03:31,097 DEBUG: Registered tool dig with task_id 140528109100416
+2025-06-03 16:03:31,095 DEBUG: Registered tool dig with task_id 140528109099840
+2025-06-03 16:03:31,098 DEBUG: Registered tool amass with task_id 140528109103296
+2025-06-03 16:03:31,099 INFO: Running amass for domain: .tui.transunion.com
+2025-06-03 16:03:31,107 ERROR: Amass failed with return code 1: Configuration error: No root domain names were provided
+
+2025-06-03 16:03:31,107 DEBUG: Unregistered tool amass with task_id 140528109103296
+2025-06-03 16:03:31,107 INFO: Completed scan for target: *.tui.transunion.com
+2025-06-03 16:03:31,108 INFO: Completed scan for *.tui.transunion.com
+2025-06-03 16:03:31,175 INFO: Domain clarivateglobal.com resolved to IP: 3.33.139.32
+2025-06-03 16:03:31,175 INFO: Domain familysecuritytoday.com resolved to IP: 172.64.153.80
+2025-06-03 16:03:31,225 INFO: Domain familysecuritytoday.com is live with IP address: 172.64.153.80
+2025-06-03 16:03:31,225 DEBUG: Unregistered tool dig with task_id 140528109099840
+2025-06-03 16:03:31,226 INFO: Traffic monitoring started for familysecuritytoday.com on tun1
+2025-06-03 16:03:31,225 INFO: Domain clarivateglobal.com is live with IP address: 3.33.139.32
+2025-06-03 16:03:31,226 DEBUG: Registered tool wafw00f with task_id 140528109099840
+2025-06-03 16:03:31,226 DEBUG: Unregistered tool dig with task_id 140528109100224
+2025-06-03 16:03:31,227 INFO: Starting WAF detection for familysecuritytoday.com
+2025-06-03 16:03:31,227 INFO: Traffic monitoring started for clarivateglobal.com on tun2
+2025-06-03 16:03:31,227 DEBUG: Registered tool wafw00f with task_id 140528109100224
+2025-06-03 16:03:31,228 INFO: Starting WAF detection for clarivateglobal.com
+2025-06-03 16:03:31,228 INFO: Starting packet capture on tun1 with filter: host 172.64.153.80 and tcp
+2025-06-03 16:03:31,228 INFO: Starting packet capture on tun2 with filter: host 3.33.139.32 and tcp
+2025-06-03 16:03:31,240 INFO: Domain mail.2000avenueofthestars.com resolved to IP: 92.204.80.24
+2025-06-03 16:03:31,366 INFO: Domain mail.2000avenueofthestars.com is live with IP address: 92.204.80.24
+2025-06-03 16:03:31,368 DEBUG: Unregistered tool dig with task_id 140528109100416
+2025-06-03 16:03:31,369 INFO: Traffic monitoring started for mail.2000avenueofthestars.com on tun4
+2025-06-03 16:03:31,369 DEBUG: Registered tool wafw00f with task_id 140528109100416
+2025-06-03 16:03:31,370 INFO: Starting WAF detection for mail.2000avenueofthestars.com
+2025-06-03 16:03:31,371 INFO: Starting packet capture on tun4 with filter: host 92.204.80.24 and tcp
+2025-06-03 16:03:31,413 INFO: Domain filereceiver.tui.transunion.com resolved to IP: 172.83.72.5
+2025-06-03 16:03:31,529 INFO: Domain filereceiver.tui.transunion.com is live with IP address: 172.83.72.5
+2025-06-03 16:03:31,529 DEBUG: Unregistered tool dig with task_id 140528109100416
+2025-06-03 16:03:31,529 INFO: Traffic monitoring started for filereceiver.tui.transunion.com on tun5
+2025-06-03 16:03:31,530 DEBUG: Registered tool wafw00f with task_id 140528109100416
+2025-06-03 16:03:31,530 INFO: Starting WAF detection for filereceiver.tui.transunion.com
+2025-06-03 16:03:31,530 INFO: Starting packet capture on tun5 with filter: host 172.83.72.5 and tcp
+2025-06-03 16:03:36,271 ERROR: Error in WAF detection for filereceiver.tui.transunion.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:03:36,271 DEBUG: Unregistered tool wafw00f with task_id 140528109100416
+2025-06-03 16:03:36,271 INFO: Completed scan for target: filereceiver.tui.transunion.com
+2025-06-03 16:03:36,272 INFO: Completed scan for filereceiver.tui.transunion.com
+2025-06-03 16:03:38,797 ERROR: Error in WAF detection for mail.2000avenueofthestars.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:03:38,798 DEBUG: Unregistered tool wafw00f with task_id 140528109100416
+2025-06-03 16:03:38,799 INFO: Completed scan for target: mail.2000avenueofthestars.com
+2025-06-03 16:03:38,799 INFO: Completed scan for mail.2000avenueofthestars.com
+2025-06-03 16:03:40,251 ERROR: Error in WAF detection for familysecuritytoday.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:03:40,252 DEBUG: Unregistered tool wafw00f with task_id 140528109099840
+2025-06-03 16:03:40,252 INFO: Completed scan for target: familysecuritytoday.com
+2025-06-03 16:03:40,252 INFO: Completed scan for familysecuritytoday.com
+2025-06-03 16:03:43,724 ERROR: Error in WAF detection for clarivateglobal.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 336, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-03 16:03:43,725 DEBUG: Unregistered tool wafw00f with task_id 140528109100224
+2025-06-03 16:03:43,726 INFO: Completed scan for target: clarivateglobal.com
+2025-06-03 16:03:43,726 INFO: Completed scan for clarivateglobal.com

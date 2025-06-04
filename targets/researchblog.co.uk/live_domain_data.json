@@ -1,0 +1,16 @@
+{
+  "domain": "researchblog.co.uk",
+  "is_live": true,
+  "url": "http://researchblog.co.uk",
+  "https_url": "https://researchblog.co.uk",
+  "ip_addresses": [
+    "3.33.251.168"
+  ],
+  "ip": "3.33.251.168",
+  "nameservers": [
+    "ns10.domaincontrol.com.",
+    "ns09.domaincontrol.com."
+  ],
+  "timestamp": "2025-06-03T15:57:10.240991",
+  "command": "dig NS researchblog.co.uk +short"
+}

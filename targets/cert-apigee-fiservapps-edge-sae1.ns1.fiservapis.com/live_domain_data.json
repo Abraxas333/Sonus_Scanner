@@ -1,0 +1,15 @@
+{
+  "domain": "cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com",
+  "is_live": true,
+  "url": "http://cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com",
+  "https_url": "https://cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com",
+  "ip_addresses": [
+    "66.22.89.52"
+  ],
+  "ip": "66.22.89.52",
+  "nameservers": [
+    "c0514b18d1904482b7a5d06d6e5c6d76.v1.radwarecloud.net."
+  ],
+  "timestamp": "2025-06-03T15:59:20.736498",
+  "command": "dig NS cert-apigee-fiservapps-edge-sae1.ns1.fiservapis.com +short"
+}

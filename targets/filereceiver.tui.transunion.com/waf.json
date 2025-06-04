@@ -1,0 +1,16 @@
+[
+  {
+    "detected": true,
+    "firewall": "Cloudflare",
+    "manufacturer": "Cloudflare Inc.",
+    "trigger_url": "http://filereceiver.tui.transunion.com/?rjnujmev=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E&wnlrsoty=UNION+SELECT+ALL+FROM+information_schema+AND+%22+or+SLEEP%285%29+or+%22&zxjowsog=..%2F..%2Fetc%2Fpasswd",
+    "url": "http://filereceiver.tui.transunion.com"
+  },
+  {
+    "detected": true,
+    "firewall": "Generic",
+    "manufacturer": "Unknown",
+    "trigger_url": "http://filereceiver.tui.transunion.com/?qizvvwxr=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E",
+    "url": "http://filereceiver.tui.transunion.com"
+  }
+]
