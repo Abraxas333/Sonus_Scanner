@@ -1,0 +1,160 @@
+2025-06-05 15:45:15,639 INFO: ============================================================
+2025-06-05 15:45:15,640 INFO: Starting domain scanner
+2025-06-05 15:45:15,640 INFO: ============================================================
+2025-06-05 15:45:15,640 INFO: Starting main script
+2025-06-05 15:45:15,640 INFO: Domains file: domains.txt
+2025-06-05 15:45:15,640 INFO: Output directory: targets
+2025-06-05 15:45:15,640 INFO: Max processes: 6
+2025-06-05 15:45:15,706 INFO: Loaded 9 VPN configurations
+2025-06-05 15:45:17,198 DEBUG: Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-06-05 15:45:17,820 DEBUG: https://raw.githubusercontent.com:443 "GET /arkadiyt/bounty-targets-data/main/data/domains.txt HTTP/1.1" 200 179066
+2025-06-05 15:45:17,991 DEBUG: Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2025-06-05 15:45:18,443 DEBUG: https://raw.githubusercontent.com:443 "GET /arkadiyt/bounty-targets-data/main/data/wildcards.txt HTTP/1.1" 200 15162
+2025-06-05 15:45:18,516 INFO: Loaded 37062 domains
+2025-06-05 15:45:18,517 INFO: Created output directory: targets
+2025-06-05 15:45:18,533 INFO: Processing batch 1 with 6 domains
+2025-06-05 15:45:18,534 INFO: Launching worker for firstbank-cs.apps-uat.ilendx.tech in namespace ns0 on tun0
+2025-06-05 15:45:18,536 INFO: Launching worker for consent-uat-api.cbre.fr in namespace ns5 on tun5
+2025-06-05 15:45:18,535 INFO: Launching worker for ursbank.originate.fiservapps.com in namespace ns1 on tun1
+2025-06-05 15:45:18,535 INFO: Launching worker for peoples-bank-di.apps.ilendx.tech in namespace ns2 on tun2
+2025-06-05 15:45:18,536 INFO: Launching worker for greenfieldsavings.originate.fiservapps.com in namespace ns3 on tun3
+2025-06-05 15:45:18,536 INFO: Launching worker for pfchangs.wgiftcard.com in namespace ns4 on tun4
+2025-06-05 15:47:25,282 INFO: Scanner worker for consent-uat-api.cbre.fr completed successfully
+2025-06-05 15:50:18,534 ERROR: Timeout processing domain
+2025-06-05 15:55:18,535 ERROR: Timeout processing domain
+2025-06-05 15:56:12,431 ERROR: Process ForkPoolWorker-6:
+ Attempting VPN connection with config: /var/www/recon/vpn_configs/ca.protonvpn.tcp.ovpn
+2025-06-05 15:45:20,966 INFO: Worker starting: consent-uat-api.cbre.fr on iface tun5 in ns ns5
+2025-06-05 15:45:20,971 DEBUG: Using selector: EpollSelector
+2025-06-05 15:45:20,971 INFO: Starting VPN connection on interface tun5
+2025-06-05 15:45:20,994 INFO: Worker starting: peoples-bank-di.apps.ilendx.tech on iface tun2 in ns ns2
+2025-06-05 15:45:20,994 DEBUG: Using selector: EpollSelector
+2025-06-05 15:45:20,994 INFO: Starting VPN connection on interface tun2
+2025-06-05 15:45:20,998 INFO: Worker starting: greenfieldsavings.originate.fiservapps.com on iface tun3 in ns ns3
+2025-06-05 15:45:20,999 DEBUG: Using selector: EpollSelector
+2025-06-05 15:45:21,001 INFO: Starting VPN connection on interface tun3
+2025-06-05 15:45:21,003 INFO: Attempting VPN connection with config: /var/www/recon/vpn_configs/hk.protonvpn.tcp.ovpn
+2025-06-05 15:45:21,026 INFO: Worker starting: ursbank.originate.fiservapps.com on iface tun1 in ns ns1
+2025-06-05 15:45:21,026 DEBUG: Using selector: EpollSelector
+2025-06-05 15:45:21,027 INFO: Starting VPN connection on interface tun1
+2025-06-05 15:45:21,038 INFO: Attempting VPN connection with config: /var/www/recon/vpn_configs/be.protonvpn.tcp.ovpn
+2025-06-05 15:45:21,039 INFO: Attempting VPN connection with config: /var/www/recon/vpn_configs/ca.protonvpn.tcp.ovpn
+2025-06-05 15:45:21,056 INFO: Attempting VPN connection with config: /var/www/recon/vpn_configs/hk.protonvpn.tcp.ovpn
+2025-06-05 15:45:21,071 INFO: Worker starting: pfchangs.wgiftcard.com on iface tun4 in ns ns4
+2025-06-05 15:45:21,071 DEBUG: Using selector: EpollSelector
+2025-06-05 15:45:21,075 INFO: Starting VPN connection on interface tun4
+2025-06-05 15:45:21,098 INFO: Attempting VPN connection with config: /var/www/recon/vpn_configs/il.protonvpn.tcp.ovpn
+2025-06-05 15:45:24,069 INFO: VPN connection established on tun3 with IP 10.98.0.9
+2025-06-05 15:45:24,069 INFO: Starting scan for target: greenfieldsavings.originate.fiservapps.com in namespace: ns3
+2025-06-05 15:45:24,083 INFO: VPN active on tun3 in ns3 with IP 10.98.0.9
+2025-06-05 15:45:24,083 INFO: Enumerating domain: greenfieldsavings.originate.fiservapps.com
+2025-06-05 15:45:24,083 DEBUG: Registered tool dig with task_id 140620693578432
+2025-06-05 15:45:24,123 INFO: VPN connection established on tun4 with IP 10.98.0.10
+2025-06-05 15:45:24,124 INFO: Starting scan for target: pfchangs.wgiftcard.com in namespace: ns4
+2025-06-05 15:45:24,136 INFO: VPN active on tun4 in ns4 with IP 10.98.0.10
+2025-06-05 15:45:24,137 INFO: Enumerating domain: pfchangs.wgiftcard.com
+2025-06-05 15:45:24,137 DEBUG: Registered tool dig with task_id 140624875152064
+2025-06-05 15:45:24,463 INFO: Domain greenfieldsavings.originate.fiservapps.com resolved to IP: 66.22.85.134
+2025-06-05 15:45:24,569 INFO: Domain pfchangs.wgiftcard.com resolved to IP: 66.22.19.85
+2025-06-05 15:45:24,627 INFO: Domain greenfieldsavings.originate.fiservapps.com is live with IP address: 66.22.85.134
+2025-06-05 15:45:24,627 DEBUG: Unregistered tool dig with task_id 140620693578432
+2025-06-05 15:45:24,651 INFO: Started packet interceptor for 66.22.85.134 on queue 4
+2025-06-05 15:45:24,651 INFO: Traffic monitoring started for greenfieldsavings.originate.fiservapps.com on tun3
+2025-06-05 15:45:24,651 DEBUG: Registered tool wafw00f with task_id 140620693578432
+2025-06-05 15:45:24,651 INFO: Starting WAF detection for greenfieldsavings.originate.fiservapps.com
+2025-06-05 15:45:24,653 INFO: Starting packet capture on tun3 with filter: host 66.22.85.134 and tcp
+2025-06-05 15:45:24,790 INFO: Domain pfchangs.wgiftcard.com is live with IP address: 66.22.19.85
+2025-06-05 15:45:24,791 DEBUG: Unregistered tool dig with task_id 140624875152064
+2025-06-05 15:45:24,806 INFO: Started packet interceptor for 66.22.19.85 on queue 5
+2025-06-05 15:45:24,806 INFO: Traffic monitoring started for pfchangs.wgiftcard.com on tun4
+2025-06-05 15:45:24,806 DEBUG: Registered tool wafw00f with task_id 140624875152064
+2025-06-05 15:45:24,806 INFO: Starting WAF detection for pfchangs.wgiftcard.com
+2025-06-05 15:45:24,807 INFO: Starting packet capture on tun4 with filter: host 66.22.19.85 and tcp
+2025-06-05 15:45:24,838 INFO: VPN connection established on tun0 with IP 10.98.0.13
+2025-06-05 15:45:24,839 INFO: Starting scan for target: firstbank-cs.apps-uat.ilendx.tech in namespace: ns0
+2025-06-05 15:45:24,853 INFO: VPN active on tun0 in ns0 with IP 10.98.0.13
+2025-06-05 15:45:24,853 INFO: Enumerating domain: firstbank-cs.apps-uat.ilendx.tech
+2025-06-05 15:45:24,853 DEBUG: Registered tool dig with task_id 140232558748352
+2025-06-05 15:45:25,019 INFO: Domain firstbank-cs.apps-uat.ilendx.tech resolved to IP: 66.6.26.168
+2025-06-05 15:45:25,055 INFO: VPN connection established on tun5 with IP 10.98.0.12
+2025-06-05 15:45:25,056 INFO: Starting scan for target: consent-uat-api.cbre.fr in namespace: ns5
+2025-06-05 15:45:25,084 INFO: VPN active on tun5 in ns5 with IP 10.98.0.12
+2025-06-05 15:45:25,084 INFO: Enumerating domain: consent-uat-api.cbre.fr
+2025-06-05 15:45:25,085 DEBUG: Registered tool dig with task_id 140239440552640
+2025-06-05 15:45:25,092 INFO: VPN connection established on tun2 with IP 10.98.0.5
+2025-06-05 15:45:25,093 INFO: Starting scan for target: peoples-bank-di.apps.ilendx.tech in namespace: ns2
+2025-06-05 15:45:25,121 INFO: VPN active on tun2 in ns2 with IP 10.98.0.5
+2025-06-05 15:45:25,121 INFO: Enumerating domain: peoples-bank-di.apps.ilendx.tech
+2025-06-05 15:45:25,121 DEBUG: Registered tool dig with task_id 139790803133120
+2025-06-05 15:45:25,125 INFO: Domain firstbank-cs.apps-uat.ilendx.tech is live with IP address: 66.6.26.168
+2025-06-05 15:45:25,126 DEBUG: Unregistered tool dig with task_id 140232558748352
+2025-06-05 15:45:25,151 INFO: Started packet interceptor for 66.6.26.168 on queue 1
+2025-06-05 15:45:25,151 INFO: Traffic monitoring started for firstbank-cs.apps-uat.ilendx.tech on tun0
+2025-06-05 15:45:25,151 DEBUG: Registered tool wafw00f with task_id 140232558748352
+2025-06-05 15:45:25,151 INFO: Starting WAF detection for firstbank-cs.apps-uat.ilendx.tech
+2025-06-05 15:45:25,152 INFO: Starting packet capture on tun0 with filter: host 66.6.26.168 and tcp
+2025-06-05 15:45:25,233 INFO: Domain peoples-bank-di.apps.ilendx.tech resolved to IP: 66.6.16.210
+2025-06-05 15:45:25,346 INFO: Domain peoples-bank-di.apps.ilendx.tech is live with IP address: 66.6.16.210
+2025-06-05 15:45:25,348 DEBUG: Unregistered tool dig with task_id 139790803133120
+2025-06-05 15:45:25,366 INFO: Started packet interceptor for 66.6.16.210 on queue 3
+2025-06-05 15:45:25,371 INFO: Traffic monitoring started for peoples-bank-di.apps.ilendx.tech on tun2
+2025-06-05 15:45:25,371 DEBUG: Registered tool wafw00f with task_id 139790803133120
+2025-06-05 15:45:25,371 INFO: Starting WAF detection for peoples-bank-di.apps.ilendx.tech
+2025-06-05 15:45:25,372 INFO: Starting packet capture on tun2 with filter: host 66.6.16.210 and tcp
+2025-06-05 15:45:26,103 INFO: VPN connection established on tun1 with IP 10.98.0.14
+2025-06-05 15:45:26,103 INFO: Starting scan for target: ursbank.originate.fiservapps.com in namespace: ns1
+2025-06-05 15:45:26,116 INFO: VPN active on tun1 in ns1 with IP 10.98.0.14
+2025-06-05 15:45:26,116 INFO: Enumerating domain: ursbank.originate.fiservapps.com
+2025-06-05 15:45:26,117 DEBUG: Registered tool dig with task_id 140043947238080
+2025-06-05 15:45:26,543 INFO: Domain ursbank.originate.fiservapps.com resolved to IP: 66.22.27.217
+2025-06-05 15:45:26,705 INFO: Domain ursbank.originate.fiservapps.com is live with IP address: 66.22.27.217
+2025-06-05 15:45:26,706 DEBUG: Unregistered tool dig with task_id 140043947238080
+2025-06-05 15:45:26,722 INFO: Started packet interceptor for 66.22.27.217 on queue 2
+2025-06-05 15:45:26,722 INFO: Traffic monitoring started for ursbank.originate.fiservapps.com on tun1
+2025-06-05 15:45:26,722 DEBUG: Registered tool wafw00f with task_id 140043947238080
+2025-06-05 15:45:26,723 INFO: Starting WAF detection for ursbank.originate.fiservapps.com
+2025-06-05 15:45:26,724 INFO: Starting packet capture on tun1 with filter: host 66.22.27.217 and tcp
+2025-06-05 15:45:32,239 ERROR: Error in WAF detection for greenfieldsavings.originate.fiservapps.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 381, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-05 15:45:32,244 DEBUG: Unregistered tool wafw00f with task_id 140620693578432
+2025-06-05 15:45:32,244 INFO: Completed scan for target: greenfieldsavings.originate.fiservapps.com
+2025-06-05 15:45:32,259 ERROR: Error in WAF detection for pfchangs.wgiftcard.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 381, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-05 15:45:32,261 DEBUG: Unregistered tool wafw00f with task_id 140624875152064
+2025-06-05 15:45:32,261 INFO: Completed scan for target: pfchangs.wgiftcard.com
+2025-06-05 15:45:32,625 ERROR: Error in WAF detection for firstbank-cs.apps-uat.ilendx.tech: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 381, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-05 15:45:32,627 DEBUG: Unregistered tool wafw00f with task_id 140232558748352
+2025-06-05 15:45:32,627 INFO: Completed scan for target: firstbank-cs.apps-uat.ilendx.tech
+2025-06-05 15:45:32,793 ERROR: Error in WAF detection for peoples-bank-di.apps.ilendx.tech: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 381, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-05 15:45:32,795 DEBUG: Unregistered tool wafw00f with task_id 139790803133120
+2025-06-05 15:45:32,795 INFO: Completed scan for target: peoples-bank-di.apps.ilendx.tech
+2025-06-05 15:45:34,202 ERROR: Error in WAF detection for ursbank.originate.fiservapps.com: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/mnt/hgfs/py_packet/scanner.py", line 381, in sniff_waf
+    "url": waf_data.get("url"),
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2025-06-05 15:45:34,204 DEBUG: Unregistered tool wafw00f with task_id 140043947238080
+2025-06-05 15:45:34,205 INFO: Completed scan for target: ursbank.originate.fiservapps.com
+2025-06-05 15:47:25,181 INFO: Domain consent-uat-api.cbre.fr is not live (DNS resolution failed: [Errno -3] Temporary failure in name resolution)
+2025-06-05 15:47:25,182 DEBUG: Unregistered tool dig with task_id 140239440552640
+2025-06-05 15:47:25,182 INFO: Domain consent-uat-api.cbre.fr is not live, skipping further enumeration
+2025-06-05 15:47:25,183 INFO: Completed scan for target: consent-uat-api.cbre.fr

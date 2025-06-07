@@ -15,6 +15,7 @@ import subprocess as sp
 import logging
 import time
 import socket
+import errno
 from functools import partial
 from datetime import datetime
 from waf_signatures import get_signatures
@@ -532,8 +533,8 @@ class AsyncScanner:
                 'ip',
                 'netns',
                 'exec',
-                'ns'
-                'openvpn',
+                self.namespace,  # e.g. "ns0", "ns1", …
+                'openvpn',  # now a separate argument
                 '--config', config_file,
                 '--dev', self.interface,
                 '--log', log_file
@@ -594,21 +595,39 @@ class AsyncScanner:
 
     async def get_ip_address(self):
         """
-        Return the IPv4 address assigned to the interface.
+        Return the IPv4 address assigned to self.interface inside self.namespace.
         Returns None if the interface doesn't exist or has no IPv4 address.
         """
-        try:
-            # Create a dummy socket
-            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            # SIOCGIFADDR = 0x8915: "get interface address"
-            iface_bytes = struct.pack('256s', self.interface.encode('utf-8')[:15])
-            res = fcntl.ioctl(sock.fileno(), 0x8915, iface_bytes)
-            # bytes 20–24 of the result contain the IPv4 address
-            ip = struct.unpack('!I', res[20:24])[0]
-            return socket.inet_ntoa(struct.pack('!I', ip))
-        except OSError as e:
-            logger.error(f"Failed to get IP for {self.interface}: {e}")
+        if not self.namespace:
             return None
+
+        # Run “ip addr show <iface>” inside the namespace and parse for “inet x.x.x.x/..”
+        cmd = ["sudo", "ip", "netns", "exec", self.namespace, "ip", "addr", "show", self.interface]
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                *cmd,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+            stdout, stderr = await proc.communicate()
+            if proc.returncode != 0:
+                return None
+
+            text = stdout.decode("utf-8", errors="ignore")
+            # Look for “inet 10.8.0.5/24” etc.
+            for line in text.splitlines():
+                line = line.strip()
+                if line.startswith("inet "):
+                    # “inet 10.8.0.5/24 …”
+                    parts = line.split()
+                    ip_cidr = parts[1]  # “10.8.0.5/24”
+                    ip_addr = ip_cidr.split("/")[0]
+                    return ip_addr
+            return None
+        except Exception as e:
+            logger.error(f"Failed to run ip addr show in {self.namespace}: {e}")
+            return None
+
 
     async def _wait_for_connection(self, log_file, timeout=30):
         """Monitor log file for successful connection"""
@@ -1006,3 +1025,20 @@ class AsyncScanner:
             return None
 
 
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--target",    required=True)
+    parser.add_argument("--outdir",    required=True)
+    parser.add_argument("--iface",     required=True)
+    parser.add_argument("--namespace", required=True)
+    args = parser.parse_args()
+
+    sc = AsyncScanner(
+        target=args.target,
+        output_dir=args.outdir,
+        interface=args.iface,
+        namespace=args.namespace
+    )
+    asyncio.run(sc.run())
